@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — RRHH Simple</title>
+<meta name="description" content="Cuéntame tu caso laboral por WhatsApp o email. La primera consulta es gratuita y sin compromiso.">
+<meta property="og:title" content="Contacto — RRHH Simple">
+<meta property="og:description" content="Cuéntame tu caso laboral por WhatsApp o email. La primera consulta es gratuita y sin compromiso.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2e2e2e">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="wrap">
+    <nav aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio"><img src="assets/logo-claro.png" alt="RRHH Simple" width="79" height="52"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="contacto.html" aria-current="page">Contacto</a>
+        <a class="nav-cta" href="https://www.sumupbookings.com/rrhh-simple-asesoria-laboral" target="_blank" rel="noopener">Reservar hora</a>
+      </div>
+    </nav>
+  </header>
+  <main id="contenido">
+    <div class="wrap">
+      <section class="page-head">
+        <h1>Cuéntame tu caso</h1>
+        <p>Sin compromiso y sin tecnicismos: me cuentas qué te pasa y vemos cómo puedo ayudarte.</p>
+      </section>
+
+      <section class="contacto" aria-labelledby="h-form">
+        <div class="form-box">
+          <h2 class="section-title" id="h-form">Escríbeme</h2>
+          <p class="section-sub">Rellena esto y elige cómo prefieres enviarlo. La primera consulta es gratis y sin compromiso.</p>
+
+          <form id="contactForm">
+            <fieldset>
+              <legend>¿Cómo prefieres enviarlo?</legend>
+              <div class="channel-options">
+                <label class="channel-option"><input type="radio" name="canal" value="whatsapp" checked> WhatsApp</label>
+                <label class="channel-option"><input type="radio" name="canal" value="email"> Email</label>
+              </div>
+            </fieldset>
+
+            <div>
+              <label for="nombre">Tu nombre</label>
+              <input type="text" id="nombre" autocomplete="name" required>
+            </div>
+
+            <div>
+              <label for="perfil">¿Escribes como…?</label>
+              <select id="perfil">
+                <option value="Particular">Particular</option>
+                <option value="Empresa">Empresa</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="necesidad">¿Qué necesitas?</label>
+              <select id="necesidad">
+                <option>Buscar trabajo (CV, entrevistas, estrategia)</option>
+                <option>Entender lo que firmo (nómina, contrato, despido…)</option>
+                <option>Procesos laborales (excedencia, IRPF, negociación…)</option>
+                <option>No lo tengo claro todavía</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="mensaje">Cuéntame brevemente tu situación</label>
+              <textarea id="mensaje" placeholder="Ej.: me han comunicado el despido y no sé si es correcto…" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:6px;" id="submitBtn">Enviar por WhatsApp →</button>
+            <p class="form-note">Al enviar se abrirá WhatsApp o tu app de correo (según elijas) con estos datos para que los confirmes y los mandes tú. Esta página no guarda ni envía nada por sí sola. Más información en la <a href="privacidad.html" style="text-decoration:underline;">política de privacidad</a>.</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="section-title">O contáctame directamente</h2>
+        <div class="contact-direct">
+          <div class="contact-card"><span>Email</span><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></div>
+          <div class="contact-card"><span>Teléfono y WhatsApp</span><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643</a></div>
+          <div class="contact-card"><span>Instagram</span><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">@fernando_rrhh</a></div>
+          <div class="contact-card"><span>LinkedIn</span><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">Fernando de la Sota Escriche</a></div>
+        </div>
+        <div class="book-line">
+          <p>¿Prefieres reservar directamente?</p>
+          <a href="https://www.sumupbookings.com/rrhh-simple-asesoria-laboral" class="btn btn-primary" target="_blank" rel="noopener">Reservar hora →</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="wrap site-footer">
+    <div class="contact-row">
+      <a href="mailto:fernando@rrhhsimple.com"><span class="ic" aria-hidden="true">✉</span>fernando@rrhhsimple.com</a>
+      <a href="tel:+34638292643"><span class="ic" aria-hidden="true">☎</span>638 292 643</a>
+      <a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">@</span>fernando_rrhh</a>
+      <a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span>LinkedIn</a>
+    </div>
+    <div class="footer-links">
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Política de privacidad</a>
+    </div>
+    <p class="disclaimer">Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
+    <p class="copy">© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
