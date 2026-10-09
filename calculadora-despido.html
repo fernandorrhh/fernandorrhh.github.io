@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de indemnización por despido — RRHH Simple</title>
+<meta name="description" content="Calcula de forma orientativa cuánto te correspondería de indemnización si te despiden: despido improcedente, objetivo o disciplinario. Solo necesitas tres datos.">
+<meta property="og:title" content="Calculadora de indemnización por despido — RRHH Simple">
+<meta property="og:description" content="Calcula de forma orientativa cuánto te correspondería si te despiden. Tres datos y sin dejar tu correo.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2e2e2e">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="wrap">
+    <nav aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio"><img src="assets/logo-claro.png" alt="RRHH Simple" width="79" height="52"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="calculadora-despido.html" aria-current="page">Calculadora</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="nav-cta" href="reservar.html">Consulta gratis</a>
+      </div>
+    </nav>
+  </header>
+  <main id="contenido">
+    <div class="wrap">
+      <section class="page-head">
+        <p class="eyebrow">Herramienta gratuita</p>
+        <h1>¿Cuánto te corresponde si te despiden?</h1>
+        <p>Tres datos y sin dejar tu correo. Verás tu indemnización estimada según cómo se califique el despido.</p>
+      </section>
+
+      <section class="calc-box" aria-labelledby="h-calc">
+        <h2 class="section-title" id="h-calc">Calcula tu indemnización</h2>
+        <p class="section-sub">El cálculo se hace en tu navegador: no guardamos ni enviamos nada de lo que escribes.</p>
+
+        <form id="calcForm" class="calc-form" novalidate>
+          <div>
+            <label for="inicio">Fecha de inicio del contrato</label>
+            <input type="date" id="inicio" required>
+          </div>
+          <div>
+            <label for="fin">Fecha de despido (o fin)</label>
+            <input type="date" id="fin" required>
+          </div>
+          <div>
+            <label for="salario">Salario bruto anual (€)</label>
+            <input type="number" id="salario" min="1" step="100" inputmode="decimal" placeholder="Ej.: 24000" required>
+          </div>
+          <p class="field-hint calc-hint">Salario: indica el bruto anual con las pagas extra incluidas (también las prorrateadas).</p>
+          <button type="submit" class="btn btn-primary">Calcular →</button>
+        </form>
+        <p class="calc-error" id="calcError" role="alert" hidden></p>
+
+        <div class="results" id="resultado" hidden aria-live="polite">
+          <div class="result-meta">
+            <span>Antigüedad computada: <b id="rAntig"></b></span>
+            <span>Salario diario: <b id="rDiario"></b></span>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card main">
+              <h3>Despido improcedente</h3>
+              <div class="big" id="rImp"></div>
+              <p id="rImpDias"></p>
+            </div>
+            <div class="result-card">
+              <h3>Despido objetivo (procedente)</h3>
+              <div class="big" id="rObj"></div>
+              <p id="rObjDias"></p>
+            </div>
+            <div class="result-card">
+              <h3>Disciplinario procedente</h3>
+              <div class="big">0 €</div>
+              <p>Sin indemnización si se prueba la causa.</p>
+            </div>
+          </div>
+
+          <div class="calc-notes">
+            <ul>
+              <li><b>Esto es solo la indemnización.</b> El finiquito (vacaciones no disfrutadas, parte proporcional de pagas, días trabajados) y, en su caso, el preaviso se calculan aparte.</li>
+              <li><b>No sabemos cómo se calificaría tu despido.</b> Eso depende de la causa alegada, la carta y las pruebas. Por eso te mostramos los tres escenarios.</li>
+              <li id="rPre" hidden>Como empiezas antes del 12 de febrero de 2012, el tiempo anterior a esa fecha se calcula a 45 días por año y el posterior a 33, con las reglas de tope especiales de esa fecha.</li>
+              <li><b>Plazo para reclamar: 20 días hábiles</b> desde el despido. Pasado ese plazo, la acción caduca.</li>
+            </ul>
+          </div>
+
+          <div class="calc-cta">
+            <p>¿Quieres que revise tu caso? La primera consulta es gratuita y sin compromiso.</p>
+            <a href="reservar.html" class="btn btn-primary">Reservar consulta gratis →</a>
+            <a href="contacto.html" class="btn btn-outline">Escríbeme tu caso</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2 class="section-title">Cómo se calcula</h2>
+        <div class="prose">
+          <p><b>Improcedente:</b> 33 días de salario por año trabajado, con un máximo de 24 mensualidades (art. 56 del Estatuto de los Trabajadores). Si empezaste antes del 12 de febrero de 2012, ese tramo se cuenta a 45 días por año y el tope puede llegar a 42 mensualidades.</p>
+          <p><b>Objetivo procedente</b> (causas económicas, técnicas, organizativas o de producción): 20 días por año, con un máximo de 12 mensualidades (art. 53 ET).</p>
+          <p>Los periodos inferiores a un año se prorratean por meses, y aquí cada fracción de mes cuenta como mes completo. El salario diario es el bruto anual entre 365.</p>
+          <p>Parámetros vigentes desde <span id="vigencia"></span>. La ley puede cambiar: hay debate abierto sobre la reforma de la indemnización por despido improcedente.</p>
+        </div>
+        <h2 class="section-title" style="margin-top:28px;">Cuándo no te sirve esta calculadora</h2>
+        <div class="prose">
+          <p>Si tienes salario muy variable, contrato fijo discontinuo, contrato por horas, antigüedad con interrupciones o subrogaciones, o tu convenio mejora la indemnización, la cifra real puede ser distinta. Cuéntame tu caso y lo vemos.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="wrap site-footer">
+    <div class="contact-row">
+      <a href="mailto:fernando@rrhhsimple.com"><span class="ic" aria-hidden="true">✉</span>fernando@rrhhsimple.com</a>
+      <a href="tel:+34638292643"><span class="ic" aria-hidden="true">☎</span>638 292 643</a>
+      <a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">@</span>fernando_rrhh</a>
+      <a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span>LinkedIn</a>
+    </div>
+    <div class="footer-links">
+      <a href="reservar.html">Reservar consulta gratis</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Política de privacidad</a>
+    </div>
+    <p class="disclaimer">Esta calculadora ofrece una estimación orientativa, no constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial. Servicio de asesoramiento orientativo desde experiencia profesional en RRHH.</p>
+    <p class="copy">© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+  </footer>
+  <script src="main.js"></script>
+  <script src="calculadora.js"></script>
+</body>
+</html>
