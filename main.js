@@ -17,6 +17,26 @@
     });
   }
 
+  // ---- Calendario de reservas (solo en reservar.html) ----
+  // El iframe de Google no se carga hasta que la persona pulsa el botón.
+  var loadBtn = document.getElementById('loadCal');
+  var holder = document.getElementById('calHolder');
+  if (loadBtn && holder) {
+    loadBtn.addEventListener('click', function () {
+      if (!holder.querySelector('iframe')) {
+        var f = document.createElement('iframe');
+        f.src = holder.getAttribute('data-src');
+        f.title = 'Calendario para reservar la primera consulta gratuita';
+        f.className = 'cal-frame';
+        f.setAttribute('frameborder', '0');
+        holder.appendChild(f);
+      }
+      holder.hidden = false;
+      loadBtn.textContent = 'Ir al calendario ↓';
+      holder.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   // ---- Formulario de contacto (solo en contacto.html) ----
   var form = document.getElementById('contactForm');
   if (!form) return;
