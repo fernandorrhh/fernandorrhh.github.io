@@ -6,203 +6,206 @@
 <title>Servicios y tarifas — RRHH Simple</title>
 <meta name="description" content="Revisión de CV, simulación de entrevistas, asesoramiento sobre nómina, contrato, despidos y trámites laborales. Precio social y precio estándar, sin IVA.">
 <meta property="og:title" content="Servicios y tarifas — RRHH Simple">
-<meta property="og:description" content="Revisión de CV, simulación de entrevistas, asesoramiento sobre nómina, contrato, despidos y trámites laborales. Precio social y precio estándar, sin IVA.">
+<meta property="og:description" content="Revisión de CV, entrevistas, nómina, contrato, despidos y trámites. Precio social y precio estándar, sin IVA.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#2e2e2e">
+<meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="wrap">
-    <nav aria-label="Principal">
-      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio"><img src="assets/logo-claro.png" alt="RRHH Simple" width="79" height="52"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
+        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Inicio</a>
         <a href="servicios.html" aria-current="page">Servicios</a>
         <a href="calculadora-despido.html">Calculadora</a>
         <a href="sobre-mi.html">Sobre mí</a>
         <a href="contacto.html">Contacto</a>
-        <a class="nav-cta" href="reservar.html">Consulta gratis</a>
+        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
       </div>
     </nav>
-  </header>
-  <main id="contenido">
-    <div class="wrap">
-      <section class="page-head">
-        <h1>En qué te puedo ayudar</h1>
-        <p>Tres formas de ayudarte, un mismo compromiso: explicarte todo claro y acompañarte de verdad, no soltarte una respuesta genérica y ya está.</p>
-      </section>
-    </div>
+  </div>
+</header>
 
-    <div class="free-banner">
-      <div class="wrap">
-        <div class="tag">Gratis</div>
-        <p>La primera consulta es gratuita y sin compromiso.</p>
-        <a class="btn-sm" href="reservar.html">Reservar gratis →</a>
+<main id="contenido">
+
+  <section class="hero" style="padding-bottom:clamp(3rem,7vw,6rem)">
+    <div class="wrap">
+      <h1 class="display" data-rise style="max-width:12ch">Tarifas sin sorpresas.</h1>
+      <div class="grid" style="margin-top:var(--s7)">
+        <div class="c-1-6">
+          <p class="lead muted" data-rise style="--rise-delay:70ms; max-width:34ch">
+            Dos precios en cada servicio. Eliges tú, sin justificar nada.
+          </p>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:140ms">
+          <p>Si estás en paro, cobrando poco o en una situación complicada, te corresponde el <strong>precio social</strong>. No pregunto, no pido papeles y no cambia el servicio que recibes.</p>
+        </div>
       </div>
     </div>
+  </section>
 
+  <!-- La carta -->
+  <section class="band-tight" aria-labelledby="h-tarifas">
     <div class="wrap">
-      <section class="block">
-        <div class="price-note">
-          Verás dos precios en cada servicio: <b>precio social</b> y <b>precio estándar</b>, según tu situación. Si estás en una situación de precariedad o con pocos recursos, que no te impida pedir ayuda: sin preguntas incómodas, tú eliges el que te corresponde.
-        </div>
+      <h2 class="sr-only" id="h-tarifas">Servicios y precios</h2>
 
-        <div class="rama c1">
-          <div class="num" aria-hidden="true">01</div>
-          <div class="rama-body">
-            <h2 class="rama-title">Buscar trabajo sin perder la cabeza</h2>
-            <div class="price-header">Social / Estándar</div>
-          <div class="service">
-            <div>
-              <h4>Revisión de CV</h4>
-              <p>Estudiamos y adaptamos tu CV según tu perfil concreto y el puesto al que quieres postular.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">12€ <small>/</small> 20€</div>
-            </div>
+      <div class="menu-sheet" data-rise>
+
+        <div class="menu-group">
+          <h3>🔍 Buscar trabajo</h3>
+          <p class="note">Precio social / precio estándar</p>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount">12 € <span class="std">/ 20 €</span></span></p>
+            <p>Estudiamos y adaptamos tu CV a tu perfil concreto y al puesto al que quieres postular.</p>
           </div>
-          <div class="service">
-            <div>
-              <h4>Simulación de entrevistas</h4>
-              <p>Simulacro de entrevista de trabajo (45–50 min), online o presencial en Madrid, para que llegues con la preparación suficiente y sepas responder a las preguntas incómodas.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">18€ <small>/</small> 30€</div>
-            </div>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">18 € <span class="std">/ 30 €</span></span></p>
+            <p>Simulacro de 45 a 50 minutos, online o presencial en Madrid, con las preguntas incómodas incluidas y la devolución de qué ha funcionado y qué no.</p>
           </div>
-          <div class="service">
-            <div>
-              <h4>Pack completo</h4>
-              <p>CV + simulación de entrevista: una estrategia completa adaptada a tus objetivos profesionales.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">25€ <small>/</small> 40€</div>
-            </div>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">25 € <span class="std">/ 40 €</span></span></p>
+            <p>Las dos cosas, trabajadas juntas como una sola estrategia hacia el puesto que buscas.</p>
           </div>
-          <div class="service">
-            <div>
-              <h4>Servicio a medida</h4>
-              <p>Estudio, valoración y análisis de tu situación laboral, y una estrategia de búsqueda de empleo hecha a la medida de lo que necesitas.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">Precio a medida</div>
-            </div>
-          </div>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Servicio a medida</span><span class="leader" aria-hidden="true"></span><span class="amount">A convenir</span></p>
+            <p>Análisis completo de tu situación laboral y una estrategia de búsqueda hecha para lo que necesitas.</p>
           </div>
         </div>
 
-        <div class="rama c2">
-          <div class="num" aria-hidden="true">02</div>
-          <div class="rama-body">
-            <h2 class="rama-title">Entender lo que firmas</h2>
-            <div class="price-header">Social / Estándar</div>
-          <div class="service">
-            <div>
-              <h4>Asesoramiento general: nómina, contrato o convenio</h4>
-              <p>Repasamos juntos tu nómina, tu contrato o el convenio que te aplica (también permisos, jornada y vacaciones), para que entiendas qué dice, si está bien hecho y qué puedes reclamar si no lo está.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">15€ <small>/</small> 25€</div>
-            </div>
+        <div class="menu-group">
+          <h3>📄 Entender lo que firmas</h3>
+          <p class="note">Precio social / precio estándar</p>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € <span class="std">/ 25 €</span></span></p>
+            <p>Repasamos juntos qué dice, si está bien hecho y qué puedes reclamar si no lo está. También permisos, jornada y vacaciones.</p>
           </div>
-          <div class="service">
-            <div>
-              <h4>Asesoramiento específico: despidos y conflictos</h4>
-              <p>Si te han despedido o hay un conflicto con la empresa, analizamos tu caso en detalle y te cuento qué opciones tienes y cómo defenderte, paso a paso.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">22€ <small>/</small> 40€</div>
-            </div>
-          </div>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount">22 € <span class="std">/ 40 €</span></span></p>
+            <p>Analizamos tu caso en detalle y te cuento qué opciones tienes y cómo defenderte, paso a paso. Recuerda que hay 20 días hábiles de plazo.</p>
           </div>
         </div>
 
-        <div class="rama c3">
-          <div class="num" aria-hidden="true">03</div>
-          <div class="rama-body">
-            <h2 class="rama-title">Procesos laborales</h2>
-            <div class="price-header">Social / Estándar</div>
-          <div class="service">
-            <div>
-              <h4>Trámites sencillos</h4>
-              <p>Cartas y comunicaciones a la empresa, cambios de IRPF, solicitud de expedientes, acuerdos…</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">8€ <small>/</small> 12€</div>
-            </div>
+        <div class="menu-group">
+          <h3>✍️ Procesos laborales</h3>
+          <p class="note">Precio social / precio estándar</p>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount">8 € <span class="std">/ 12 €</span></span></p>
+            <p>Cartas y comunicaciones a la empresa, cambios de IRPF, solicitud de expedientes, acuerdos.</p>
           </div>
-          <div class="service">
-            <div>
-              <h4>Trámites con más carga</h4>
-              <p>Excedencias o negociar algo con la empresa: qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
-            </div>
-            <div class="service-buy">
-              <div class="price">15€ <small>/</small> 25€</div>
-            </div>
-          </div>
+
+          <div class="menu-item">
+            <p class="menu-line"><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € <span class="std">/ 25 €</span></span></p>
+            <p>Excedencias o negociar algo con la empresa: qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
           </div>
         </div>
 
-        <p class="legend"><b>Precio social</b> / <b>precio estándar</b>. Para empresas, presupuesto a medida.</p>
-        <p class="legend" style="margin-top:4px;">Todos los precios son sin IVA. Como autónomo, el IVA correspondiente se añade en la factura final.</p>
-        <p class="legend" style="margin-top:4px;">Todo empieza con la primera consulta gratuita: después te propongo el servicio que mejor encaja y te paso el enlace de pago.</p>
-      </section>
+      </div>
 
-      <section class="block">
-        <h2 class="section-title">Cómo funciona</h2>
-        <p class="section-sub">Un proceso pensado para ser claro, profesional y cercano.</p>
-        <div class="steps">
-          <div class="step">
-            <div class="num" aria-hidden="true">1</div>
-            <h3>Consulta</h3>
-            <p>Cuéntame tu caso de forma gratuita. Entendemos tus necesidades para darte una primera orientación clara.</p>
-          </div>
-          <div class="step">
-            <div class="num" aria-hidden="true">2</div>
-            <h3>Diagnóstico</h3>
-            <p>Analizamos tu situación con rigor para identificar el mejor camino y la tarifa que mejor se adapte a ti.</p>
-          </div>
-          <div class="step">
-            <div class="num" aria-hidden="true">3</div>
-            <h3>Resolución</h3>
-            <p>Trabajamos juntos para resolver tu caso, para que conozcas tus derechos laborales y puedas defenderlos.</p>
-          </div>
+      <div class="grid" style="margin-top:var(--s7)">
+        <div class="c-1-7" data-rise>
+          <p class="note">Todos los precios son sin IVA: como autónomo, el IVA correspondiente se añade en la factura final. Para empresas, presupuesto a medida.</p>
+          <p class="note" style="margin-top:var(--s3)">Todo empieza con la primera consulta gratuita. Después te propongo el servicio que mejor encaja y te paso el enlace de pago. No hay obligación de contratar nada.</p>
         </div>
-      </section>
-
-      <section class="block">
-        <div class="cta-band">
-          <h2 class="section-title">¿Listo para empezar?</h2>
-          <p>Empieza el proceso de resolución de tu caso laboral con un asesoramiento cercano y profesional.</p>
-          <div class="hero-ctas">
-            <a href="reservar.html" class="btn btn-primary">Reservar consulta gratis →</a>
-            <a href="contacto.html" class="btn btn-outline">Cuéntame tu caso</a>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
-  </main>
-  <footer class="wrap site-footer">
-    <div class="contact-row">
-      <a href="mailto:fernando@rrhhsimple.com"><span class="ic" aria-hidden="true">✉</span>fernando@rrhhsimple.com</a>
-      <a href="tel:+34638292643"><span class="ic" aria-hidden="true">☎</span>638 292 643</a>
-      <a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">@</span>fernando_rrhh</a>
-      <a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span>LinkedIn</a>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section class="band field" aria-labelledby="h-pasos">
+    <div class="wrap">
+      <h2 class="title" id="h-pasos" data-rise style="max-width:12ch">Cómo funciona</h2>
+      <ol class="steps" style="margin-top:var(--s9)" data-rise>
+        <li>
+          <h3>Me cuentas tu caso</h3>
+          <p>Gratis y sin compromiso. Entiendo qué te pasa y te doy una primera orientación clara.</p>
+        </li>
+        <li>
+          <h3>Vemos qué se puede hacer</h3>
+          <p>Analizo tu situación y te digo qué camino tiene sentido y qué tarifa te corresponde. Si no hay nada que hacer, también te lo digo.</p>
+        </li>
+        <li>
+          <h3>Lo resolvemos</h3>
+          <p>Trabajamos tu caso hasta el final, para que sepas cuáles son tus derechos y puedas defenderlos tú.</p>
+        </li>
+      </ol>
     </div>
-    <div class="footer-links">
-      <a href="reservar.html">Reservar consulta gratis</a>
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="privacidad.html">Política de privacidad</a>
+  </section>
+
+  <!-- Cierre -->
+  <section class="band-tight" aria-labelledby="h-cierre">
+    <div class="wrap">
+      <div class="grid" style="row-gap:var(--s6); align-items:end">
+        <div class="c-1-7">
+          <h2 class="title" id="h-cierre" data-rise>¿Empezamos?<br>La primera consulta es gratis.</h2>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:70ms">
+          <div class="btn-row">
+            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
+            <a href="contacto.html" class="btn btn-ghost">Escribirme</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="disclaimer">Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-    <p class="copy">© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
-  </footer>
-  <script src="main.js"></script>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-word">RRHH Simple</p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h2>Hablamos</h2>
+        <ul>
+          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
+          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
+          <li><a href="reservar.html">Reservar consulta gratis</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>La web</h2>
+        <ul>
+          <li><a href="servicios.html">Servicios y tarifas</a></li>
+          <li><a href="calculadora-despido.html">Calculadora de despido</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Por ahí</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>

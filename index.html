@@ -3,121 +3,289 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RRHH Simple — Asesoría laboral cercana</title>
-<meta name="description" content="Asesoría laboral para particulares y empresas: búsqueda de empleo, dudas sobre nómina o contrato y trámites laborales, explicados de forma simple.">
-<meta property="og:title" content="RRHH Simple — Asesoría laboral cercana">
-<meta property="og:description" content="Asesoría laboral para particulares y empresas: búsqueda de empleo, dudas sobre nómina o contrato y trámites laborales, explicados de forma simple.">
+<title>RRHH Simple — Asesoría laboral sin letra pequeña</title>
+<meta name="description" content="Asesoría laboral para particulares y empresas: nóminas, contratos, despidos y búsqueda de empleo, explicados en español normal. Primera consulta gratis.">
+<meta property="og:title" content="RRHH Simple — Asesoría laboral sin letra pequeña">
+<meta property="og:description" content="Nóminas, contratos, despidos y búsqueda de empleo, explicados en español normal. Primera consulta gratis.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#2e2e2e">
+<meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <header class="wrap">
-    <nav aria-label="Principal">
-      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio"><img src="assets/logo-claro.png" alt="RRHH Simple" width="79" height="52"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
+        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
       <div class="nav-links" id="navLinks">
         <a href="index.html" aria-current="page">Inicio</a>
         <a href="servicios.html">Servicios</a>
         <a href="calculadora-despido.html">Calculadora</a>
         <a href="sobre-mi.html">Sobre mí</a>
         <a href="contacto.html">Contacto</a>
-        <a class="nav-cta" href="reservar.html">Consulta gratis</a>
+        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
       </div>
     </nav>
-  </header>
-  <main id="contenido">
-    <div class="wrap">
-      <section class="hero">
-        <div class="eyebrow">Asesoría laboral cercana</div>
-        <h1>Tus derechos laborales, <span class="accent">explicados de forma simple</span>.</h1>
-        <p>Buscar un nuevo empleo o empezar en tu primer trabajo no es sencillo: hay dudas, cosas que no se entienden, contratos difíciles de leer y situaciones que no sabemos cómo gestionar. Es normal, y estoy aquí para que te resulte más simple.</p>
-        <div class="hero-ctas">
-          <a href="reservar.html" class="btn btn-primary">Reservar consulta gratis →</a>
-          <a href="servicios.html" class="btn btn-outline">Ver servicios</a>
-        </div>
-      </section>
-    </div>
+  </div>
+</header>
 
-    <div class="free-banner">
-      <div class="wrap">
-        <div class="tag">Gratis</div>
-        <p>Primera consulta sin coste ni compromiso: me cuentas tu situación y te digo cómo puedo ayudarte. La resolución del caso ya entra dentro de las tarifas de cada servicio.</p>
-        <a class="btn-sm" href="reservar.html">Reservar gratis →</a>
+<main id="contenido">
+
+  <!-- Portada -->
+  <section class="hero">
+    <div class="wrap">
+      <h1 class="display" data-rise>El trabajo, sin letra pequeña.</h1>
+      <div class="grid">
+        <div class="c-1-5">
+          <p class="lead" data-rise style="--rise-delay:70ms">Asesoría laboral para quien no tiene un abogado en la familia.</p>
+          <div class="btn-row" data-rise style="--rise-delay:140ms">
+            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
+            <a href="servicios.html" class="btn btn-ghost">Ver tarifas</a>
+          </div>
+          <dl class="facts facts-stack" data-rise style="--rise-delay:210ms; margin-top:var(--s8)">
+            <div class="fact">
+              <dt>Gratis</dt>
+              <dd>La primera consulta, siempre y sin compromiso.</dd>
+            </div>
+            <div class="fact">
+              <dt>+5 años</dt>
+              <dd>En departamentos de RRHH, viendo cómo se deciden las cosas desde dentro.</dd>
+            </div>
+            <div class="fact">
+              <dt>Online</dt>
+              <dd>O presencial en Madrid. Tú eliges cómo nos vemos.</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="c-7-12" data-rise style="--rise-delay:280ms">
+          <figure class="portrait">
+            <picture>
+              <source srcset="assets/fernando.webp" type="image/webp">
+              <img src="assets/fernando.png" alt="Fernando de la Sota, asesor laboral de RRHH Simple" width="1063" height="1200" fetchpriority="high">
+            </picture>
+            <figcaption class="portrait-tag">Fernando · RRHH Simple</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
+  </section>
 
+  <!-- Qué hace -->
+  <section class="band" aria-labelledby="h-ayuda">
     <div class="wrap">
-      <section class="block">
-        <h2 class="section-title">En qué te puedo echar una mano</h2>
-        <p class="section-sub">Asesoría laboral cercana y profesional en España, explicada sin tecnicismos.</p>
+      <div class="grid">
+        <h2 class="title c-1-5" id="h-ayuda" data-rise>En qué te puedo echar una mano</h2>
+        <p class="c-7-12 body-lg muted" data-rise style="--rise-delay:70ms; max-width:42ch; align-self:end">
+          Tres frentes, un mismo trato: te explico lo que hay, con sus pegas, y decides tú. Todos los precios son sin IVA y llevan precio social.
+        </p>
+      </div>
 
-        <div class="rama c1">
-          <div class="num" aria-hidden="true">01</div>
-          <div class="rama-body">
-            <h3 class="rama-title">Buscar trabajo sin perder la cabeza</h3>
-            <p>Revisión de CV, simulaciones de entrevista y una estrategia a tu medida para potenciar tu perfil profesional.</p>
+      <div style="margin-top:var(--s9)">
+        <article class="branch grid" data-rise>
+          <div class="c-1-5">
+            <span class="branch-mark" aria-hidden="true">🔍</span>
+            <h3>Buscar trabajo sin perder la cabeza</h3>
           </div>
-        </div>
-        <div class="rama c2">
-          <div class="num" aria-hidden="true">02</div>
-          <div class="rama-body">
-            <h3 class="rama-title">Entender lo que firmas</h3>
-            <p>Tu nómina, tu contrato, tu convenio. Y si hay un despido o un conflicto de por medio, también.</p>
+          <div class="c-7-12">
+            <p>Revisamos tu CV para el puesto concreto al que vas, ensayamos la entrevista con las preguntas incómodas incluidas, y montamos una estrategia que se parezca a ti y no a una plantilla.</p>
+            <ul class="branch-list">
+              <li><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount">12 € / 20 €</span></li>
+              <li><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">18 € / 30 €</span></li>
+              <li><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">25 € / 40 €</span></li>
+            </ul>
+            <a class="btn-text" href="servicios.html">Ver el detalle</a>
           </div>
-        </div>
-        <div class="rama c3">
-          <div class="num" aria-hidden="true">03</div>
-          <div class="rama-body">
-            <h3 class="rama-title">Procesos laborales</h3>
-            <p>Trámites como el IRPF o una excedencia, y apoyo para preparar negociaciones con la empresa.</p>
-          </div>
-        </div>
+        </article>
 
-        <a href="servicios.html" class="btn btn-primary" style="margin-top:8px;">Ver servicios y tarifas →</a>
-      </section>
-
-      <section class="block">
-        <div class="about-teaser">
-          <h2 class="section-title">Soy Fernando :)</h2>
-          <p>Llevo más de 5 años de trayectoria en RRHH dentro de empresas, y también he trabajado como profesor de Formación y Orientación Laboral. Esa combinación —ver las cosas desde dentro de la empresa y desde enseñar a jóvenes desde cero— es la que pongo de tu lado.</p>
-          <p>Porque conocer tus derechos o saber leer un contrato no debería ser una barrera que te limite. Por eso abrí esta asesoría: para contarte la realidad sin tapujos.</p>
-          <a href="sobre-mi.html" class="btn btn-dark">Conóceme un poco más →</a>
-        </div>
-      </section>
-
-      <section class="block">
-        <div class="cta-band">
-          <h2 class="section-title">¿Hablamos?</h2>
-          <p>Estoy aquí para ayudarte a resolver tus dudas laborales. Cuéntame tu caso y te responderé con claridad y profesionalidad.</p>
-          <div class="hero-ctas">
-            <a href="reservar.html" class="btn btn-primary">Reservar consulta gratis →</a>
-            <a href="contacto.html" class="btn btn-outline">Escríbeme tu caso</a>
+        <article class="branch grid" data-rise>
+          <div class="c-1-5">
+            <span class="branch-mark" aria-hidden="true">📄</span>
+            <h3>Entender lo que firmas</h3>
           </div>
-        </div>
-      </section>
+          <div class="c-7-12">
+            <p>Tu nómina, tu contrato, tu convenio. Qué dice de verdad, si está bien hecho y qué puedes reclamar si no lo está. Y si hay un despido o un conflicto de por medio, también.</p>
+            <ul class="branch-list">
+              <li><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € / 25 €</span></li>
+              <li><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount">22 € / 40 €</span></li>
+            </ul>
+            <a class="btn-text" href="servicios.html">Ver el detalle</a>
+          </div>
+        </article>
+
+        <article class="branch grid" data-rise>
+          <div class="c-1-5">
+            <span class="branch-mark" aria-hidden="true">✍️</span>
+            <h3>Procesos laborales</h3>
+          </div>
+          <div class="c-7-12">
+            <p>Cartas a la empresa, cambios de IRPF, una excedencia, preparar una negociación. Qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
+            <ul class="branch-list">
+              <li><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount">8 € / 12 €</span></li>
+              <li><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € / 25 €</span></li>
+            </ul>
+            <a class="btn-text" href="servicios.html">Ver el detalle</a>
+          </div>
+        </article>
+      </div>
     </div>
-  </main>
-  <footer class="wrap site-footer">
-    <div class="contact-row">
-      <a href="mailto:fernando@rrhhsimple.com"><span class="ic" aria-hidden="true">✉</span>fernando@rrhhsimple.com</a>
-      <a href="tel:+34638292643"><span class="ic" aria-hidden="true">☎</span>638 292 643</a>
-      <a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">@</span>fernando_rrhh</a>
-      <a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span>LinkedIn</a>
+  </section>
+
+  <!-- El objeto de este oficio: la nómina -->
+  <section class="band" style="background:var(--paper-2)" aria-labelledby="h-nomina">
+    <div class="wrap">
+      <div class="grid" style="row-gap:var(--s8); align-items:start">
+        <div class="c-1-5">
+          <h2 class="title" id="h-nomina" data-rise>Nadie te enseñó a leer una nómina.</h2>
+          <p class="body-lg muted" data-rise style="--rise-delay:70ms; margin-top:var(--s5); max-width:40ch">
+            Y sin embargo es el documento que más veces vas a firmar en tu vida. Esto es lo que hay detrás de cada línea.
+          </p>
+          <div class="btn-row" data-rise style="--rise-delay:140ms; margin-top:var(--s7)">
+            <a href="reservar.html" class="btn">Que te la revise</a>
+          </div>
+        </div>
+
+        <div class="c-7-12" data-rise style="--rise-delay:210ms">
+          <div class="payslip" data-ui>
+            <div class="payslip-head">
+              <strong>Recibo de salarios</strong>
+              <span>Periodo: mensual</span>
+            </div>
+            <table>
+              <caption class="sr-only">Ejemplo de nómina con las líneas que conviene revisar</caption>
+              <thead>
+                <tr><th scope="col">Concepto</th><th scope="col">Importe</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="flag">Salario base</span></td><td>1.323,00 €</td></tr>
+                <tr><td>Plus de convenio</td><td>142,50 €</td></tr>
+                <tr><td>Horas extra</td><td>0,00 €</td></tr>
+                <tr><td><span class="flag">Contingencias comunes</span></td><td>−84,38 €</td></tr>
+                <tr><td>Desempleo y formación</td><td>−25,62 €</td></tr>
+                <tr><td><span class="flag">Retención IRPF</span></td><td>−186,40 €</td></tr>
+                <tr class="row-total"><td>Líquido a percibir</td><td>1.169,10 €</td></tr>
+              </tbody>
+            </table>
+            <div class="payslip-notes">
+              <p class="payslip-note"><b>1</b><span><strong>Salario base.</strong> Tiene que coincidir con tu contrato y no puede bajar del convenio que te aplica. Si no cuadra, hay algo que reclamar.</span></p>
+              <p class="payslip-note"><b>2</b><span><strong>Cotizaciones.</strong> No se las queda la empresa: son tu paro y tu pensión futura. Si cotizas de menos, cobras de menos el día de mañana.</span></p>
+              <p class="payslip-note"><b>3</b><span><strong>IRPF.</strong> Es un anticipo, no un impuesto aparte. Se puede ajustar para que en la declaración no te lleves un susto.</span></p>
+            </div>
+          </div>
+          <p class="note" style="margin-top:var(--s4)">Ejemplo ilustrativo con cifras inventadas.</p>
+        </div>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="reservar.html">Reservar consulta gratis</a>
-      <a href="aviso-legal.html">Aviso legal</a>
-      <a href="privacidad.html">Política de privacidad</a>
+  </section>
+
+  <!-- La calculadora: lo único que puedes hacer tú mismo ahora mismo -->
+  <section class="band field" aria-labelledby="h-calc">
+    <div class="wrap">
+      <div class="grid" style="row-gap:var(--s7); align-items:end">
+        <div class="c-1-7">
+          <h2 class="title" id="h-calc" data-rise>¿Cuánto te corresponde si te despiden?</h2>
+          <p class="body-lg" data-rise style="--rise-delay:70ms; margin-top:var(--s5); max-width:46ch">
+            Tres datos y lo sabes. Sin dejar tu correo, sin registrarte y sin que nada salga de tu navegador.
+          </p>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:140ms">
+          <div class="btn-row">
+            <a href="calculadora-despido.html" class="btn">Calcular mi indemnización</a>
+          </div>
+          <p class="note" style="margin-top:var(--s4)">Orientativo. Calcula los tres escenarios de despido según el Estatuto de los Trabajadores.</p>
+        </div>
+      </div>
     </div>
-    <p class="disclaimer">Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-    <p class="copy">© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
-  </footer>
-  <script src="main.js"></script>
+  </section>
+
+  <!-- Quién hay detrás -->
+  <section class="band" aria-labelledby="h-yo">
+    <div class="wrap">
+      <div class="grid">
+        <div class="c-2-6" style="grid-column:2 / span 10">
+          <div class="letter" data-rise>
+            <div class="prose">
+              <h2 class="title" id="h-yo" style="margin-bottom:var(--s7)">Soy Fernando</h2>
+              <p>Llevo más de cinco años trabajando en recursos humanos dentro de empresas, y antes di clase de Formación y Orientación Laboral. Esa mezcla —ver cómo se toman las decisiones desde dentro y haber tenido que explicárselas a gente que empezaba de cero— es lo que pongo de tu lado.</p>
+              <p>Monté esto porque me cansé de ver a gente firmar cosas que no entendía. Conocer tus derechos no debería depender de si tienes un abogado en la familia.</p>
+              <p>Te voy a contar lo que hay, aunque no sea lo que quieres oír. Si tu caso no tiene recorrido, te lo digo en la primera consulta y no te cobro nada.</p>
+            </div>
+            <p class="sign">Fernando de la Sota Escriche
+              <span>Graduado en Relaciones Laborales y RRHH (UCM)</span>
+            </p>
+            <div class="btn-row" style="margin-top:var(--s7)">
+              <a class="btn-text" href="sobre-mi.html">Mi trayectoria completa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cierre -->
+  <section class="band-tight" aria-labelledby="h-cierre">
+    <div class="wrap">
+      <div class="grid" style="row-gap:var(--s6); align-items:end">
+        <div class="c-1-7">
+          <h2 class="title" id="h-cierre" data-rise style="max-width:16ch">Cuéntame tu caso. La primera es gratis.</h2>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:70ms">
+          <div class="btn-row">
+            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
+            <a href="contacto.html" class="btn btn-ghost">Escribirme</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-word">RRHH Simple</p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h2>Hablamos</h2>
+        <ul>
+          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
+          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
+          <li><a href="reservar.html">Reservar consulta gratis</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>La web</h2>
+        <ul>
+          <li><a href="servicios.html">Servicios y tarifas</a></li>
+          <li><a href="calculadora-despido.html">Calculadora de despido</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Por ahí</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>
