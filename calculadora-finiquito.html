@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de finiquito — RRHH Simple</title>
+<meta name="description" content="Calcula gratis tu finiquito: salario del último mes, parte proporcional de las pagas extra y vacaciones no disfrutadas. Sin registro y sin enviar datos.">
+<meta property="og:title" content="Calculadora de finiquito — RRHH Simple">
+<meta property="og:description" content="Calcula gratis tu finiquito: salario del último mes, parte proporcional de las pagas extra y vacaciones no disfrutadas. Sin registro y sin enviar datos.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/calculadora-finiquito.html">
+<meta property="og:url" content="https://rrhhsimple.com/calculadora-finiquito.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
+</head>
+<body class="v3">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
+        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="calculadoras.html" aria-current="page">Calculadoras</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero u-pb-m">
+    <div class="wrap">
+      <h1 class="display hero-title u-w14" data-split>Calcula tu <em>finiquito.</em></h1>
+      <div class="grid u-mt6">
+        <p class="c-1-6 lead muted u-w38" data-rise style="--rise-delay:70ms">
+          Lo que te tienen que pagar al terminar, línea a línea y sabiendo de dónde sale cada euro.
+        </p>
+        <p class="c-8-12 note" data-rise style="--rise-delay:140ms">
+          El cálculo se hace entero dentro de tu navegador. No se guarda nada, no se envía nada a ningún sitio y no hace falta que dejes tu correo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band field" aria-labelledby="h-calc">
+    <div class="wrap">
+      <h2 class="title u-w16" id="h-calc" data-rise>Tus datos</h2>
+
+      <form id="finForm" class="calc-form u-mt8 u-wnone" novalidate data-rise>
+        <div class="field-row">
+          <label for="f-inicio">Fecha de inicio del contrato</label>
+          <input type="date" id="f-inicio" required>
+        </div>
+        <div class="field-row">
+          <label for="f-fin">Último día trabajado (fecha de baja)</label>
+          <input type="date" id="f-fin" required>
+        </div>
+        <div class="field-row">
+          <label for="f-salario">Salario bruto anual (€)</label>
+          <input type="number" id="f-salario" min="1" step="100" inputmode="decimal" placeholder="Ej.: 24000" required>
+        </div>
+        <div class="field-row">
+          <label for="f-pagas">¿Cómo cobras las pagas extra?</label>
+          <select id="f-pagas"></select>
+        </div>
+        <div class="field-row">
+          <label for="f-vac">Días de vacaciones sin disfrutar</label>
+          <input type="number" id="f-vac" step="0.5" inputmode="decimal" placeholder="Ej.: 5" value="0">
+        </div>
+        <div class="field-row">
+          <label for="f-vactipo">Esos días son…</label>
+          <select id="f-vactipo">
+            <option value="laborables">Laborables (de lunes a viernes)</option>
+            <option value="naturales">Naturales (todos los días)</option>
+          </select>
+        </div>
+        <p class="note calc-hint">Si has disfrutado más vacaciones de las que te correspondían, pon el número en negativo: se descuenta. ¿No sabes cuántas te quedan? Usa la <a class="link" href="calculadora-vacaciones.html">calculadora de vacaciones</a>.</p>
+        <button type="submit" class="btn">Calcular</button>
+      </form>
+
+      <p class="calc-error" id="finError" role="alert" hidden></p>
+
+      <div class="results u-mt9" id="finRes" hidden aria-live="polite">
+        <div class="payslip" data-ui>
+          <div class="payslip-head"><strong>Finiquito orientativo</strong><span>Importes brutos</span></div>
+          <table>
+            <caption class="sr-only">Desglose del finiquito</caption>
+            <thead><tr><th scope="col">Concepto</th><th scope="col">Importe</th></tr></thead>
+            <tbody id="finLineas"></tbody>
+          </table>
+        </div>
+        <div class="calc-notes">
+          <ul>
+            <li><b>Son importes brutos.</b> Sobre ellos se aplican la retención de IRPF y las cotizaciones (salvo a la indemnización, si la hay).</li>
+            <li><b>El finiquito no es la indemnización.</b> Si te han despedido, la indemnización va aparte: <a class="link" href="calculadora-despido.html">calcúlala aquí</a>.</li>
+            <li><b>Tu convenio manda.</b> Si tienes más pagas, otro devengo o pluses, el importe cambia. En la consulta lo revisamos con tu convenio y tus nóminas.</li>
+            <li><b>Puedes firmar «no conforme».</b> Firmar el finiquito no te impide reclamar después si algo no cuadra.</li>
+          </ul>
+        </div>
+        <div class="btn-row u-mt8">
+          <a href="reservar.html" class="btn">Que revise mi finiquito</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="h-como">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="title c-1-5" id="h-como" data-rise>Cómo se calcula</h2>
+        <div class="c-7-12" data-rise style="--rise-delay:70ms">
+          <div class="prose">
+            <p><strong>Salario del último mes.</strong> Los días trabajados del mes de la baja, en mes comercial de 30 días.</p>
+            <p><strong>Pagas extra.</strong> Si no las tienes prorrateadas, la parte que llevas generada de la siguiente (junio o diciembre). Si las cobras prorrateadas, ya van dentro del salario de cada mes.</p>
+            <p><strong>Vacaciones.</strong> Los días generados y no disfrutados se pagan; los disfrutados de más se descuentan.</p>
+            <p class="note">Cálculo orientativo según el Estatuto de los Trabajadores (arts. 26, 29, 31, 38 y 49.2). Supone pagas de 30 días con devengo semestral; tu convenio puede fijar otra cosa. Parámetros vigentes a <span data-vigencia>octubre de 2026</span>. No sustituye el informe de un despacho de graduado/a social o de abogacía laboralista.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-tight" aria-labelledby="h-cierre">
+    <div class="wrap">
+      <div class="grid u-grid-s6-end">
+        <div class="c-1-7">
+          <h2 class="title u-w17" id="h-cierre" data-rise>¿Te han pasado un finiquito que no entiendes?</h2>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:70ms">
+          <div class="btn-row">
+            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-word">RRHH Simple</p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h2>Hablamos</h2>
+        <ul>
+          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
+          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
+          <li><a href="reservar.html">Reservar consulta gratis</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>La web</h2>
+        <ul>
+          <li><a href="servicios.html">Servicios y tarifas</a></li>
+          <li><a href="empresas.html">Para empresas</a></li>
+          <li><a href="calculadoras.html">Calculadoras laborales</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Por ahí</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye la asistencia de un despacho de graduado/a social o de abogacía laboralista en caso de proceso judicial.</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
+<script src="motor/parametros.js"></script>
+<script src="motor/finiquito.js"></script>
+<script src="calc-finiquito.js"></script>
+</body>
+</html>

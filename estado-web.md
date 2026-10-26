@@ -29,7 +29,13 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Prototipo solo en la portada: `ui.css` + `ui.js` (capa v3 sobre styles.css) y Lenis autoalojado en `vendor/` (MIT).
   - Piezas: navegación flotante en píldora, título que entra palabra a palabra, cinta de servicios, declaración que se ilumina con el scroll, servicios en tarjetas que se apilan, nómina "en directo", sección de calculadora que se superpone, botones con flecha y relleno.
   - Accesible: sin JS todo visible; con movimiento reducido todo quieto; navegación de la nómina con teclado.
-- [ ] Fase 4 — Motor compartido con la plataforma y calculadoras públicas
+- [x] Fase 4 — Motor compartido y calculadoras públicas (26-10-2026, rama `fase-4-calculadoras`)
+  - `motor/`: indemnización y vacaciones copiados tal cual de la plataforma (commit 4717e36); finiquito adaptado a cualquier convenio (nº de pagas configurable, vacaciones en laborables o naturales, sin preaviso). Con 16 pagas reproduce la prueba de la plataforma; la versión adaptada también pasa las 66 pruebas de la plataforma.
+  - `motor/parametros.js`: único archivo de parámetros de la web (ET), con fuente y fecha de verificación.
+  - `tests/motores.test.js`: 16 pruebas (node tests/motores.test.js), incluido el caso de referencia 19.408 € / 11.763 €.
+  - Páginas: `calculadoras.html` (índice), despido (ahora con el motor común), `calculadora-finiquito.html` y `calculadora-vacaciones.html`.
+  - Pendiente: calculadora bruto/neto. La plataforma no tiene motor de IRPF; requiere implementar el algoritmo de la AEAT 2026 y verificar tipos y tramos en fuentes oficiales.
+  - Mantenimiento: si cambia un motor en la plataforma, copiarlo a `motor/` y pasar las pruebas de los dos repositorios.
 - [ ] Fase 5 — Guías y verificación final
 
 ## Decisiones tomadas

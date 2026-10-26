@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de vacaciones — RRHH Simple</title>
+<meta name="description" content="Calcula cuántos días de vacaciones has generado y cuántos te quedan este año. Gratis, sin registro y sin enviar datos.">
+<meta property="og:title" content="Calculadora de vacaciones — RRHH Simple">
+<meta property="og:description" content="Calcula cuántos días de vacaciones has generado y cuántos te quedan este año. Gratis, sin registro y sin enviar datos.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/calculadora-vacaciones.html">
+<meta property="og:url" content="https://rrhhsimple.com/calculadora-vacaciones.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
+</head>
+<body class="v3">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
+        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="calculadoras.html" aria-current="page">Calculadoras</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero u-pb-m">
+    <div class="wrap">
+      <h1 class="display hero-title u-w14" data-split>¿Cuántas vacaciones <em>te quedan?</em></h1>
+      <div class="grid u-mt6">
+        <p class="c-1-6 lead muted u-w38" data-rise style="--rise-delay:70ms">
+          Las que has generado hasta hoy, las que tendrás al acabar el año y las que te quedan por disfrutar.
+        </p>
+        <p class="c-8-12 note" data-rise style="--rise-delay:140ms">
+          El cálculo se hace entero dentro de tu navegador. No se guarda nada y no se envía nada a ningún sitio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band field" aria-labelledby="h-calc">
+    <div class="wrap">
+      <h2 class="title u-w16" id="h-calc" data-rise>Tus datos</h2>
+
+      <form id="vacForm" class="calc-form u-mt8 u-wnone" novalidate data-rise>
+        <div class="field-row">
+          <label for="v-inicio">Fecha de inicio del contrato</label>
+          <input type="date" id="v-inicio" required>
+        </div>
+        <div class="field-row">
+          <label for="v-fin">Fecha de fin (si termina este año)</label>
+          <input type="date" id="v-fin">
+        </div>
+        <div class="field-row">
+          <label for="v-dias">Vacaciones al año según tu convenio</label>
+          <select id="v-dias"></select>
+        </div>
+        <div class="field-row">
+          <label for="v-cons">Días que ya has disfrutado este año</label>
+          <input type="number" id="v-cons" min="0" step="0.5" inputmode="decimal" value="0">
+        </div>
+        <div class="field-row">
+          <label for="v-ant">Días pendientes del año anterior</label>
+          <input type="number" id="v-ant" min="0" step="0.5" inputmode="decimal" value="0">
+        </div>
+        <p class="note calc-hint">Se calcula para el año en curso, a fecha de hoy. Los días pendientes del año anterior solo cuentan si tu convenio o tu empresa permiten pasarlos.</p>
+        <button type="submit" class="btn">Calcular</button>
+      </form>
+
+      <p class="calc-error" id="vacError" role="alert" hidden></p>
+
+      <div class="results u-mt9" id="vacRes" hidden aria-live="polite">
+        <div class="result-grid">
+          <div class="result is-main">
+            <h3>Te quedan hoy</h3>
+            <p class="amount" id="vPendHoy"></p>
+            <p id="vGenHoy"></p>
+          </div>
+          <div class="result">
+            <h3>Al terminar el año</h3>
+            <p class="amount" id="vPendFin"></p>
+            <p id="vGenFin"></p>
+          </div>
+          <div class="result">
+            <h3>Días de alta este año</h3>
+            <p class="amount" id="vAlta"></p>
+            <p id="vAltaTxt"></p>
+          </div>
+        </div>
+        <div class="calc-notes">
+          <ul>
+            <li><b>Se redondea al alza</b>, que es el criterio más habitual. Tu convenio puede decir otra cosa.</li>
+            <li><b>Si terminas el contrato con días sin disfrutar</b>, se pagan en el finiquito: <a class="link" href="calculadora-finiquito.html">calcúlalo aquí</a>.</li>
+            <li><b>Las vacaciones no se pueden cambiar por dinero</b> mientras sigas en la empresa (ET, art. 38.1).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="h-como">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="title c-1-5" id="h-como" data-rise>Cómo se calcula</h2>
+        <div class="c-7-12" data-rise style="--rise-delay:70ms">
+          <div class="prose">
+            <p>Las vacaciones se generan día a día: <strong>días al año × días de alta ÷ días del año</strong>. Si empezaste a mitad de año o terminas antes de diciembre, te corresponde la parte proporcional.</p>
+            <p>El mínimo legal son <strong>30 días naturales</strong> al año. Muchos convenios lo expresan como <strong>22 días laborables</strong>, que viene a ser lo mismo.</p>
+            <p class="note">Cálculo orientativo según el Estatuto de los Trabajadores (art. 38). Parámetros vigentes a <span data-vigencia>octubre de 2026</span>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-tight" aria-labelledby="h-cierre">
+    <div class="wrap">
+      <div class="grid u-grid-s6-end">
+        <div class="c-1-7">
+          <h2 class="title u-w17" id="h-cierre" data-rise>¿Tu empresa no te deja coger las vacaciones?</h2>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:70ms">
+          <div class="btn-row">
+            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-word">RRHH Simple</p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h2>Hablamos</h2>
+        <ul>
+          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
+          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
+          <li><a href="reservar.html">Reservar consulta gratis</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>La web</h2>
+        <ul>
+          <li><a href="servicios.html">Servicios y tarifas</a></li>
+          <li><a href="empresas.html">Para empresas</a></li>
+          <li><a href="calculadoras.html">Calculadoras laborales</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Por ahí</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye la asistencia de un despacho de graduado/a social o de abogacía laboralista en caso de proceso judicial.</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
+<script src="motor/parametros.js"></script>
+<script src="motor/vacaciones.js"></script>
+<script src="calc-vacaciones.js"></script>
+</body>
+</html>
