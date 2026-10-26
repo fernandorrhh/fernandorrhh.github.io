@@ -21,6 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=3">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -30,7 +31,7 @@
 })(document.documentElement);
 </script>
 </head>
-<body>
+<body class="v3">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <header class="site-head">
@@ -57,7 +58,7 @@
 
   <section class="hero u-pb-m">
     <div class="wrap">
-      <h1 class="display u-w14" data-rise>Reserva tu primera consulta.</h1>
+      <h1 class="display hero-title u-w14" data-split>Reserva tu <em>primera consulta.</em></h1>
       <div class="grid u-mt6">
         <p class="c-1-6 lead muted u-w36" data-rise style="--rise-delay:70ms">
           Es gratis, dura lo que haga falta y no te compromete a nada.
@@ -183,5 +184,7 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
 </body>
 </html>

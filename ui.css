@@ -1,0 +1,344 @@
+/* ===========================================================================
+   RRHH Simple — capa de interfaz v3 (fase 3)
+   Se aplica solo en páginas con <body class="v3">. Se apoya en los tokens
+   de styles.css: no define colores ni tipografías nuevas.
+
+   Regla fija: ningún movimiento es el único responsable de que el contenido
+   se vea. Todo lo animado parte visible si no hay JS (html sin .ui) y con
+   prefers-reduced-motion se queda quieto y visible.
+   =========================================================================== */
+
+.v3{
+  --radius-card: clamp(20px, 3vw, 36px);
+  --radius-soft: 14px;
+  --shadow-tint: 0 1px 0 rgba(74, 71, 50, .06), 0 12px 32px -12px rgba(74, 71, 50, .22);
+  --t-reveal: 900ms;
+}
+
+/* ---------------------------------------------------------------
+   Navegación flotante en píldora (Citizens / Jemini)
+   --------------------------------------------------------------- */
+.v3 .site-head{
+  position: sticky; top: var(--s3);
+  padding-inline: var(--gutter);
+  pointer-events: none;            /* solo la píldora recibe clics */
+}
+.v3 .site-head .wrap{ padding: 0; }
+.v3 .nav{
+  pointer-events: auto;
+  max-width: 1080px; margin-inline: auto;
+  padding: var(--s2) var(--s2) var(--s2) var(--s5);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-radius: var(--pill);
+  box-shadow: 0 0 0 1px rgba(74, 71, 50, .08), var(--shadow-tint); /* taste-skill-ignore: borde + sombra tintada de la píldora */
+  transition: max-width 500ms var(--ease-soft), padding 500ms var(--ease-soft);
+}
+.v3 .brand img{ height: 34px; }
+.v3 .nav-links{ gap: var(--s1); }
+.v3 .nav-links a:not(.btn){
+  padding: 0.55rem 0.9rem; border-radius: var(--pill);
+  transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
+}
+.v3 .nav-links a:not(.btn):hover{ background: var(--paper-2); }
+.v3 .nav-links a[aria-current="page"]{ box-shadow: none; background: var(--paper-2); color: var(--ink); }
+/* Al bajar, la píldora se recoge un poco */
+.v3.is-scrolled .nav{ max-width: 980px; }
+
+/* ---------------------------------------------------------------
+   Botones con flecha que entra (Jemini)
+   --------------------------------------------------------------- */
+.v3 .btn:not(.btn-sm){
+  position: relative; overflow: hidden;
+  padding-right: 3.75rem;
+  isolation: isolate;
+}
+.v3 .btn:not(.btn-sm)::after{
+  content: '→';
+  position: absolute; right: 6px; top: 50%;
+  width: 40px; height: 40px; margin-top: -20px;
+  display: grid; place-items: center;
+  border-radius: var(--pill);
+  background: var(--ink); color: var(--accent);
+  font-size: 1.05rem;
+  transition: transform 450ms var(--ease-soft), background-color 300ms ease;
+}
+.v3 .btn-ghost:not(.btn-sm)::after{ background: var(--accent); color: var(--ink); }
+/* Relleno que crece desde la flecha */
+.v3 .btn:not(.btn-sm)::before{
+  content: '';
+  position: absolute; z-index: -1;
+  right: 6px; top: 50%; width: 40px; height: 40px; margin-top: -20px;
+  border-radius: var(--pill);
+  background: var(--ink);
+  transform: scale(0);
+  transition: transform 550ms var(--ease-soft);
+}
+.v3 .btn-ghost:not(.btn-sm)::before{ background: var(--accent); }
+@media (hover: hover) and (pointer: fine){
+  .v3 .btn:not(.btn-sm):hover{ color: var(--accent); background: var(--accent); }
+  .v3 .btn:not(.btn-sm):hover::before{ transform: scale(9); }
+  .v3 .btn:not(.btn-sm):hover::after{ transform: translateX(-3px) rotate(-45deg); background: var(--accent); color: var(--ink); }
+  .v3 .btn-ghost:not(.btn-sm):hover{ color: var(--ink); background: transparent; }
+  .v3 .btn-ghost:not(.btn-sm):hover::after{ background: var(--ink); color: var(--accent); }
+}
+.v3 .btn:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
+.v3 .field .btn:focus-visible{ outline-color: var(--accent); }
+
+/* Enlace terciario con flecha que avanza */
+.v3 .btn-text::before{ content: '→'; order: 2; transition: transform 300ms var(--ease-soft); }
+.v3 .btn-text:hover::before{ transform: translateX(4px); }
+
+/* ---------------------------------------------------------------
+   Portada: título que entra palabra a palabra con desenfoque (Halyard)
+   --------------------------------------------------------------- */
+.v3 .hero-title{ max-width: 13ch; letter-spacing: -0.035em; line-height: 0.98; text-wrap: balance; }
+.v3 .hero-title em{ font-style: normal; color: var(--ink-2); }
+.ui .v3 [data-split] .w{
+  display: inline-block;
+  opacity: 0; filter: blur(12px); transform: translateY(0.25em);
+  transition: opacity var(--t-reveal) var(--ease-out), filter var(--t-reveal) var(--ease-out), transform var(--t-reveal) var(--ease-out);
+  transition-delay: calc(var(--i) * 70ms + 120ms);
+}
+.ui .v3 [data-split].is-in .w{ opacity: 1; filter: none; transform: none; }
+
+.v3 .portrait{ border-radius: var(--radius-card); }
+
+/* ---------------------------------------------------------------
+   Cinta de servicios en movimiento continuo
+   --------------------------------------------------------------- */
+.ticker{
+  overflow: hidden;
+  border-block: 1px solid var(--paper-3);
+  padding-block: var(--s4);
+  font-family: var(--sans); font-weight: 500; font-size: 0.875rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track{ display: flex; align-items: center; gap: var(--s6); width: max-content; }
+.ticker-track span{ white-space: nowrap; }
+.ticker-track i{ width: 8px; height: 8px; background: var(--accent); border-radius: 2px; transform: rotate(45deg); flex-shrink: 0; }
+.ui .ticker-track{ animation: ticker 38s linear infinite; }
+.ticker:hover .ticker-track{ animation-play-state: paused; }
+@keyframes ticker{ to{ transform: translateX(-50%); } }
+
+/* ---------------------------------------------------------------
+   Declaración que se ilumina palabra a palabra al hacer scroll (Citizens)
+   --------------------------------------------------------------- */
+.statement{ padding-block: clamp(5rem, 12vw, 10rem); }
+.statement-text{
+  font-family: var(--sans); font-weight: 600;
+  font-size: clamp(1.75rem, 4.6vw, 3.75rem);
+  line-height: 1.12; letter-spacing: -0.03em;
+  max-width: 22ch; text-wrap: balance;
+}
+.ui .statement-text .w{ color: color-mix(in srgb, var(--ink) calc(18% + var(--p, 0) * 82%), var(--paper)); transition: color 200ms linear; }
+
+/* ---------------------------------------------------------------
+   Servicios: tarjetas que se apilan unas sobre otras (Jemini)
+   --------------------------------------------------------------- */
+.v3 .stack{ display: grid; gap: var(--s5); }
+.v3 .stack-card{
+  position: sticky;
+  top: calc(96px + var(--n, 0) * 18px);
+  background: var(--paper-2);
+  border-radius: var(--radius-card);
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+  box-shadow: var(--shadow-tint);
+  transform-origin: 50% 0;
+}
+.v3 .stack-card:nth-child(2){ --n: 1; background: var(--paper-3); }
+.v3 .stack-card:nth-child(3){ --n: 2; background: var(--field); color: var(--on-field); }
+.v3 .stack-card:nth-child(3) h3{ color: var(--on-field); }
+.v3 .stack-card:nth-child(3) > div > p,
+.v3 .stack-card:nth-child(3) .branch-list{ color: var(--on-field-2); }
+.v3 .stack-card:nth-child(3) .btn-text{ color: var(--on-field); }
+.v3 .stack-card:nth-child(3) .btn-text::after{ background: var(--accent); }
+.v3 .branch + .branch{ padding-top: clamp(1.75rem, 4vw, 3.5rem); }
+.v3 .branch-num{
+  display: block;
+  font-family: var(--sans); font-weight: 700; font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.9; letter-spacing: -0.05em; color: var(--accent);
+  -webkit-text-stroke: 1.5px var(--ink); /* número contorneado, el amarillo solo dentro */
+}
+.v3 .stack-card:nth-child(3) .branch-num{ -webkit-text-stroke-color: var(--accent); color: transparent; }
+.v3 .branch h3{ margin-top: var(--s5); }
+/* La tarjeta tapada se encoge levemente: sensación de profundidad */
+.ui .v3 .stack-card{ transform: scale(calc(1 - var(--cover, 0) * 0.05)); filter: brightness(calc(1 - var(--cover, 0) * 0.08)); }
+
+/* ---------------------------------------------------------------
+   Nómina "en directo" (Halyard): un lector recorre las líneas
+   y la nota correspondiente se enciende.
+   --------------------------------------------------------------- */
+.v3 .payslip{ border-radius: var(--radius-soft); box-shadow: var(--shadow-tint); position: relative; }
+.v3 .payslip-head span::before{
+  content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 6px;
+  border-radius: 50%; background: #3f9d5a; vertical-align: 1px;
+}
+.ui .v3 [data-live] .payslip-head span::before{ animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse{ 0%{ box-shadow: 0 0 0 0 rgba(63,157,90,.5); } 100%{ box-shadow: 0 0 0 8px rgba(63,157,90,0); } } /* taste-skill-ignore: halo del indicador en directo */
+.v3 .payslip tbody tr{ transition: background-color 300ms ease; }
+.v3 .payslip tbody tr.is-reading{ background: color-mix(in srgb, var(--accent) 30%, transparent); }
+.v3 .payslip tbody tr.is-reading td:first-child{ box-shadow: inset 3px 0 0 var(--ink); padding-left: var(--s3); } /* taste-skill-ignore: barra de lectura */
+.v3 .payslip td:first-child{ transition: padding-left 300ms var(--ease-soft); }
+.v3 .payslip-note{ border-radius: 10px; padding: var(--s2); margin: calc(var(--s2) * -1); transition: background-color 300ms ease, opacity 300ms ease; }
+.ui .v3 [data-live].is-live .payslip-note{ opacity: .55; }
+.ui .v3 [data-live].is-live .payslip-note.is-on{ opacity: 1; background: var(--paper-2); }
+.v3 .payslip td span.num{ display: inline-block; min-width: 7ch; }
+
+/* ---------------------------------------------------------------
+   Sección que se superpone a la anterior con esquinas redondas (Jemini)
+   --------------------------------------------------------------- */
+.v3 .card-over{
+  position: relative; z-index: 2;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  margin-top: calc(var(--radius-card) * -1);
+}
+
+/* ---------------------------------------------------------------
+   Entradas suaves de bloques (sustituye al data-rise anterior en v3)
+   --------------------------------------------------------------- */
+.ui .v3 [data-rise]{ transition-duration: var(--t-reveal); }
+
+/* ---------------------------------------------------------------
+   Móvil
+   --------------------------------------------------------------- */
+@media (max-width: 640px){
+  .v3 .site-head{ top: var(--s2); }
+  .v3 .nav{ padding: var(--s2) var(--s2) var(--s2) var(--s4); border-radius: 28px; }
+  .v3 .nav-links{ top: calc(100% + var(--s2)); border-radius: 20px; box-shadow: var(--shadow-tint); }
+  .v3 .stack-card{ top: calc(80px + var(--n, 0) * 12px); }
+  .v3 .btn:not(.btn-sm){ padding-right: 3.75rem; }
+}
+
+/* ---------------------------------------------------------------
+   Movimiento reducido: todo quieto y visible
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce){
+  .ui .v3 [data-split] .w{ opacity: 1; filter: none; transform: none; transition: none; }
+  .ui .ticker-track{ animation: none; }
+  .ticker{ overflow-x: auto; }
+  .ui .statement-text .w{ color: var(--ink); }
+  .ui .v3 .stack-card{ transform: none; filter: none; }
+  .ui .v3 [data-live] .payslip-head span::before{ animation: none; }
+  .v3 .btn:not(.btn-sm)::before, .v3 .btn:not(.btn-sm)::after{ transition: none; }
+}
+
+/* Ajustes tras revisión visual */
+.v3 .stack-card:nth-child(3) .amount{ color: var(--accent); }
+.v3 .stack-card:nth-child(3) .leader{ opacity: .5; }
+.v3 .letter{ border-radius: var(--radius-card); }
+.statement{ padding-bottom: clamp(2rem, 5vw, 4rem); }
+/* El texto cambia de color cuando el relleno ya lo cubre, nunca antes */
+.v3 .btn:not(.btn-sm){ transition: transform var(--t-press) var(--ease-out), color 200ms ease 160ms, background-color 0s; }
+@media (hover: hover) and (pointer: fine){ .v3 .btn:not(.btn-sm):hover::before{ transform: scale(14); } }
+
+/* ===========================================================================
+   v3.1 — tipografía con serifa, menú animado y fotos
+   =========================================================================== */
+
+/* Instrument Serif (OFL), autoalojada: el contrapunto editorial a Poppins */
+@font-face{
+  font-family:'Instrument Serif'; font-style:normal; font-weight:400; font-display:swap;
+  src:url('assets/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Instrument Serif'; font-style:italic; font-weight:400; font-display:swap;
+  src:url('assets/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+}
+.v3{ --serif: 'Instrument Serif', Georgia, serif; }
+
+/* La serifa solo para acentos: lo que se lee con calma */
+.v3 .hero-title em{
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  letter-spacing: -0.01em; color: var(--ink-2);
+  font-size: 1.08em;
+}
+.statement-text{
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1.04; letter-spacing: -0.015em; max-width: 20ch;
+}
+.v3 .title em, .v3 .display em{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+.v3 .lead{ letter-spacing: -0.005em; }
+
+/* ---------------------------------------------------------------
+   Menú: una píldora que se desliza hasta el enlace bajo el cursor
+   y el texto sube con un relevo (Jemini / Citizens)
+   --------------------------------------------------------------- */
+.v3 .nav-links{ position: relative; }
+.v3 .nav-hl{
+  position: absolute; z-index: 0; left: 0; top: 50%;
+  height: 40px; margin-top: -20px; width: 0;
+  border-radius: var(--pill); background: var(--paper-2);
+  opacity: 0; pointer-events: none;
+  transition: transform 420ms var(--ease-soft), width 420ms var(--ease-soft), opacity 200ms ease;
+}
+.v3 .nav-links a{ position: relative; z-index: 1; }
+.ui .v3 .nav-links a:not(.btn):hover{ background: transparent; }
+.ui .v3 .nav-links a[aria-current="page"]{ background: transparent; }
+.v3 .nav-links a:not(.btn) .roll{
+  display: inline-block; overflow: hidden; vertical-align: middle;
+  height: 1.3em; line-height: 1.3em;
+}
+.v3 .nav-links a:not(.btn) .roll > span{
+  display: block;
+  transition: transform 380ms var(--ease-soft);
+}
+.v3 .nav-links a:not(.btn) .roll > span + span{ color: var(--ink); }
+@media (hover: hover) and (pointer: fine){
+  .v3 .nav-links a:not(.btn):hover .roll > span{ transform: translateY(-100%); }
+}
+/* El botón del menú: la flecha aparece al pasar */
+.v3 .nav-links .btn-sm{ transition: padding 380ms var(--ease-soft), background-color var(--t-hover) ease; }
+.v3 .nav-links .btn-sm::after{
+  content: '→'; display: inline-block; width: 0; opacity: 0; overflow: hidden;
+  transition: width 380ms var(--ease-soft), opacity 200ms ease;
+}
+@media (hover: hover) and (pointer: fine){
+  .v3 .nav-links .btn-sm:hover::after{ width: 1em; opacity: 1; }
+}
+
+/* ---------------------------------------------------------------
+   Fotos en píldora que se abren al entrar y se apoyan en la carta
+   --------------------------------------------------------------- */
+.v3 .photo-pills{
+  display: flex; gap: var(--s3);
+  margin-bottom: calc(var(--s9) * -1);
+  position: relative; z-index: 1;
+  padding-left: clamp(0px, 4vw, 48px);
+}
+.v3 .pill{ margin: 0; overflow: hidden; border-radius: var(--pill); height: clamp(150px, 22vw, 260px); }
+.v3 .pill img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.v3 .pill-a{ width: clamp(170px, 26vw, 340px); }
+.v3 .pill-a img{ object-position: 50% 40%; }
+.v3 .pill-b{ width: clamp(230px, 36vw, 470px); }
+.v3 .pill-b img{ object-position: 40% 25%; }
+.ui .v3 [data-pill]{ clip-path: inset(0 50% 0 50% round 999px); transition: clip-path 1100ms var(--ease-soft); }
+.ui .v3 [data-pill] img{ transform: scale(1.15); transition: transform 1400ms var(--ease-soft); }
+.ui .v3 [data-pill].is-in{ clip-path: inset(0 0 0 0 round 999px); }
+.ui .v3 [data-pill].is-in img{ transform: none; }
+.ui .v3 [data-pill].pill-b{ transition-delay: 120ms; }
+.v3 .letter-over{ padding-top: calc(var(--s9) + var(--s6)) !important; }
+
+@media (max-width: 640px){
+  .v3 .photo-pills{ padding-left: 0; margin-bottom: calc(var(--s8) * -1); }
+  .v3 .pill{ height: 130px; }
+  .v3 .pill-a{ width: 40%; } .v3 .pill-b{ width: 60%; }
+  .v3 .letter-over{ padding-top: calc(var(--s8) + var(--s5)) !important; }
+}
+@media (prefers-reduced-motion: reduce){
+  .ui .v3 [data-pill]{ clip-path: none; transition: none; }
+  .ui .v3 [data-pill] img{ transform: none; transition: none; }
+  .v3 .nav-hl, .v3 .nav-links a .roll > span{ transition: none; }
+}
+/* Foto del portátil (fondo transparente) sobre el campo oliva */
+.v3 .pill-b{ background: var(--field); }
+.v3 .pill-b img{ object-position: 35% 30%; }
+.v3 .pill-wide{ width: 100%; height: clamp(200px, 30vw, 380px); background: var(--field); }
+.v3 .pill-wide img{ object-fit: contain; object-position: 50% 100%; }
+/* Carta de tarifas y tarjetas de páginas interiores: esquinas suaves */
+.v3 .menu-sheet{ border-radius: var(--radius-card); }
+.v3 .calc-form, .v3 .result-grid > *{ border-radius: var(--radius-soft); }

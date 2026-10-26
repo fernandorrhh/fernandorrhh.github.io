@@ -21,6 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=3">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -50,7 +51,7 @@
 }
 </script>
 </head>
-<body>
+<body class="v3">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <header class="site-head">
@@ -78,7 +79,7 @@
   <!-- Portada -->
   <section class="hero">
     <div class="wrap">
-      <h1 class="display" data-rise>El trabajo, sin letra pequeña.</h1>
+      <h1 class="display hero-title" data-split>El trabajo, sin <em>letra pequeña.</em></h1>
       <div class="grid">
         <div class="c-1-5">
           <p class="lead" data-rise style="--rise-delay:70ms">Asesoría laboral cercana: tu nómina, tu contrato y tus derechos, explicados de forma simple.</p>
@@ -114,20 +115,34 @@
     </div>
   </section>
 
+  <!-- Cinta de servicios (en movimiento continuo) -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Revisión de CV</span><i></i><span>Simulación de entrevista</span><i></i><span>Nóminas</span><i></i><span>Contratos y convenios</span><i></i><span>Despidos</span><i></i><span>Excedencias</span><i></i><span>Cambios de IRPF</span><i></i><span>Primera consulta gratis</span><i></i>
+    </div>
+  </div>
+
+  <!-- Declaración: se lee palabra a palabra al hacer scroll -->
+  <section class="statement" aria-label="Cómo trabajo">
+    <div class="wrap">
+      <p class="statement-text" data-words>Tres frentes, un mismo trato: te explico lo que hay, con sus pegas, y decides tú.</p>
+    </div>
+  </section>
+
   <!-- Qué hace -->
   <section class="band" aria-labelledby="h-ayuda">
     <div class="wrap">
       <div class="grid">
         <h2 class="title c-1-5" id="h-ayuda" data-rise>En qué te puedo echar una mano</h2>
         <p class="c-7-12 body-lg muted u-w42 u-self-end" data-rise style="--rise-delay:70ms">
-          Tres frentes, un mismo trato: te explico lo que hay, con sus pegas, y decides tú. Todos los precios son sin IVA y llevan precio social.
+          Precio social y precio estándar en cada servicio. Todos los precios son sin IVA.
         </p>
       </div>
 
-      <div class="u-mt9">
-        <article class="branch grid" data-rise>
+      <div class="stack u-mt9">
+        <article class="branch grid stack-card" data-rise>
           <div class="c-1-5">
-            <span class="branch-mark" aria-hidden="true">🔍</span>
+            <span class="branch-num" aria-hidden="true">01</span>
             <h3>Buscar trabajo sin perder la cabeza</h3>
           </div>
           <div class="c-7-12">
@@ -141,9 +156,9 @@
           </div>
         </article>
 
-        <article class="branch grid" data-rise>
+        <article class="branch grid stack-card" data-rise>
           <div class="c-1-5">
-            <span class="branch-mark" aria-hidden="true">📄</span>
+            <span class="branch-num" aria-hidden="true">02</span>
             <h3>Entender lo que firmas</h3>
           </div>
           <div class="c-7-12">
@@ -156,9 +171,9 @@
           </div>
         </article>
 
-        <article class="branch grid" data-rise>
+        <article class="branch grid stack-card" data-rise>
           <div class="c-1-5">
-            <span class="branch-mark" aria-hidden="true">✍️</span>
+            <span class="branch-num" aria-hidden="true">03</span>
             <h3>Procesos laborales</h3>
           </div>
           <div class="c-7-12">
@@ -190,7 +205,7 @@
         </div>
 
         <div class="c-7-12" data-rise style="--rise-delay:210ms">
-          <div class="payslip" data-ui>
+          <div class="payslip" data-ui data-live>
             <div class="payslip-head">
               <strong>Recibo de salarios</strong>
               <span>Periodo: mensual</span>
@@ -223,7 +238,7 @@
   </section>
 
   <!-- La calculadora: lo único que puedes hacer tú mismo ahora mismo -->
-  <section class="band field" aria-labelledby="h-calc">
+  <section class="band field card-over" aria-labelledby="h-calc">
     <div class="wrap">
       <div class="grid u-grid-s7-end">
         <div class="c-1-7">
@@ -247,7 +262,11 @@
     <div class="wrap">
       <div class="grid">
         <div class="c-2-6 u-col-2-10">
-          <div class="letter" data-rise>
+          <div class="photo-pills" aria-hidden="true">
+            <figure class="pill pill-a" data-pill><img src="assets/fernando-terraza.webp" alt="" width="900" height="759" loading="lazy"></figure>
+            <figure class="pill pill-b" data-pill><img src="assets/fernando-portatil.webp" alt="" width="1000" height="767" loading="lazy"></figure>
+          </div>
+          <div class="letter letter-over" data-rise>
             <div class="prose">
               <h2 class="title u-mb7" id="h-yo">Soy Fernando</h2>
               <p>Llevo más de cinco años trabajando en recursos humanos dentro de empresas, y antes di clase de Formación y Orientación Laboral. Esa mezcla —ver cómo se toman las decisiones desde dentro y haber tenido que explicárselas a gente que empezaba de cero— es lo que pongo de tu lado.</p>
@@ -326,5 +345,7 @@
 
 <script src="precios.js"></script>
 <script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
 </body>
 </html>
