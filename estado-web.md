@@ -9,13 +9,19 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 ## Fases
 - [x] Fase 0 — Preparación del repositorio
 - [x] Fase 1 — Puesta al día (26-10-2026, rama `fase-1-puesta-al-dia`)
-  - Modalidad: online + presencial en Valencia o Madrid según disponibilidad; domicilio legal y pie a Valencia.
+  - Modalidad: online + presencial en Valencia o Madrid según disponibilidad; pie a Valencia; domicilio legal: San Blas-Canillejas, 28037 Madrid.
   - Precios en `precios.js` (portada y servicios).
   - SEO: canonical, Open Graph con imagen 1200×630, JSON-LD `ProfessionalService`, `sitemap.xml`, `robots.txt`, `404.html`.
   - Estilos en línea pasados a utilidades `.u-*` en `styles.css` (solo queda `--rise-delay`, que es un dato por elemento).
   - Arreglos recuperados: red de seguridad de 2 s si `main.js` no carga y calendario de reservas que no llegaba a mostrarse.
   - Verificado: capturas antes/después en escritorio y móvil sin cambios de diseño; sin errores JS.
-- [ ] Fase 2 — Contenido y lenguaje (FAQ, casos tipo, precio social, servicio a empresas)
+- [x] Fase 2 — Contenido y lenguaje (26-10-2026, rama `fase-2-contenido`)
+  - Nueva página `empresas.html`: servicio a medida (<20 personas), cómo funciona (formulario → llamada → presupuesto) y formulario que abre email o WhatsApp ya rellenado. Enlazada en menú, pie, portada, servicios y contacto.
+  - Servicios: precio social redefinido y 8 preguntas frecuentes con datos estructurados `FAQPage`.
+  - `main.js`: un único manejador para los dos formularios, con validación antes de abrir la app.
+  - Lenguaje neutro en avisos legales y pies ("despacho de graduado/a social o de abogacía laboralista").
+  - Arreglo: el aviso vacío bajo los botones de formulario ya no se ve.
+  - Pendiente: casos tipo reales y anonimizados (los aporta Fernando; no se inventan).
 - [ ] Fase 3 — Sistema visual e interfaz (con webs de referencia)
 - [ ] Fase 4 — Motor compartido con la plataforma y calculadoras públicas
 - [ ] Fase 5 — Guías y verificación final

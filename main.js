@@ -114,91 +114,111 @@
      Lo importante es que la persona sepa que ha pasado algo, y tenga
      salida si el navegador bloquea la ventana.
      --------------------------------------------------------------- */
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
   var WHATSAPP = '34638292643';
   var EMAIL = 'fernando@rrhhsimple.com';
 
-  var submitBtn = document.getElementById('submitBtn');
-  var status = document.getElementById('formStatus');
-
-  function canalActual() {
-    var checked = form.querySelector('input[name="canal"]:checked');
-    return checked ? checked.value : 'whatsapp';
+  function val(form, name) {
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? el.value.trim() : '';
   }
 
-  function etiquetaBoton() {
-    return canalActual() === 'whatsapp' ? 'Enviar por WhatsApp' : 'Enviar por email';
-  }
-
-  form.querySelectorAll('input[name="canal"]').forEach(function (radio) {
-    radio.addEventListener('change', function () {
-      submitBtn.textContent = etiquetaBoton();
-      if (status) status.hidden = true;
-    });
+  // Formulario de contacto (contacto.html)
+  iniciarFormulario(document.getElementById('contactForm'), function (f) {
+    var nombre = val(f, 'nombre');
+    return {
+      asunto: 'Consulta laboral desde RRHH Simple — ' + nombre,
+      texto:
+        'Hola, Fernando. Soy ' + nombre + ' (' + val(f, 'perfil') + ').\n' +
+        'Sobre: ' + val(f, 'necesidad') + '\n' +
+        'Mi caso: ' + val(f, 'mensaje') + '\n\n' +
+        'Vengo desde la web de RRHH Simple.'
+    };
   });
 
-  function mostrarEstado(tono, icono, html) {
-    if (!status) return;
-    status.hidden = false;
-    status.dataset.tone = tono;
-    status.innerHTML = '<span class="ico" aria-hidden="true">' + icono + '</span><span>' + html + '</span>';
-  }
+  // Solicitud de servicio a medida (empresas.html)
+  iniciarFormulario(document.getElementById('empresaForm'), function (f) {
+    var servicios = [];
+    f.querySelectorAll('input[name="servicio"]:checked').forEach(function (c) { servicios.push(c.value); });
+    var empresa = val(f, 'empresa');
+    return {
+      asunto: 'Solicitud de presupuesto — ' + empresa,
+      texto:
+        'Hola, Fernando. Os escribo desde ' + empresa + '.\n' +
+        'Persona de contacto: ' + val(f, 'nombre') + '\n' +
+        'Tamaño de la plantilla: ' + val(f, 'plantilla') + '\n' +
+        'Servicios que nos interesan: ' + (servicios.length ? servicios.join(', ') : 'por concretar') + '\n' +
+        'Duración: ' + val(f, 'duracion') + '\n' +
+        'Lo que necesitamos: ' + val(f, 'mensaje') + '\n' +
+        'Para la llamada, mejor: ' + (val(f, 'horario') || 'cualquier momento') + '\n\n' +
+        'Escrito desde la web de RRHH Simple.'
+    };
+  });
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  /* No hay backend: se abre WhatsApp o el correo con el mensaje escrito.
+     Lo importante es que la persona sepa que ha pasado algo, y tenga
+     salida si el navegador bloquea la ventana. */
+  function iniciarFormulario(form, construir) {
+    if (!form) return;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var status = form.querySelector('.form-status');
 
-    var nombre = document.getElementById('nombre').value.trim();
-    var perfil = document.getElementById('perfil').value;
-    var necesidad = document.getElementById('necesidad').value;
-    var mensaje = document.getElementById('mensaje').value.trim();
-    var canal = canalActual();
-
-    var texto =
-      '¡Hola Fernando! Soy ' + nombre + ' (' + perfil + ').\n' +
-      'Sobre: ' + necesidad + '\n' +
-      'Mi caso: ' + mensaje + '\n\n' +
-      'Vengo desde la web de RRHH Simple.';
-
-    var destino = canal === 'whatsapp'
-      ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto)
-      : 'mailto:' + EMAIL +
-        '?subject=' + encodeURIComponent('Consulta laboral desde RRHH Simple — ' + nombre) +
-        '&body=' + encodeURIComponent(texto);
-
-    var nombreApp = canal === 'whatsapp' ? 'WhatsApp' : 'tu programa de correo';
-
-    submitBtn.setAttribute('aria-busy', 'true');
-    submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span>Abriendo ' + nombreApp + '…';
-    if (status) status.hidden = true;
-
-    var abierto = true;
-    if (canal === 'whatsapp') {
-      var win = window.open(destino, '_blank', 'noopener');
-      abierto = !!win;
-    } else {
-      window.location.href = destino;
+    function canalActual() {
+      var checked = form.querySelector('input[name="canal"]:checked');
+      return checked ? checked.value : 'whatsapp';
+    }
+    function etiquetaBoton() {
+      return canalActual() === 'whatsapp' ? 'Enviar por WhatsApp' : 'Enviar por email';
+    }
+    form.querySelectorAll('input[name="canal"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        submitBtn.textContent = etiquetaBoton();
+        if (status) status.hidden = true;
+      });
+    });
+    function mostrarEstado(tono, icono, html) {
+      if (!status) return;
+      status.hidden = false;
+      status.dataset.tone = tono;
+      status.innerHTML = '<span class="ico" aria-hidden="true">' + icono + '</span><span>' + html + '</span>';
     }
 
-    window.setTimeout(function () {
-      submitBtn.removeAttribute('aria-busy');
-      submitBtn.textContent = etiquetaBoton();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      if (abierto) {
-        mostrarEstado(
-          'ok', '✅',
-          '<strong>Listo.</strong> Te he abierto ' + nombreApp + ' con el mensaje escrito: solo tienes que darle a enviar. ' +
-          '¿No se ha abierto? <a class="link" href="' + destino + '" target="_blank" rel="noopener">Ábrelo desde aquí</a>.'
-        );
+      var m = construir(form);
+      var canal = canalActual();
+      var destino = canal === 'whatsapp'
+        ? 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(m.texto)
+        : 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(m.asunto) + '&body=' + encodeURIComponent(m.texto);
+      var nombreApp = canal === 'whatsapp' ? 'WhatsApp' : 'tu programa de correo';
+
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.innerHTML = '<span class="spinner" aria-hidden="true"></span>Abriendo ' + nombreApp + '…';
+      if (status) status.hidden = true;
+
+      var abierto = true;
+      if (canal === 'whatsapp') {
+        var win = window.open(destino, '_blank', 'noopener');
+        abierto = !!win;
       } else {
-        mostrarEstado(
-          'error', '⚠️',
-          '<strong>Tu navegador ha bloqueado la ventana.</strong> ' +
-          '<a class="link" href="' + destino + '" target="_blank" rel="noopener">Abre ' + nombreApp + ' desde aquí</a> ' +
-          'o escríbeme a <a class="link" href="mailto:' + EMAIL + '">' + EMAIL + '</a>.'
-        );
+        window.location.href = destino;
       }
-    }, 450);
-  });
+
+      window.setTimeout(function () {
+        submitBtn.removeAttribute('aria-busy');
+        submitBtn.textContent = etiquetaBoton();
+        if (abierto) {
+          mostrarEstado('ok', '✅',
+            '<strong>Listo.</strong> Se ha abierto ' + nombreApp + ' con el mensaje escrito: solo falta darle a enviar. ' +
+            '¿No se ha abierto? <a class="link" href="' + destino + '" target="_blank" rel="noopener">Ábrelo desde aquí</a>.');
+        } else {
+          mostrarEstado('error', '⚠️',
+            '<strong>El navegador ha bloqueado la ventana.</strong> ' +
+            '<a class="link" href="' + destino + '" target="_blank" rel="noopener">Abre ' + nombreApp + ' desde aquí</a> ' +
+            'o escribe a <a class="link" href="mailto:' + EMAIL + '">' + EMAIL + '</a>.');
+        }
+      }, 450);
+    });
+  }
 })();
