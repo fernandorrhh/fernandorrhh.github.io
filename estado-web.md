@@ -9,7 +9,7 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 ## Fases
 - [x] Fase 0 — Preparación del repositorio
 - [x] Fase 1 — Puesta al día (26-10-2026, rama `fase-1-puesta-al-dia`)
-  - Modalidad: online + presencial en Valencia o Madrid según disponibilidad; domicilio legal y pie a Valencia.
+  - Modalidad: online + presencial en Valencia o Madrid según disponibilidad; pie a Valencia; domicilio legal: San Blas-Canillejas, 28037 Madrid.
   - Precios en `precios.js` (portada y servicios).
   - SEO: canonical, Open Graph con imagen 1200×630, JSON-LD `ProfessionalService`, `sitemap.xml`, `robots.txt`, `404.html`.
   - Estilos en línea pasados a utilidades `.u-*` en `styles.css` (solo queda `--rise-delay`, que es un dato por elemento).
