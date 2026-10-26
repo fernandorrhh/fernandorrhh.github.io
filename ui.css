@@ -342,3 +342,6 @@
 /* Carta de tarifas y tarjetas de páginas interiores: esquinas suaves */
 .v3 .menu-sheet{ border-radius: var(--radius-card); }
 .v3 .calc-form, .v3 .result-grid > *{ border-radius: var(--radius-soft); }
+/* Desglose de calculadoras: el detalle de cada línea con contraste suficiente sobre papel */
+.v3 .payslip .note{ color: var(--ink-3); font-size: 0.75rem; }
+.v3 .payslip td{ vertical-align: top; }

@@ -1,101 +1,29 @@
-/* RRHH Simple — calculadora de indemnización por despido
+/* RRHH Simple — calculadora de indemnización por despido (interfaz)
+   El cálculo lo hace motor/indemnizacion.js, el mismo motor verificado de la
+   plataforma interna, con los parámetros de motor/parametros.js.
    Todo se calcula en el navegador. No se guarda ni se envía ningún dato. */
 (function (root) {
+  var M = root.MotorIndemnizacion, W = root.RRHH_WEB_PARAMS;
+  if (!M || !W) return;
 
-  // ============================================================
-  // PARÁMETROS LEGALES — si cambia la ley, se edita SOLO este bloque
-  // Base: art. 56 y 53 del Estatuto de los Trabajadores + DT 11ª RDL 3/2012
-  // ============================================================
-  var LEY = {
-    vigenteDesde: 'octubre de 2026',
-    fechaReforma2012: '2012-02-12',   // los servicios desde esta fecha computan a 33 días
-    improcedente: { diasAnio: 33, topeDias: 720 },          // 24 mensualidades
-    improcedentePre2012: { diasAnio: 45, topeDias: 720, topeExcepcionalDias: 1260 }, // 42 mensualidades
-    objetivo: { diasAnio: 20, topeDias: 360 },               // 12 mensualidades
-    diasAnioSalario: 365
-  };
-
-  function parseFecha(s) {
-    var p = String(s).split('-');
-    return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
-  }
-
-  // Meses de servicio entre dos fechas (el día final cuenta). Las fracciones de mes se
-  // computan como mes completo, que es el criterio habitual al prorratear por meses.
-  function mesesServicio(inicio, finExclusivo) {
-    if (finExclusivo <= inicio) return 0;
-    var meses = (finExclusivo.getUTCFullYear() - inicio.getUTCFullYear()) * 12 +
-                (finExclusivo.getUTCMonth() - inicio.getUTCMonth());
-    var ref = new Date(Date.UTC(inicio.getUTCFullYear(), inicio.getUTCMonth() + meses, inicio.getUTCDate()));
-    if (ref > finExclusivo) { meses -= 1; ref = new Date(Date.UTC(inicio.getUTCFullYear(), inicio.getUTCMonth() + meses, inicio.getUTCDate())); }
-    if (finExclusivo > ref) meses += 1;   // resto de días = mes completo
-    return meses;
-  }
-
-  function calcular(entrada) {
-    var inicio = parseFecha(entrada.inicio);
-    var fin = parseFecha(entrada.fin);
-    var salarioAnual = Number(entrada.salarioAnual);
-
-    if (isNaN(inicio) || isNaN(fin)) return { error: 'Revisa las fechas.' };
-    if (fin < inicio) return { error: 'La fecha de fin no puede ser anterior a la de inicio.' };
-    if (!(salarioAnual > 0)) return { error: 'Indica tu salario bruto anual.' };
-
-    var finExcl = new Date(fin.getTime() + 86400000);
-    var corte = parseFecha(LEY.fechaReforma2012);
-    var diario = salarioAnual / LEY.diasAnioSalario;
-
-    var mesesTotal = mesesServicio(inicio, finExcl);
-    var mesesPre = 0, mesesPost = mesesTotal;
-    if (inicio < corte) {
-      mesesPre = mesesServicio(inicio, finExcl < corte ? finExcl : corte);
-      mesesPost = finExcl > corte ? mesesTotal - mesesPre : 0;
-      if (mesesPost < 0) mesesPost = 0;
-    }
-
-    // ---- Improcedente ----
-    var diasPre = (mesesPre / 12) * LEY.improcedentePre2012.diasAnio;
-    var diasPost = (mesesPost / 12) * LEY.improcedente.diasAnio;
-    var diasImp, topeDiasImp, topeAplicado = false;
-    if (mesesPre > 0) {
-      if (diasPre > LEY.improcedentePre2012.topeDias) {
-        // El tramo anterior a 2012 ya supera 24 mensualidades: manda ese tramo, con máximo de 42 mensualidades
-        diasImp = Math.min(diasPre, LEY.improcedentePre2012.topeExcepcionalDias);
-        topeDiasImp = LEY.improcedentePre2012.topeExcepcionalDias;
-        topeAplicado = diasPre > topeDiasImp;
-      } else {
-        diasImp = diasPre + diasPost;
-        topeDiasImp = LEY.improcedentePre2012.topeDias;
-        if (diasImp > topeDiasImp) { diasImp = topeDiasImp; topeAplicado = true; }
-      }
-    } else {
-      diasImp = diasPost;
-      topeDiasImp = LEY.improcedente.topeDias;
-      if (diasImp > topeDiasImp) { diasImp = topeDiasImp; topeAplicado = true; }
-    }
-
-    // ---- Objetivo ----
-    var diasObj = (mesesTotal / 12) * LEY.objetivo.diasAnio;
-    var topeObjAplicado = false;
-    if (diasObj > LEY.objetivo.topeDias) { diasObj = LEY.objetivo.topeDias; topeObjAplicado = true; }
-
+  // Adaptador: devuelve lo que necesita la interfaz a partir del motor común.
+  function calcular(e) {
+    if (!e.inicio || !e.fin) return { error: 'Revisa las fechas.' };
+    if (e.fin < e.inicio) return { error: 'La fecha del despido no puede ser anterior a la de inicio.' };
+    if (!(Number(e.salarioAnual) > 0)) return { error: 'Indica tu salario bruto anual.' };
+    var imp = M.calcular({ inicio: e.inicio, fin: e.fin, salarioAnual: Number(e.salarioAnual), tipo: 'improcedente' }, W.indemnizacion);
+    var obj = M.calcular({ inicio: e.inicio, fin: e.fin, salarioAnual: Number(e.salarioAnual), tipo: 'objetivo' }, W.indemnizacion);
+    if (!imp || !obj) return { error: 'Revisa los datos.' };
     return {
-      mesesTotal: mesesTotal,
-      anios: Math.floor(mesesTotal / 12),
-      mesesResto: mesesTotal % 12,
-      mesesPre: mesesPre,
-      mesesPost: mesesPost,
-      salarioDiario: diario,
-      improcedente: { dias: diasImp, importe: diasImp * diario, topeAplicado: topeAplicado },
-      objetivo: { dias: diasObj, importe: diasObj * diario, topeAplicado: topeObjAplicado },
-      disciplinario: { dias: 0, importe: 0 }
+      anios: imp.antiguedad.anios,
+      mesesResto: imp.antiguedad.meses,
+      mesesPre: imp.tramos.length > 1 ? 1 : 0,
+      salarioDiario: imp.salarioDiario,
+      improcedente: { dias: imp.dias, importe: imp.importe, topeAplicado: imp.topeAplicado },
+      objetivo: { dias: obj.dias, importe: obj.importe, topeAplicado: obj.topeAplicado }
     };
   }
-
-  var api = { calcular: calcular, LEY: LEY, mesesServicio: mesesServicio, parseFecha: parseFecha };
-  if (typeof module !== 'undefined' && module.exports) module.exports = api;
-  else root.CalcDespido = api;
-
+  var LEY = { vigenteDesde: W.vigencia };
 
   // ============================================================
   // Interfaz (solo en calculadora-despido.html)
