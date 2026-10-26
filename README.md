@@ -16,6 +16,8 @@ HTML, CSS y JavaScript sin frameworks, publicada con GitHub Pages.
 | `aviso-legal.html`, `privacidad.html` | Páginas legales |
 | `styles.css` | Todo el diseño: tokens, rejilla, componentes, movimiento |
 | `main.js` | Menú, entradas por scroll, calendario y formulario |
+| `precios.js` | Tarifas: única fuente de precios |
+| `404.html`, `robots.txt`, `sitemap.xml` | Página de error y archivos para buscadores |
 | `calculadora.js` | Motor de cálculo + interfaz de la calculadora |
 | `assets/` | Logos, favicon, foto y tipografías |
 
@@ -36,8 +38,9 @@ se toca ahí y se propaga a toda la web.
 
 ## Cómo cambiar las cosas más habituales
 
-- **Precios:** en `servicios.html` (lista completa) y en `index.html`
-  (los resúmenes de cada rama). Están en los dos sitios.
+- **Precios:** solo en `precios.js`. Se actualizan solos en la portada y en
+  servicios. (El número que se ve en el HTML es un respaldo por si el script
+  no carga; si cambias una tarifa, conviene cambiarlo también.)
 - **Parámetros legales de la calculadora:** bloque `LEY` al principio de
   `calculadora.js`. Si cambia la ley, se edita solo ese bloque.
 - **Teléfono y WhatsApp:** constantes `WHATSAPP` y `EMAIL` en `main.js`,

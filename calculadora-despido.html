@@ -8,12 +8,27 @@
 <meta property="og:title" content="Calculadora de indemnización por despido">
 <meta property="og:description" content="Tres datos y sabes lo que te corresponde. Sin registro, sin dejar tu correo y sin que nada salga de tu navegador.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/calculadora-despido.html">
+<meta property="og:url" content="https://rrhhsimple.com/calculadora-despido.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -39,11 +54,11 @@
 
 <main id="contenido">
 
-  <section class="hero" style="padding-bottom:clamp(2.5rem,6vw,4rem)">
+  <section class="hero u-pb-m">
     <div class="wrap">
       <h1 class="display" data-rise>¿Cuánto te corresponde?</h1>
-      <div class="grid" style="margin-top:var(--s6)">
-        <p class="c-1-6 lead muted" data-rise style="--rise-delay:70ms; max-width:38ch">
+      <div class="grid u-mt6">
+        <p class="c-1-6 lead muted u-w38" data-rise style="--rise-delay:70ms">
           Si te despiden, tres datos y lo sabes. Gratis y en diez segundos.
         </p>
         <p class="c-8-12 note" data-rise style="--rise-delay:140ms">
@@ -56,9 +71,9 @@
   <!-- La herramienta -->
   <section class="band field" aria-labelledby="h-calc">
     <div class="wrap">
-      <h2 class="title" id="h-calc" data-rise style="max-width:16ch">Calcula tu indemnización</h2>
+      <h2 class="title u-w16" id="h-calc" data-rise>Calcula tu indemnización</h2>
 
-      <form id="calcForm" class="calc-form" novalidate style="margin-top:var(--s8); max-width:none" data-rise>
+      <form id="calcForm" class="calc-form u-mt8 u-wnone" novalidate data-rise>
         <div class="field-row">
           <label for="inicio">Fecha de inicio del contrato</label>
           <input type="date" id="inicio" required>
@@ -77,7 +92,7 @@
 
       <p class="calc-error" id="calcError" role="alert" hidden></p>
 
-      <div class="results" id="resultado" hidden aria-live="polite" style="margin-top:var(--s9)">
+      <div class="results u-mt9" id="resultado" hidden aria-live="polite">
         <p class="result-meta">
           <span>Antigüedad computada: <b id="rAntig"></b></span>
           <span>Salario diario: <b id="rDiario"></b></span>
@@ -110,7 +125,7 @@
           </ul>
         </div>
 
-        <div class="btn-row" style="margin-top:var(--s8)">
+        <div class="btn-row u-mt8">
           <a href="reservar.html" class="btn">Que revise mi caso</a>
           <a href="contacto.html" class="btn btn-ghost">Contarte lo que ha pasado</a>
         </div>
@@ -138,15 +153,15 @@
   <!-- Cierre -->
   <section class="band-tight" aria-labelledby="h-cierre">
     <div class="wrap">
-      <div class="grid" style="row-gap:var(--s6); align-items:end">
+      <div class="grid u-grid-s6-end">
         <div class="c-1-7">
-          <h2 class="title" id="h-cierre" data-rise style="max-width:17ch">¿El número no cuadra con lo que te ofrecen?</h2>
+          <h2 class="title u-w17" id="h-cierre" data-rise>¿El número no cuadra con lo que te ofrecen?</h2>
         </div>
         <div class="c-8-12" data-rise style="--rise-delay:70ms">
           <div class="btn-row">
             <a href="reservar.html" class="btn">Reservar consulta gratis</a>
           </div>
-          <p class="note" style="margin-top:var(--s4)">Recuerda: 20 días hábiles de plazo desde el despido.</p>
+          <p class="note u-mt4">Recuerda: 20 días hábiles de plazo desde el despido.</p>
         </div>
       </div>
     </div>
@@ -187,7 +202,7 @@
     </div>
     <div class="foot-base">
       <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
     </div>
   </div>
 </footer>
