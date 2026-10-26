@@ -32,7 +32,9 @@
   function split(el) {
     var words = [];
     var i = 0;
-    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    // aria-label solo vale en encabezados; en un párrafo se dejan las palabras legibles
+    var label = /^H[1-6]$/.test(el.tagName);
+    if (label) el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
     (function walk(node) {
       Array.prototype.slice.call(node.childNodes).forEach(function (child) {
         if (child.nodeType === 3) {
@@ -42,7 +44,7 @@
             if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
             var s = document.createElement('span');
             s.className = 'w';
-            s.setAttribute('aria-hidden', 'true');
+            if (label) s.setAttribute('aria-hidden', 'true');
             s.style.setProperty('--i', i++);
             s.textContent = part;
             words.push(s);

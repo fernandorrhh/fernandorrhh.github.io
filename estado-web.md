@@ -38,7 +38,9 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Páginas: `calculadoras.html` (índice), despido (ahora con el motor común), `calculadora-finiquito.html` y `calculadora-vacaciones.html`.
   - Pendiente: calculadora bruto/neto. La plataforma no tiene motor de IRPF; requiere implementar el algoritmo de la AEAT 2026 y verificar tipos y tramos en fuentes oficiales.
   - Mantenimiento: si cambia un motor en la plataforma, copiarlo a `motor/` y pasar las pruebas de los dos repositorios.
-- [ ] Fase 5 — Guías y verificación final
+- [x] Fase 5 — Guías y verificación final (26-10-2026, rama `fase-4-calculadoras`)
+  - Guías: `guias.html` (índice), `guia-nomina.html`, `guia-finiquito.html`, `guia-plazo-despido.html`, con base legal citada (ET, LRJS, Orden ESS/2098/2014), datos estructurados `Article` y enlace a la calculadora correspondiente.
+  - Verificación: 0 incidencias WCAG 2 A/AA (axe-core) en las 19 páginas; sin desbordes horizontales a 375 px; sin enlaces internos rotos; sin errores de JavaScript. Portada ≈ 480 KB con fuentes e imágenes.
 
 ## Decisiones tomadas
 - Modalidad: online; presencial en Valencia o Madrid según disponibilidad.
@@ -48,5 +50,7 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 - Flujo: una rama por fase, pull request y validación antes de fusionar con `main`.
 
 ## Pendiente
+- Calculadora bruto/neto (motor de IRPF según la AEAT 2026, con fuentes verificadas).
+- Casos tipo reales y anonimizados.
 - Webs de referencia para la interfaz (antes de la fase 3).
 - Calculadoras públicas a priorizar en la fase 4.
