@@ -456,3 +456,52 @@
   .ui .v3 .faq-item[open] p{ animation: none; }
   .v3 .faq-item summary::after{ transition: none; }
 }
+
+/* ===========================================================================
+   v3.3 — solo colores de marca (paletas "Dark professional" y "Light & engaging")
+   #FAF8F3 papel · #F9F9F9 texto claro · #D4CFC0 detalles · #8A8666 oliva medio
+   #4A4732 oliva · #3A3825 oliva profundo · #2E2E2E carbón · #FFDE59 resalto · #E8A87C terracota
+   =========================================================================== */
+.v3{
+  --brand-paper: #faf8f3;
+  --brand-light: #f9f9f9;
+  --brand-detail: #d4cfc0;
+  --brand-olive-mid: #8a8666;
+  --brand-olive: #4a4732;
+  --brand-olive-deep: #3a3825;
+  --brand-charcoal: #2e2e2e;
+  --tone-1: var(--brand-detail);
+  --tone-2: var(--brand-olive);
+  --tone-3: #ece8dc;               /* papel con un punto de #D4CFC0 */
+  --tone-4: var(--brand-olive-deep);
+}
+.v3 .portrait, .v3 .pill-b, .v3 .pill-wide{ background: var(--brand-detail); }
+
+/* Secciones oscuras de oliva: mismo tratamiento de texto que el campo carbón */
+.v3 main > section:nth-of-type(4n+3):not(.field),
+.v3 main > section:nth-of-type(4n+5):not(.field){ color: var(--brand-light); }
+.v3 main > section:nth-of-type(4n+3):not(.field) :is(h1,h2,h3,.sign),
+.v3 main > section:nth-of-type(4n+5):not(.field) :is(h1,h2,h3,.sign){ color: var(--brand-light); }
+.v3 main > section:nth-of-type(4n+3):not(.field) :is(p,.muted,.note,li),
+.v3 main > section:nth-of-type(4n+5):not(.field) :is(p,.muted,.note,li){ color: #e4e0d3; }
+.v3 main > section:nth-of-type(4n+3):not(.field) .link,
+.v3 main > section:nth-of-type(4n+5):not(.field) .link{ color: var(--brand-light); text-decoration-color: var(--brand-olive-mid); }
+.v3 main > section:nth-of-type(4n+3):not(.field) .btn-ghost,
+.v3 main > section:nth-of-type(4n+5):not(.field) .btn-ghost{ color: var(--brand-light); box-shadow: inset 0 0 0 1.5px var(--brand-olive-mid); }
+.v3 main > section:nth-of-type(4n+3):not(.field) > .wrap > :is(.grid, h2) .btn-text,
+.v3 main > section:nth-of-type(4n+5):not(.field) > .wrap > :is(.grid, h2) .btn-text{ color: var(--brand-light); }
+/* Lo que va dentro de una tarjeta clara recupera la tinta oscura */
+.v3 main > section :is(.payslip, .letter, .faq-item, .stack-card:not(:nth-child(3)), .menu-group.tone-1) :is(h2,h3,p,li,.note,.muted,summary,.sign,td,span){ color: inherit; }
+.v3 :is(.payslip, .letter, .faq-item, .stack-card:not(:nth-child(3)), .menu-group.tone-1){ color: var(--ink); }
+.v3 :is(.payslip, .letter, .faq-item, .stack-card:not(:nth-child(3))) :is(.muted, .note, p:not(.amount)){ color: var(--ink-2); }
+.v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)) .steps li{ background: rgba(249,249,249,.08); }
+
+/* Servicios: grupos en tonos de marca */
+.v3 .menu-group.tone-1{ background: var(--brand-paper); }
+.v3 .menu-group.tone-2{ background: var(--brand-olive-mid); color: var(--ink); }
+.v3 .menu-group.tone-2 :is(h3,p,.note,.std,span){ color: var(--ink); }
+.v3 .menu-group.tone-3{ background: var(--brand-olive); color: var(--brand-light); }
+.v3 .menu-group.tone-3 :is(h3,p,.note,span){ color: var(--brand-light); }
+.v3 .menu-group.tone-3 .std{ color: var(--brand-detail); }
+.v3 .menu-group.tone-3 .group-num{ -webkit-text-stroke-color: var(--accent); }
+.v3 .menu-group.tone-3 .menu-item + .menu-item{ border-top-color: rgba(249,249,249,.18); }
