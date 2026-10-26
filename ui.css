@@ -334,3 +334,11 @@
   .ui .v3 [data-pill] img{ transform: none; transition: none; }
   .v3 .nav-hl, .v3 .nav-links a .roll > span{ transition: none; }
 }
+/* Foto del portátil (fondo transparente) sobre el campo oliva */
+.v3 .pill-b{ background: var(--field); }
+.v3 .pill-b img{ object-position: 35% 30%; }
+.v3 .pill-wide{ width: 100%; height: clamp(200px, 30vw, 380px); background: var(--field); }
+.v3 .pill-wide img{ object-fit: contain; object-position: 50% 100%; }
+/* Carta de tarifas y tarjetas de páginas interiores: esquinas suaves */
+.v3 .menu-sheet{ border-radius: var(--radius-card); }
+.v3 .calc-form, .v3 .result-grid > *{ border-radius: var(--radius-soft); }

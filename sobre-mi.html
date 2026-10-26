@@ -21,6 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=3">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -30,7 +31,7 @@
 })(document.documentElement);
 </script>
 </head>
-<body>
+<body class="v3">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <header class="site-head">
@@ -57,7 +58,7 @@
 
   <section class="hero">
     <div class="wrap">
-      <h1 class="display u-w11" data-rise>Soy Fernando.</h1>
+      <h1 class="display hero-title u-w11" data-split>Soy <em>Fernando.</em></h1>
       <div class="grid">
         <div class="c-1-5">
           <p class="lead" data-rise style="--rise-delay:70ms">
@@ -179,5 +180,7 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
 </body>
 </html>

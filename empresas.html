@@ -21,6 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="ui.css?v=3">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -30,7 +31,7 @@
 })(document.documentElement);
 </script>
 </head>
-<body>
+<body class="v3">
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
 <header class="site-head">
@@ -57,7 +58,7 @@
 
   <section class="hero u-pb-m">
     <div class="wrap">
-      <h1 class="display u-w14" data-rise>RRHH a medida para pequeñas empresas.</h1>
+      <h1 class="display hero-title u-w14" data-split>RRHH a medida para <em>pequeñas empresas.</em></h1>
       <div class="grid u-mt6">
         <p class="c-1-6 lead muted u-w36" data-rise style="--rise-delay:70ms">
           Para empresas de menos de 20 personas que no tienen departamento de RRHH.
@@ -66,6 +67,7 @@
           Me ocupo de la parte laboral del día a día, para un asunto concreto o de forma continuada. Sin tarifas cerradas: cada empresa es distinta, así que primero hablamos y después te paso un presupuesto.
         </p>
       </div>
+      <figure class="pill pill-wide u-mt8" data-pill aria-hidden="true"><img src="assets/fernando-portatil.webp" alt="" width="1000" height="767"></figure>
     </div>
   </section>
 
@@ -93,7 +95,7 @@
     </div>
   </section>
 
-  <section class="band field" aria-labelledby="h-pasos">
+  <section class="band field card-over" aria-labelledby="h-pasos">
     <div class="wrap">
       <h2 class="title u-w12" id="h-pasos" data-rise>Cómo funciona</h2>
       <ol class="steps u-mt9" data-rise>
@@ -226,5 +228,7 @@
 </footer>
 
 <script src="main.js"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
 </body>
 </html>
