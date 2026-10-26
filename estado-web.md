@@ -3,7 +3,7 @@
 Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNAME) y solo se toca al validar cada fase.
 
 ## Punto de partida
-- Base: commit `76bfe2a` ("rediseño 2.0", 18-10-2026). Copia de seguridad: etiqueta `web-antes-rediseno`.
+- Base: commit `76bfe2a` ("rediseño 2.0", 18-10-2026). Copia de seguridad: ese commit queda en el historial y `main` no se toca hasta validar.
 - Web estática HTML/CSS/JS, sin frameworks ni backend.
 
 ## Fases
