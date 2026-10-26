@@ -35,8 +35,9 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - `motor/`: indemnización y vacaciones copiados tal cual de la plataforma (commit 4717e36); finiquito adaptado a cualquier convenio (nº de pagas configurable, vacaciones en laborables o naturales, sin preaviso). Con 16 pagas reproduce la prueba de la plataforma; la versión adaptada también pasa las 66 pruebas de la plataforma.
   - `motor/parametros.js`: único archivo de parámetros de la web (ET), con fuente y fecha de verificación.
   - `tests/motores.test.js`: 16 pruebas (node tests/motores.test.js), incluido el caso de referencia 19.408 € / 11.763 €.
-  - Páginas: `calculadoras.html` (índice), despido (ahora con el motor común), `calculadora-finiquito.html` y `calculadora-vacaciones.html`.
-  - Pendiente: calculadora bruto/neto. La plataforma no tiene motor de IRPF; requiere implementar el algoritmo de la AEAT 2026 y verificar tipos y tramos en fuentes oficiales.
+  - Páginas: `herramientas.html` (índice), despido (ahora con el motor común), `calculadora-finiquito.html` y `calculadora-vacaciones.html`.
+  - Decisión (26/10/2026): no se hacen cálculos de IRPF ni calculadora bruto/neto.
+  - La sección se llama «Herramientas» (`herramientas.html`).
   - Mantenimiento: si cambia un motor en la plataforma, copiarlo a `motor/` y pasar las pruebas de los dos repositorios.
 - [x] Fase 5 — Guías y verificación final (26-10-2026, rama `fase-4-calculadoras`)
   - Guías: `guias.html` (índice), `guia-nomina.html`, `guia-finiquito.html`, `guia-plazo-despido.html`, con base legal citada (ET, LRJS, Orden ESS/2098/2014), datos estructurados `Article` y enlace a la calculadora correspondiente.
@@ -50,7 +51,6 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 - Flujo: una rama por fase, pull request y validación antes de fusionar con `main`.
 
 ## Pendiente
-- Calculadora bruto/neto (motor de IRPF según la AEAT 2026, con fuentes verificadas).
 - Casos tipo reales y anonimizados.
 - Webs de referencia para la interfaz (antes de la fase 3).
 - Calculadoras públicas a priorizar en la fase 4.
