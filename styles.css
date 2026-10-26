@@ -840,3 +840,9 @@ select{ appearance: none; background-image: none; cursor: pointer; }
 .u-grid-s6-end{ row-gap: var(--s6) !important; align-items: end !important; }
 .u-grid-s7-end{ row-gap: var(--s7) !important; align-items: end !important; }
 .u-grid-s8-start{ row-gap: var(--s8) !important; align-items: start !important; }
+
+/* Preguntas frecuentes: lista abierta en dos columnas, sin acordeón */
+.faq{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--s7) var(--s8); }
+.faq-item h3{ font-size: 1.125rem; line-height: 1.3; text-wrap: balance; }
+.faq-item p{ margin-top: var(--s3); max-width: 60ch; }
+.form-status[hidden]{ display: none; } /* el display:flex anulaba el atributo hidden */
