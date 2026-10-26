@@ -22,7 +22,8 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Lenguaje neutro en avisos legales y pies ("despacho de graduado/a social o de abogacía laboralista").
   - Arreglo: el aviso vacío bajo los botones de formulario ya no se ve.
   - Pendiente: casos tipo reales y anonimizados (los aporta Fernando; no se inventan).
-- [ ] Fase 3 — Sistema visual e interfaz (rama `fase-3-interfaz`, EN VALIDACIÓN)
+- [ ] Fase 3 — Sistema visual e interfaz (rama `fase-3-interfaz`; portada validada el 26-10-2026, falta extender al resto)
+  - v3.1: serifa Instrument Serif (OFL, autoalojada) para acentos; menú con píldora deslizante y relevo de texto; fotos de Fernando (sin metadatos, webp) en píldoras que se abren.
   - Referencias: citizens.mrbandfriends.co.uk (limpieza, navegación, entradas de sección), halyard.site (animación en directo), jemini.co (scroll fluido, hover de botones, secciones que se superponen). Web multipágina, no una sola página.
   - Prototipo solo en la portada: `ui.css` + `ui.js` (capa v3 sobre styles.css) y Lenis autoalojado en `vendor/` (MIT).
   - Piezas: navegación flotante en píldora, título que entra palabra a palabra, cinta de servicios, declaración que se ilumina con el scroll, servicios en tarjetas que se apilan, nómina "en directo", sección de calculadora que se superpone, botones con flecha y relleno.

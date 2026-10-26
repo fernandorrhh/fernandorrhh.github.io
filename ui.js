@@ -153,5 +153,55 @@
     } else { start(); }
   });
 
+  /* ---------------------------------------------------------------
+     Menú: píldora deslizante + relevo de texto al pasar el cursor
+     --------------------------------------------------------------- */
+  var links = document.querySelector('.v3 .nav-links');
+  if (links) {
+    var hl = document.createElement('span');
+    hl.className = 'nav-hl';
+    hl.setAttribute('aria-hidden', 'true');
+    links.insertBefore(hl, links.firstChild);
+    var items = links.querySelectorAll('a:not(.btn)');
+    items.forEach(function (a) {
+      var t = a.textContent.trim();
+      a.setAttribute('aria-label', t);
+      a.innerHTML = '<span class="roll" aria-hidden="true"><span>' + t + '</span><span>' + t + '</span></span>';
+    });
+    var current = links.querySelector('a[aria-current="page"]');
+    function moveTo(a, show) {
+      if (!a || window.matchMedia('(max-width: 640px)').matches) { hl.style.opacity = 0; return; }
+      hl.style.width = a.offsetWidth + 'px';
+      hl.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      hl.style.opacity = show ? 1 : 0;
+    }
+    // Arranca sobre la página actual, sin animación
+    hl.style.transition = 'none';
+    moveTo(current, !!current);
+    requestAnimationFrame(function () { hl.style.transition = ''; });
+    items.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { moveTo(a, true); });
+      a.addEventListener('focus', function () { moveTo(a, true); });
+    });
+    links.addEventListener('mouseleave', function () { moveTo(current, !!current); });
+    window.addEventListener('resize', function () { moveTo(current, !!current); });
+  }
+
+  /* ---------------------------------------------------------------
+     Fotos en píldora: se abren al entrar en pantalla
+     --------------------------------------------------------------- */
+  var pills = document.querySelectorAll('[data-pill]');
+  if (pills.length) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      pills.forEach(function (p) { p.classList.add('is-in'); });
+    } else {
+      var pio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); pio.unobserve(e.target); } });
+      }, { threshold: 0.3 });
+      pills.forEach(function (p) { pio.observe(p); });
+      setTimeout(function () { pills.forEach(function (p) { p.classList.add('is-in'); }); }, 6000);
+    }
+  }
+
   // (la red de seguridad se deja correr: no hace daño si todo ya está visible)
 })();

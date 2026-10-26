@@ -234,3 +234,103 @@
 /* El texto cambia de color cuando el relleno ya lo cubre, nunca antes */
 .v3 .btn:not(.btn-sm){ transition: transform var(--t-press) var(--ease-out), color 200ms ease 160ms, background-color 0s; }
 @media (hover: hover) and (pointer: fine){ .v3 .btn:not(.btn-sm):hover::before{ transform: scale(14); } }
+
+/* ===========================================================================
+   v3.1 — tipografía con serifa, menú animado y fotos
+   =========================================================================== */
+
+/* Instrument Serif (OFL), autoalojada: el contrapunto editorial a Poppins */
+@font-face{
+  font-family:'Instrument Serif'; font-style:normal; font-weight:400; font-display:swap;
+  src:url('assets/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Instrument Serif'; font-style:italic; font-weight:400; font-display:swap;
+  src:url('assets/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+}
+.v3{ --serif: 'Instrument Serif', Georgia, serif; }
+
+/* La serifa solo para acentos: lo que se lee con calma */
+.v3 .hero-title em{
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  letter-spacing: -0.01em; color: var(--ink-2);
+  font-size: 1.08em;
+}
+.statement-text{
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  line-height: 1.04; letter-spacing: -0.015em; max-width: 20ch;
+}
+.v3 .title em, .v3 .display em{ font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+.v3 .lead{ letter-spacing: -0.005em; }
+
+/* ---------------------------------------------------------------
+   Menú: una píldora que se desliza hasta el enlace bajo el cursor
+   y el texto sube con un relevo (Jemini / Citizens)
+   --------------------------------------------------------------- */
+.v3 .nav-links{ position: relative; }
+.v3 .nav-hl{
+  position: absolute; z-index: 0; left: 0; top: 50%;
+  height: 40px; margin-top: -20px; width: 0;
+  border-radius: var(--pill); background: var(--paper-2);
+  opacity: 0; pointer-events: none;
+  transition: transform 420ms var(--ease-soft), width 420ms var(--ease-soft), opacity 200ms ease;
+}
+.v3 .nav-links a{ position: relative; z-index: 1; }
+.ui .v3 .nav-links a:not(.btn):hover{ background: transparent; }
+.ui .v3 .nav-links a[aria-current="page"]{ background: transparent; }
+.v3 .nav-links a:not(.btn) .roll{
+  display: inline-block; overflow: hidden; vertical-align: middle;
+  height: 1.3em; line-height: 1.3em;
+}
+.v3 .nav-links a:not(.btn) .roll > span{
+  display: block;
+  transition: transform 380ms var(--ease-soft);
+}
+.v3 .nav-links a:not(.btn) .roll > span + span{ color: var(--ink); }
+@media (hover: hover) and (pointer: fine){
+  .v3 .nav-links a:not(.btn):hover .roll > span{ transform: translateY(-100%); }
+}
+/* El botón del menú: la flecha aparece al pasar */
+.v3 .nav-links .btn-sm{ transition: padding 380ms var(--ease-soft), background-color var(--t-hover) ease; }
+.v3 .nav-links .btn-sm::after{
+  content: '→'; display: inline-block; width: 0; opacity: 0; overflow: hidden;
+  transition: width 380ms var(--ease-soft), opacity 200ms ease;
+}
+@media (hover: hover) and (pointer: fine){
+  .v3 .nav-links .btn-sm:hover::after{ width: 1em; opacity: 1; }
+}
+
+/* ---------------------------------------------------------------
+   Fotos en píldora que se abren al entrar y se apoyan en la carta
+   --------------------------------------------------------------- */
+.v3 .photo-pills{
+  display: flex; gap: var(--s3);
+  margin-bottom: calc(var(--s9) * -1);
+  position: relative; z-index: 1;
+  padding-left: clamp(0px, 4vw, 48px);
+}
+.v3 .pill{ margin: 0; overflow: hidden; border-radius: var(--pill); height: clamp(150px, 22vw, 260px); }
+.v3 .pill img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+.v3 .pill-a{ width: clamp(170px, 26vw, 340px); }
+.v3 .pill-a img{ object-position: 50% 40%; }
+.v3 .pill-b{ width: clamp(230px, 36vw, 470px); }
+.v3 .pill-b img{ object-position: 40% 25%; }
+.ui .v3 [data-pill]{ clip-path: inset(0 50% 0 50% round 999px); transition: clip-path 1100ms var(--ease-soft); }
+.ui .v3 [data-pill] img{ transform: scale(1.15); transition: transform 1400ms var(--ease-soft); }
+.ui .v3 [data-pill].is-in{ clip-path: inset(0 0 0 0 round 999px); }
+.ui .v3 [data-pill].is-in img{ transform: none; }
+.ui .v3 [data-pill].pill-b{ transition-delay: 120ms; }
+.v3 .letter-over{ padding-top: calc(var(--s9) + var(--s6)) !important; }
+
+@media (max-width: 640px){
+  .v3 .photo-pills{ padding-left: 0; margin-bottom: calc(var(--s8) * -1); }
+  .v3 .pill{ height: 130px; }
+  .v3 .pill-a{ width: 40%; } .v3 .pill-b{ width: 60%; }
+  .v3 .letter-over{ padding-top: calc(var(--s8) + var(--s5)) !important; }
+}
+@media (prefers-reduced-motion: reduce){
+  .ui .v3 [data-pill]{ clip-path: none; transition: none; }
+  .ui .v3 [data-pill] img{ transform: none; transition: none; }
+  .v3 .nav-hl, .v3 .nav-links a .roll > span{ transition: none; }
+}
