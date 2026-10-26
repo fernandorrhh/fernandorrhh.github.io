@@ -8,12 +8,27 @@
 <meta property="og:title" content="Sobre mí — RRHH Simple">
 <meta property="og:description" content="Más de cinco años en RRHH dentro de empresas y profesor de FOL.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/sobre-mi.html">
+<meta property="og:url" content="https://rrhhsimple.com/sobre-mi.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -41,13 +56,13 @@
 
   <section class="hero">
     <div class="wrap">
-      <h1 class="display" data-rise style="max-width:11ch">Soy Fernando.</h1>
+      <h1 class="display u-w11" data-rise>Soy Fernando.</h1>
       <div class="grid">
         <div class="c-1-5">
           <p class="lead" data-rise style="--rise-delay:70ms">
             Llevo años en recursos humanos. Ahora lo uso para el otro lado.
           </p>
-          <div class="prose" data-rise style="--rise-delay:140ms; margin-top:var(--s6)">
+          <div class="prose u-mt6" data-rise style="--rise-delay:140ms">
             <p>Llevo más de cinco años trabajando en RRHH dentro de empresas, y antes di clase de Formación y Orientación Laboral.</p>
             <p>Las dos cosas juntas me han servido para conocer los entresijos de las empresas por dentro, y a la vez para saber explicárselo a alguien que empieza de cero y no tiene por qué entender nada de esto.</p>
             <p>Porque conocer tus derechos o saber leer un contrato no debería ser una barrera que te limite en el trabajo.</p>
@@ -67,15 +82,15 @@
     </div>
   </section>
 
-  <section class="band" style="background:var(--paper-2)" aria-labelledby="h-form">
+  <section class="band u-bg2" aria-labelledby="h-form">
     <div class="wrap">
       <div class="grid">
         <h2 class="title c-1-5" id="h-form" data-rise>No te hablo solo desde la experiencia</h2>
-        <p class="c-7-12 body-lg muted" data-rise style="--rise-delay:70ms; max-width:46ch; align-self:end">
+        <p class="c-7-12 body-lg muted u-w46 u-self-end" data-rise style="--rise-delay:70ms">
           También me he formado en esto. Y sigo construyendo departamentos de personas desde cero en empresas reales: planes de igualdad, prevención de riesgos y todo el ciclo de vida de la plantilla.
         </p>
       </div>
-      <div class="creds" style="margin-top:var(--s9)" data-rise>
+      <div class="creds u-mt9" data-rise>
         <div class="cred">
           <h3>Grado en Relaciones Laborales y Recursos Humanos</h3>
           <p>Universidad Complutense de Madrid. Formación en derecho laboral y gestión de personas: el asesoramiento se apoya en el marco legal vigente, no en opiniones.</p>
@@ -89,7 +104,7 @@
           <p>IRSST. Formación en prevención para velar por un entorno de trabajo seguro y saludable.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:var(--s7)" data-rise>
+      <p class="note u-mt7" data-rise>
         Puedes ver mi trayectoria completa en <a class="link" href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a>.
       </p>
     </div>
@@ -110,9 +125,9 @@
 
   <section class="band-tight" aria-labelledby="h-cierre">
     <div class="wrap">
-      <div class="grid" style="row-gap:var(--s6); align-items:end">
+      <div class="grid u-grid-s6-end">
         <div class="c-1-7">
-          <h2 class="title" id="h-cierre" data-rise style="max-width:16ch">Un profesional para resolver tus dudas.</h2>
+          <h2 class="title u-w16" id="h-cierre" data-rise>Un profesional para resolver tus dudas.</h2>
         </div>
         <div class="c-8-12" data-rise style="--rise-delay:70ms">
           <div class="btn-row"><a href="reservar.html" class="btn">Reservar consulta gratis</a><a href="contacto.html" class="btn btn-ghost">Escribirme</a></div>
@@ -156,7 +171,7 @@
     </div>
     <div class="foot-base">
       <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
     </div>
   </div>
 </footer>

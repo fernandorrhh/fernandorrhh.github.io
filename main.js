@@ -36,6 +36,10 @@
      El contenido ya es visible sin JS; esto sólo añade el movimiento,
      y hay una red de seguridad por si el observador no llega a disparar.
      --------------------------------------------------------------- */
+  // Avisa al script de la cabecera de que main.js ya se encarga de mostrar
+  // el contenido, para que no dispare su red de seguridad.
+  window.__riseReady = true;
+
   var risers = document.querySelectorAll('[data-rise]');
 
   function revealAll() {
@@ -82,21 +86,25 @@
       holder.hidden = false;
       holder.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
 
+      // El iframe se añade visible y sin carga diferida: si se oculta o se
+      // marca como lazy, el navegador no lo carga y el aviso no se quita nunca.
       var frame = document.createElement('iframe');
       frame.src = holder.getAttribute('data-src');
       frame.title = 'Calendario para reservar la primera consulta gratuita';
       frame.className = 'cal-frame';
-      frame.loading = 'lazy';
-      frame.style.display = 'none';
+      holder.appendChild(frame);
 
-      frame.addEventListener('load', function () {
+      var listo = false;
+      function terminar() {
+        if (listo) return;
+        listo = true;
         skeleton.remove();
-        frame.style.display = 'block';
         loadBtn.removeAttribute('aria-busy');
         loadBtn.textContent = 'Ir al calendario';
-      });
-
-      holder.appendChild(frame);
+      }
+      frame.addEventListener('load', terminar);
+      // Red de seguridad: si el evento de carga no llega, el aviso se quita igual.
+      setTimeout(terminar, 8000);
     });
   }
 

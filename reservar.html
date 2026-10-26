@@ -8,12 +8,27 @@
 <meta property="og:title" content="Reservar consulta gratuita — RRHH Simple">
 <meta property="og:description" content="Elige día y hora. Gratis, online y sin compromiso.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/reservar.html">
+<meta property="og:url" content="https://rrhhsimple.com/reservar.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -39,11 +54,11 @@
 
 <main id="contenido">
 
-  <section class="hero" style="padding-bottom:clamp(2.5rem,6vw,4rem)">
+  <section class="hero u-pb-m">
     <div class="wrap">
-      <h1 class="display" data-rise style="max-width:14ch">Reserva tu primera consulta.</h1>
-      <div class="grid" style="margin-top:var(--s6)">
-        <p class="c-1-6 lead muted" data-rise style="--rise-delay:70ms; max-width:36ch">
+      <h1 class="display u-w14" data-rise>Reserva tu primera consulta.</h1>
+      <div class="grid u-mt6">
+        <p class="c-1-6 lead muted u-w36" data-rise style="--rise-delay:70ms">
           Es gratis, dura lo que haga falta y no te compromete a nada.
         </p>
         <p class="c-8-12" data-rise style="--rise-delay:140ms">
@@ -55,10 +70,10 @@
 
   <section class="band-tight field" aria-labelledby="h-gratis">
     <div class="wrap">
-      <div class="grid" style="row-gap:var(--s6); align-items:end">
+      <div class="grid u-grid-s6-end">
         <div class="c-1-7">
-          <h2 class="title" id="h-gratis" data-rise style="max-width:15ch">Primera consulta gratuita</h2>
-          <p data-rise style="--rise-delay:70ms; margin-top:var(--s5); max-width:44ch">
+          <h2 class="title u-w15" id="h-gratis" data-rise>Primera consulta gratuita</h2>
+          <p class="u-mt5 u-w44" data-rise style="--rise-delay:70ms">
             Online, por videollamada. Entiendo tu caso y te oriento sobre los siguientes pasos, sin coste ni compromiso.
           </p>
         </div>
@@ -66,7 +81,7 @@
           <div class="btn-row">
             <button type="button" class="btn" id="loadCal" aria-controls="calHolder">Ver huecos disponibles</button>
           </div>
-          <p class="note" style="margin-top:var(--s4)">
+          <p class="note u-mt4">
             El calendario es un servicio de Google y solo se carga si pulsas el botón.
             ¿Prefieres otra pestaña? <a class="link" href="https://calendar.app.google/dvDHM56H3oXoETNv7" target="_blank" rel="noopener">Abrir calendario<span class="sr-only"> (se abre en una pestaña nueva)</span></a>.
           </p>
@@ -74,14 +89,14 @@
       </div>
 
       <div class="cal-holder" id="calHolder" data-src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ20y5-Vr1JF4SOqQEkpmJFfG-dqPKj36xi1FOmGNlIMpMlQVsbBm20Gy_XLAOxZvAb3R57Rnrdp?gv=true" hidden></div>
-      <noscript><p class="note" style="margin-top:var(--s5)">Para reservar sin JavaScript, <a class="link" href="https://calendar.app.google/dvDHM56H3oXoETNv7" target="_blank" rel="noopener">abre el calendario aquí</a>.</p></noscript>
+      <noscript><p class="note u-mt5">Para reservar sin JavaScript, <a class="link" href="https://calendar.app.google/dvDHM56H3oXoETNv7" target="_blank" rel="noopener">abre el calendario aquí</a>.</p></noscript>
     </div>
   </section>
 
   <section class="band" aria-labelledby="h-pasos">
     <div class="wrap">
-      <h2 class="title" id="h-pasos" data-rise style="max-width:12ch">Cómo va la cosa</h2>
-      <ol class="steps" style="margin-top:var(--s9)" data-rise>
+      <h2 class="title u-w12" id="h-pasos" data-rise>Cómo va la cosa</h2>
+      <ol class="steps u-mt9" data-rise>
         <li>
           <h3>Eliges un hueco</h3>
           <p>Pulsa «Ver huecos disponibles» y escoge el día y la hora que mejor te vengan.</p>
@@ -98,13 +113,13 @@
     </div>
   </section>
 
-  <section class="band" style="background:var(--paper-2)" aria-labelledby="h-despues">
+  <section class="band u-bg2" aria-labelledby="h-despues">
     <div class="wrap">
       <div class="grid">
         <h2 class="title c-1-5" id="h-despues" data-rise>¿Y después de la consulta?</h2>
         <div class="c-7-12 prose" data-rise style="--rise-delay:70ms">
           <p>Si tras hablar hace falta seguir, te propongo el servicio que mejor encaja con tu caso y te paso el enlace de pago. No hay obligación de contratar nada, y si no hace falta hacer nada más, te lo digo.</p>
-          <div class="btn-row" style="margin-top:var(--s6)">
+          <div class="btn-row u-mt6">
             <a href="servicios.html" class="btn btn-ghost">Ver servicios y tarifas</a>
           </div>
         </div>
@@ -114,9 +129,9 @@
 
   <section class="band-tight" aria-labelledby="h-cierre">
     <div class="wrap">
-      <div class="grid" style="row-gap:var(--s6); align-items:end">
+      <div class="grid u-grid-s6-end">
         <div class="c-1-7">
-          <h2 class="title" id="h-cierre" data-rise style="max-width:16ch">¿Prefieres escribirme antes?</h2>
+          <h2 class="title u-w16" id="h-cierre" data-rise>¿Prefieres escribirme antes?</h2>
         </div>
         <div class="c-8-12" data-rise style="--rise-delay:70ms">
           <div class="btn-row"><a href="contacto.html" class="btn">Cuéntame tu caso</a><a href="mailto:fernando@rrhhsimple.com" class="btn btn-ghost">Mandarme un correo</a></div>
@@ -160,7 +175,7 @@
     </div>
     <div class="foot-base">
       <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
     </div>
   </div>
 </footer>

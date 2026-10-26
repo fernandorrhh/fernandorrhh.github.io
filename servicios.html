@@ -8,12 +8,27 @@
 <meta property="og:title" content="Servicios y tarifas — RRHH Simple">
 <meta property="og:description" content="Revisión de CV, entrevistas, nómina, contrato, despidos y trámites. Precio social y precio estándar, sin IVA.">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/servicios.html">
+<meta property="og:url" content="https://rrhhsimple.com/servicios.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -39,12 +54,12 @@
 
 <main id="contenido">
 
-  <section class="hero" style="padding-bottom:clamp(3rem,7vw,6rem)">
+  <section class="hero u-pb-l">
     <div class="wrap">
-      <h1 class="display" data-rise style="max-width:12ch">Tarifas sin sorpresas.</h1>
-      <div class="grid" style="margin-top:var(--s7)">
+      <h1 class="display u-w12" data-rise>Tarifas sin sorpresas.</h1>
+      <div class="grid u-mt7">
         <div class="c-1-6">
-          <p class="lead muted" data-rise style="--rise-delay:70ms; max-width:34ch">
+          <p class="lead muted u-w34" data-rise style="--rise-delay:70ms">
             Dos precios en cada servicio. Eliges tú, sin justificar nada.
           </p>
         </div>
@@ -67,17 +82,17 @@
           <p class="note">Precio social / precio estándar</p>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount">12 € <span class="std">/ 20 €</span></span></p>
+            <p class="menu-line"><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="cv">12 € <span class="std">/ 20 €</span></span></p>
             <p>Estudiamos y adaptamos tu CV a tu perfil concreto y al puesto al que quieres postular.</p>
           </div>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">18 € <span class="std">/ 30 €</span></span></p>
-            <p>Simulacro de 45 a 50 minutos, online o presencial en Madrid, con las preguntas incómodas incluidas y la devolución de qué ha funcionado y qué no.</p>
+            <p class="menu-line"><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="entrevista">18 € <span class="std">/ 30 €</span></span></p>
+            <p>Simulacro de 45 a 50 minutos, online o presencial en Valencia o Madrid (según disponibilidad), con las preguntas incómodas incluidas y la devolución de qué ha funcionado y qué no.</p>
           </div>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount">25 € <span class="std">/ 40 €</span></span></p>
+            <p class="menu-line"><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="packCvEntrevista">25 € <span class="std">/ 40 €</span></span></p>
             <p>Las dos cosas, trabajadas juntas como una sola estrategia hacia el puesto que buscas.</p>
           </div>
 
@@ -92,12 +107,12 @@
           <p class="note">Precio social / precio estándar</p>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € <span class="std">/ 25 €</span></span></p>
+            <p class="menu-line"><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="documentos">15 € <span class="std">/ 25 €</span></span></p>
             <p>Repasamos juntos qué dice, si está bien hecho y qué puedes reclamar si no lo está. También permisos, jornada y vacaciones.</p>
           </div>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount">22 € <span class="std">/ 40 €</span></span></p>
+            <p class="menu-line"><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="despidos">22 € <span class="std">/ 40 €</span></span></p>
             <p>Analizamos tu caso en detalle y te cuento qué opciones tienes y cómo defenderte, paso a paso. Recuerda que hay 20 días hábiles de plazo.</p>
           </div>
         </div>
@@ -107,22 +122,22 @@
           <p class="note">Precio social / precio estándar</p>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount">8 € <span class="std">/ 12 €</span></span></p>
+            <p class="menu-line"><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteSencillo">8 € <span class="std">/ 12 €</span></span></p>
             <p>Cartas y comunicaciones a la empresa, cambios de IRPF, solicitud de expedientes, acuerdos.</p>
           </div>
 
           <div class="menu-item">
-            <p class="menu-line"><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount">15 € <span class="std">/ 25 €</span></span></p>
+            <p class="menu-line"><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteCarga">15 € <span class="std">/ 25 €</span></span></p>
             <p>Excedencias o negociar algo con la empresa: qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
           </div>
         </div>
 
       </div>
 
-      <div class="grid" style="margin-top:var(--s7)">
+      <div class="grid u-mt7">
         <div class="c-1-7" data-rise>
           <p class="note">Todos los precios son sin IVA: como autónomo, el IVA correspondiente se añade en la factura final. Para empresas, presupuesto a medida.</p>
-          <p class="note" style="margin-top:var(--s3)">Todo empieza con la primera consulta gratuita. Después te propongo el servicio que mejor encaja y te paso el enlace de pago. No hay obligación de contratar nada.</p>
+          <p class="note u-mt3">Todo empieza con la primera consulta gratuita. Después te propongo el servicio que mejor encaja y te paso el enlace de pago. No hay obligación de contratar nada.</p>
         </div>
       </div>
     </div>
@@ -131,8 +146,8 @@
   <!-- Cómo funciona -->
   <section class="band field" aria-labelledby="h-pasos">
     <div class="wrap">
-      <h2 class="title" id="h-pasos" data-rise style="max-width:12ch">Cómo funciona</h2>
-      <ol class="steps" style="margin-top:var(--s9)" data-rise>
+      <h2 class="title u-w12" id="h-pasos" data-rise>Cómo funciona</h2>
+      <ol class="steps u-mt9" data-rise>
         <li>
           <h3>Me cuentas tu caso</h3>
           <p>Gratis y sin compromiso. Entiendo qué te pasa y te doy una primera orientación clara.</p>
@@ -152,7 +167,7 @@
   <!-- Cierre -->
   <section class="band-tight" aria-labelledby="h-cierre">
     <div class="wrap">
-      <div class="grid" style="row-gap:var(--s6); align-items:end">
+      <div class="grid u-grid-s6-end">
         <div class="c-1-7">
           <h2 class="title" id="h-cierre" data-rise>¿Empezamos?<br>La primera consulta es gratis.</h2>
         </div>
@@ -201,11 +216,12 @@
     </div>
     <div class="foot-base">
       <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
     </div>
   </div>
 </footer>
 
+<script src="precios.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

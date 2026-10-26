@@ -8,7 +8,13 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 
 ## Fases
 - [x] Fase 0 — Preparación del repositorio
-- [ ] Fase 1 — Puesta al día (ubicación, precios en una sola fuente, SEO básico, estilos en línea)
+- [x] Fase 1 — Puesta al día (26-10-2026, rama `fase-1-puesta-al-dia`)
+  - Modalidad: online + presencial en Valencia o Madrid según disponibilidad; domicilio legal y pie a Valencia.
+  - Precios en `precios.js` (portada y servicios).
+  - SEO: canonical, Open Graph con imagen 1200×630, JSON-LD `ProfessionalService`, `sitemap.xml`, `robots.txt`, `404.html`.
+  - Estilos en línea pasados a utilidades `.u-*` en `styles.css` (solo queda `--rise-delay`, que es un dato por elemento).
+  - Arreglos recuperados: red de seguridad de 2 s si `main.js` no carga y calendario de reservas que no llegaba a mostrarse.
+  - Verificado: capturas antes/después en escritorio y móvil sin cambios de diseño; sin errores JS.
 - [ ] Fase 2 — Contenido y lenguaje (FAQ, casos tipo, precio social, servicio a empresas)
 - [ ] Fase 3 — Sistema visual e interfaz (con webs de referencia)
 - [ ] Fase 4 — Motor compartido con la plataforma y calculadoras públicas

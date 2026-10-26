@@ -6,12 +6,27 @@
 <title>Aviso legal — RRHH Simple</title>
 <meta name="description" content="Aviso legal de RRHH Simple: datos identificativos, condiciones de uso y carácter del asesoramiento.">
 <meta name="robots" content="noindex">
+<link rel="canonical" href="https://rrhhsimple.com/aviso-legal.html">
+<meta property="og:url" content="https://rrhhsimple.com/aviso-legal.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#faf8f3">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=4">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -36,9 +51,9 @@
 </header>
 
 <main id="contenido">
-  <section class="hero" style="padding-bottom:clamp(2rem,5vw,3rem)">
+  <section class="hero u-pb-s">
     <div class="wrap">
-      <h1 class="title" data-rise style="max-width:14ch">Aviso legal</h1>
+      <h1 class="title u-w14" data-rise>Aviso legal</h1>
     </div>
   </section>
 
@@ -50,7 +65,7 @@
         <ul>
           <li><strong>Titular:</strong> Fernando de la Sota Escriche</li>
           <li><strong>NIF:</strong> 50577203L</li>
-          <li><strong>Domicilio:</strong> Madrid (España)</li>
+          <li><strong>Domicilio:</strong> Valencia (España)</li>
           <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
           <li><strong>Actividad:</strong> prestación de servicios de asesoramiento laboral orientativo bajo la marca comercial «RRHH Simple», ejercida como autónomo.</li>
         </ul>
@@ -117,7 +132,7 @@
     </div>
     <div class="foot-base">
       <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye a un graduado social o abogado laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Madrid, España</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
     </div>
   </div>
 </footer>
