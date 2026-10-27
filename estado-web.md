@@ -24,6 +24,7 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Pendiente: casos tipo reales y anonimizados (los aporta Fernando; no se inventan).
 - [ ] Fase 3 — Sistema visual e interfaz (rama `fase-3-interfaz`; portada validada el 26-10-2026, falta extender al resto)
   - Extendido a todas las páginas (títulos con acento en serifa, secciones oscuras superpuestas, foto del portátil en Empresas). Emojis retirados de servicios.
+  - v3.4–3.6 (27/10): ritmo vertical equilibrado; la cinta ya no queda tapada; cada página se abre desde arriba; menú desplegable también en tableta; superficies separadas por tono (sin sombras); contraste ≥ 3:1 en la frase animada; titulares en dos líneas; selección y caret de marca.
   - v3.3: solo colores de marca (paletas "Dark professional" y "Light & engaging"): #FAF8F3, #F9F9F9, #D4CFC0, #8A8666, #4A4732, #3A3825, #2E2E2E, #FFDE59 (solo acción) y #E8A87C. Nada de tonos inventados.
   - v3.2 (feedback 26/10): fondos claros en fotos, menos huecos, cada sección en un bloque de color que se superpone a la anterior, servicios en bloques de color, pasos en tarjetas y preguntas frecuentes desplegables. Marca de agua quitada de la foto del portátil.
   - v3.1: serifa Instrument Serif (OFL, autoalojada) para acentos; menú con píldora deslizante y relevo de texto; fotos de Fernando (sin metadatos, webp) en píldoras que se abren.

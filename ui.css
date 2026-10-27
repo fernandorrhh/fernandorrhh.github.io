@@ -562,3 +562,53 @@
 html.lenis, html.lenis body{ height: auto; }
 html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 .lenis.lenis-stopped{ overflow: hidden; }
+
+/* ===========================================================================
+   v3.6 — repaso final (27/10)
+   =========================================================================== */
+/* Superficies en reposo: se separan por tono, no por sombra */
+.v3 .stack-card, .v3 .payslip{ box-shadow: none; }
+/* Los servicios dentro de cada bloque: separados por espacio, sin raya */
+.v3 .menu-item + .menu-item{ border-top: 0; }
+/* El relleno del botón nace oculto bajo el círculo de la flecha (mismo color), no desde cero */
+.v3 .btn:not(.btn-sm)::before{ transform: scale(1); }
+/* Selección de texto y caret con la paleta de marca */
+.v3 ::selection{ background: var(--accent); color: var(--ink); }
+.v3 input, .v3 textarea{ caret-color: var(--brand-olive); }
+/* Cifras alineadas en precios y resultados */
+.v3 .amount, .v3 .menu-line .amount, .v3 .result .amount{ font-variant-numeric: tabular-nums; }
+/* Titulares y entradillas sin palabras huérfanas */
+.v3 h1, .v3 h2, .v3 h3, .v3 .lead{ text-wrap: balance; }
+.v3 p{ text-wrap: pretty; }
+
+/* Menú desplegable también en tableta: los 7 enlaces no caben por debajo de 1100 px */
+@media (max-width: 1100px){
+  .v3 .nav-links{
+    display: none;
+    position: absolute; top: calc(100% + var(--s2)); right: 0; left: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--paper-2); padding: var(--s3); border-radius: 20px;
+    box-shadow: var(--shadow-tint); /* taste-skill-ignore: menú flotante abierto */
+    z-index: 50;
+  }
+  .v3 .nav-links.is-open{ display: flex; }
+  .v3 .nav-links a{ padding: var(--s4); font-size: 1.0625rem; }
+  .v3 .nav-links .btn-sm{ margin-top: var(--s2); }
+  .v3 .menu-toggle{ display: block; }
+  .v3 .nav-hl{ display: none; }
+  .v3 .nav{ position: relative; }
+}
+
+/* Bloques: separados por el cambio de tono, sin sombra */
+.v3 main > section:not(:first-child), .v3 .site-foot{ box-shadow: none; }
+
+/* La frase que se ilumina: las palabras aún apagadas se leen igualmente (≥ 3:1) */
+.ui .statement-text .w{ color: color-mix(in srgb, var(--ink) calc(65% + var(--p, 0) * 35%), var(--paper)); }
+
+/* Cinta: texto en minúscula normal y legible, sin rayas */
+.ticker{ border-block: 0; text-transform: none; letter-spacing: 0; font-size: 1.0625rem; font-weight: 500; color: var(--ink-2); }
+/* Titulares en dos líneas como máximo: medida más ancha que los antiguos topes en ch */
+.v3 :is(h1, h2):is(.u-w11, .u-w12, .u-w13, .u-w14, .u-w15, .u-w16, .u-w17){ max-width: 22ch !important; }
+.v3 .hero-title{ max-width: 18ch; }
+.v3 .c-1-5 > h2.title, .v3 h2.title.c-1-5, .v3 .c-1-7 > h2.title{ max-width: none; }
+.v3 .menu-group.tone-3 .note{ color: #e4e0d3 !important; }

@@ -179,7 +179,7 @@
       if (!status) return;
       status.hidden = false;
       status.dataset.tone = tono;
-      status.innerHTML = '<span class="ico" aria-hidden="true">' + icono + '</span><span>' + html + '</span>';
+      status.innerHTML = '<span>' + html + '</span>';
     }
 
     form.addEventListener('submit', function (e) {
@@ -209,11 +209,11 @@
         submitBtn.removeAttribute('aria-busy');
         submitBtn.textContent = etiquetaBoton();
         if (abierto) {
-          mostrarEstado('ok', '✅',
+          mostrarEstado('ok', '',
             '<strong>Listo.</strong> Se ha abierto ' + nombreApp + ' con el mensaje escrito: solo falta darle a enviar. ' +
             '¿No se ha abierto? <a class="link" href="' + destino + '" target="_blank" rel="noopener">Ábrelo desde aquí</a>.');
         } else {
-          mostrarEstado('error', '⚠️',
+          mostrarEstado('error', '',
             '<strong>El navegador ha bloqueado la ventana.</strong> ' +
             '<a class="link" href="' + destino + '" target="_blank" rel="noopener">Abre ' + nombreApp + ' desde aquí</a> ' +
             'o escribe a <a class="link" href="mailto:' + EMAIL + '">' + EMAIL + '</a>.');
