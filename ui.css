@@ -518,3 +518,35 @@
 /* Contraste AA de las notas sobre los bloques claros de color */
 .v3 main > section:is(:nth-of-type(4n+2),:nth-of-type(4n+4)):not(.field) .note{ color: var(--ink-2); }
 .v3 main > section .menu-group.tone-2 :is(.note, p, .std){ color: var(--ink) !important; }
+
+/* ===========================================================================
+   v3.4 — ritmo vertical equilibrado (feedback 27/10)
+   Punto medio entre la v3 (demasiado hueco) y la v3.2 (demasiado junto).
+   Escala: sección 80→128 px · bloque interno 48→64 px · tarjetas 32→48 px.
+   =========================================================================== */
+.v3{ --section: clamp(5rem, 9vw, 8rem); }
+.v3 .hero{ padding-top: clamp(2rem, 4.5vw, 4rem); padding-bottom: clamp(4rem, 7vw, 6rem); }
+.v3 .hero .grid{ margin-top: var(--s7); row-gap: var(--s6); }
+.v3 .band-tight{ padding-block: clamp(4rem, 7vw, 6.5rem); }
+.v3 .statement{ padding-block: clamp(4.5rem, 9vw, 8rem); }
+.v3 main > section:last-child{ padding-bottom: calc(clamp(4rem, 7vw, 6.5rem) + var(--radius-card)); }
+.v3 .u-mt9{ margin-top: var(--s8) !important; }
+.v3 .u-mt8{ margin-top: var(--s7) !important; }
+.v3 .u-mt7{ margin-top: var(--s6) !important; }
+.v3 .grid{ row-gap: var(--s6); }
+
+/* Tarjetas y bloques: un poco más de respiración interior y entre ellos */
+.v3 .menu-sheet, .v3 .guide, .v3 .stack{ gap: var(--s5); }
+.v3 .menu-group, .v3 .guide-step{ padding: clamp(1.75rem, 3vw, 2.75rem); }
+.v3 .stack-card{ padding: clamp(2rem, 4.5vw, 4rem); }
+.v3 .steps{ gap: var(--s5); margin-top: var(--s7) !important; }
+.v3 .steps li{ padding: var(--s6); }
+.v3 .faq{ gap: var(--s4); }
+.v3 .menu-item + .menu-item{ margin-top: var(--s6); padding-top: var(--s6); }
+
+@media (max-width: 640px){
+  .v3{ --section: 4rem; }
+  .v3 .hero{ padding-bottom: 3rem; }
+  .v3 .band-tight{ padding-block: 3.5rem; }
+  .v3 .stack-card, .v3 .menu-group, .v3 .guide-step{ padding: var(--s6); }
+}
