@@ -1,352 +1,171 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-theme="auto">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RRHH Simple — Asesoría laboral sin letra pequeña</title>
-<meta name="description" content="Asesoría laboral para particulares y empresas: nóminas, contratos, despidos y búsqueda de empleo, explicados en español normal. Primera consulta gratis.">
-<meta property="og:title" content="RRHH Simple — Asesoría laboral sin letra pequeña">
-<meta property="og:description" content="Nóminas, contratos, despidos y búsqueda de empleo, explicados en español normal. Primera consulta gratis.">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://rrhhsimple.com/">
-<meta property="og:url" content="https://rrhhsimple.com/">
-<meta property="og:site_name" content="RRHH Simple">
-<meta property="og:locale" content="es_ES">
-<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#faf8f3">
-<link rel="icon" href="assets/favicon.png" type="image/png">
-<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="ui.css?v=12">
-<script>
-/* Oculta el contenido solo si el script de animación va a llegar.
-   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
-(function (d) {
-  d.classList.add('js');
-  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
-})(document.documentElement);
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "RRHH Simple",
-  "url": "https://rrhhsimple.com/",
-  "logo": "https://rrhhsimple.com/assets/logo-oscuro.png",
-  "image": "https://rrhhsimple.com/assets/og-rrhhsimple.png",
-  "description": "Asesoría laboral cercana para particulares y pequeñas empresas: nóminas, contratos, despidos y búsqueda de empleo. Primera consulta gratis.",
-  "email": "fernando@rrhhsimple.com",
-  "telephone": "+34638292643",
-  "areaServed": "ES",
-  "address": { "@type": "PostalAddress", "addressRegion": "Valencia", "addressCountry": "ES" },
-  "founder": { "@type": "Person", "name": "Fernando de la Sota Escriche", "jobTitle": "Asesor laboral" },
-  "sameAs": [
-    "https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161",
-    "https://www.instagram.com/fernando_rrhh/"
-  ]
-}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RRHH Simple · Plataforma</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%234a4732'/%3E%3Ccircle cx='26' cy='26' r='7' fill='%23ffde59'/%3E%3Ctext x='15' y='21' font-family='sans-serif' font-weight='700' font-size='13' fill='%23faf8f3' text-anchor='middle'%3ERS%3C/text%3E%3C/svg%3E">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('rrhh.theme')||'auto'}catch(e){}</script>
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/app.css">
 </head>
-<body class="v3">
-<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<body>
+<div class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+  <div class="brand"><div class="brand-mark">RS</div><b>RRHH Simple</b></div>
+  <button class="icon-btn" data-open-search aria-label="Buscar"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+  <button class="icon-btn" data-new-task aria-label="Nueva tarea" style="background:var(--accent);color:var(--on-accent);border-color:transparent"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+</div>
+<div class="scrim" id="scrim"></div>
 
-<header class="site-head">
-  <div class="wrap">
-    <nav class="nav" aria-label="Principal">
-      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
-        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
-      </a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html" aria-current="page">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="empresas.html">Empresas</a>
-        <a href="herramientas.html">Herramientas</a>
-        <a href="sobre-mi.html">Sobre mí</a>
-        <a href="contacto.html">Contacto</a>
-        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand"><div class="brand-mark">RS</div><div><b>RRHH Simple</b><small>Plataforma de trabajo</small></div></div>
+    <div style="display:flex;gap:8px">
+      <button class="search-btn" data-open-search><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Buscar<kbd>Ctrl K</kbd></button>
+      <button class="btn" data-new-task aria-label="Nueva tarea" title="Nueva tarea" style="padding:0 12px;flex:none"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+    <nav class="nav" id="nav" aria-label="Secciones"></nav>
+    <div class="side-foot">
+      <button class="save" id="saveBtn"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg></span><span><b>Guardar copia</b><small><i id="saveDot"></i><span id="saveTxt">…</span></small></span></button>
+      <div class="theme" role="group" aria-label="Tema">
+        <span class="thumb" id="themeThumb"></span>
+        <button data-t="light" aria-label="Modo claro" title="Claro"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+        <button data-t="dark" aria-label="Modo oscuro" title="Oscuro"><svg class="i" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
+        <button data-t="auto" aria-label="Automático (según el sistema)" title="Automático"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
       </div>
-    </nav>
+      <div class="privacy"><i></i>Datos solo en este equipo</div>
+    </div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<!-- Ficus, el asistente (personaje original) -->
+<div class="ficus" id="ficus" data-s="idle">
+  <div class="bubble hide" id="bubble" role="status" aria-live="polite">
+    <button class="x" id="fClose" aria-label="Ocultar mensaje"><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <b class="who">Ficus</b><span id="fMsg"></span>
+    <div class="acts"><button id="fNext">Otro</button><button id="fMute">Silenciar</button></div>
   </div>
-</header>
+  <button class="plant" id="plant" aria-label="Ficus, tu asistente. Pulsa para un consejo; doble clic para minimizar">
+    <svg viewBox="0 0 120 150" aria-hidden="true">
+      <g class="f-spark" style="transform-origin:60px 40px"><path d="M14 30l3 6 6 3-6 3-3 6-3-6-6-3 6-3z" fill="var(--accent)"/><path d="M104 20l2 4 4 2-4 2-2 4-2-4-4-2 4-2z" fill="var(--accent)"/><circle cx="98" cy="52" r="3" fill="var(--accent)"/></g>
+      <g class="f-body">
+        <g class="f-leaves">
+          <path d="M60 96 C60 80 58 62 60 40" stroke="var(--leaf-2)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="44" cy="44" rx="15" ry="9" transform="rotate(-30 44 44)" fill="var(--leaf-1)"/>
+          <ellipse cx="76" cy="38" rx="15" ry="9" transform="rotate(25 76 38)" fill="var(--leaf-3)"/>
+          <ellipse cx="60" cy="24" rx="10" ry="15" fill="var(--leaf-1)"/>
+          <ellipse cx="40" cy="66" rx="14" ry="8" transform="rotate(-15 40 66)" fill="var(--leaf-2)"/>
+          <ellipse cx="66" cy="54" rx="9" ry="6" transform="rotate(10 66 54)" fill="var(--leaf-2)"/>
+          <g class="f-arm"><path d="M62 74 C70 72 76 68 80 64" stroke="var(--leaf-2)" stroke-width="3.5" fill="none" stroke-linecap="round"/><ellipse cx="88" cy="60" rx="12" ry="7" transform="rotate(-20 88 60)" fill="var(--leaf-3)"/></g>
+          <g class="f-dots" fill="var(--muted)"><circle cx="92" cy="22" r="3"/><circle cx="101" cy="18" r="3"/><circle cx="110" cy="14" r="3"/></g>
+        </g>
+        <path d="M30 96 h60 l-7 46 a6 6 0 0 1 -6 5 h-34 a6 6 0 0 1 -6 -5 z" fill="var(--pot)"/>
+        <rect x="27" y="92" width="66" height="12" rx="5" fill="var(--pot)"/>
+        <rect x="31" y="128" width="58" height="5" rx="2.5" fill="var(--pot-band)" opacity=".9"/>
+        <g class="f-eyes"><ellipse cx="50" cy="113" rx="5" ry="6" fill="var(--face)"/><ellipse cx="70" cy="113" rx="5" ry="6" fill="var(--face)"/>
+          <g class="f-pupils" id="pupils"><circle cx="50" cy="114" r="2.6" fill="#1a1a1a"/><circle cx="70" cy="114" r="2.6" fill="#1a1a1a"/></g></g>
+        <path class="f-mouth" d="M54 121 Q60 125 66 121" stroke="var(--face)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <circle cx="42" cy="121" r="3" fill="#e9a28a" opacity=".55"/><circle cx="78" cy="121" r="3" fill="#e9a28a" opacity=".55"/>
+      </g>
+    </svg>
+  </button>
+</div>
 
-<main id="contenido">
-
-  <!-- Portada -->
-  <section class="hero">
-    <div class="wrap">
-      <h1 class="display hero-title" data-split>El trabajo, sin <em>letra pequeña.</em></h1>
-      <div class="grid">
-        <div class="c-1-5">
-          <p class="lead" data-rise style="--rise-delay:70ms">Asesoría laboral cercana: tu nómina, tu contrato y tus derechos, explicados de forma simple.</p>
-          <div class="btn-row" data-rise style="--rise-delay:140ms">
-            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
-            <a href="servicios.html" class="btn btn-ghost">Ver tarifas</a>
-          </div>
-          <dl class="facts facts-stack u-mt8" data-rise style="--rise-delay:210ms">
-            <div class="fact">
-              <dt>Gratis</dt>
-              <dd>La primera consulta, siempre y sin compromiso.</dd>
-            </div>
-            <div class="fact">
-              <dt>+5 años</dt>
-              <dd>En departamentos de RRHH, viendo cómo se deciden las cosas desde dentro.</dd>
-            </div>
-            <div class="fact">
-              <dt>Online</dt>
-              <dd>Y presencial en Valencia o Madrid, según disponibilidad.</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="c-7-12" data-rise style="--rise-delay:280ms">
-          <figure class="portrait">
-            <picture>
-              <source srcset="assets/fernando.webp" type="image/webp">
-              <img src="assets/fernando.png" alt="Fernando de la Sota, asesor laboral de RRHH Simple" width="1063" height="1200" fetchpriority="high">
-            </picture>
-            <figcaption class="portrait-tag">Fernando · RRHH Simple</figcaption>
-          </figure>
-        </div>
+<!-- Nueva tarea -->
+<dialog id="taskDlg" aria-labelledby="tdT" class="tk-dlg">
+  <form class="dlg" method="dialog" id="taskForm">
+    <div class="dlg-b">
+      <div class="seg tk-seg" id="tTipo" role="group" aria-label="Tipo"><span class="thumb"></span><button type="button" data-tipo="tarea" aria-pressed="true"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>Tarea</button><button type="button" data-tipo="recordatorio" aria-pressed="false"><svg class="i" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg>Recordatorio</button></div>
+      <h2 id="tdT" style="font-size:20px;font-weight:600;margin:14px 0 0">Nueva tarea</h2>
+      <div class="field"><label for="tTitle">Título</label><input id="tTitle" required maxlength="160" autocomplete="off"></div>
+      <div class="row2">
+        <div class="field tk-catbox" id="tCatBox"><label for="tCat">Categoría</label><select id="tCat"></select></div>
+        <div class="field"><label for="tDate" id="tDateLbl">Fecha límite</label><input type="date" id="tDate">
+          <div class="quick-dates"><button type="button" data-fecha-rapida="0">Hoy</button><button type="button" data-fecha-rapida="1">Mañana</button><button type="button" data-fecha-rapida="lunes">Lunes</button><button type="button" data-fecha-rapida="sin">Sin fecha</button></div></div>
       </div>
+      <div><span class="flabel">Importancia</span>
+        <div class="prio-pick">
+          <input type="radio" name="p" id="pA" value="alta"><label for="pA"><i class="prio alta"></i>Alta</label>
+          <input type="radio" name="p" id="pM" value="media" checked><label for="pM"><i class="prio media"></i>Media</label>
+          <input type="radio" name="p" id="pB" value="baja"><label for="pB"><i class="prio baja"></i>Baja</label>
+        </div></div>
+      <div class="tk-opts">
+        <label class="check" id="tAvisoBox"><input type="checkbox" id="tAviso"> Avisar en el calendario</label>
+        <div class="field tk-inline" id="tAntBox" hidden><label for="tAnt">Aviso</label><select id="tAnt"></select></div>
+        <div class="field tk-inline"><label for="tRep">Se repite</label><select id="tRep"><option value="">No</option><option value="semana">Cada semana</option><option value="mes">Cada mes</option><option value="anio">Cada año</option></select></div>
+        <label class="check"><input type="checkbox" id="tFij"> Fijar (siempre a la vista)</label>
+      </div>
+      <div id="tPersona"></div>
+      <div class="field"><label for="tNota">Notas <span class="muted" style="font-weight:400">(opcional)</span></label><textarea id="tNota" rows="2" maxlength="2000" placeholder="Detalles, a quién afecta, enlaces…"></textarea></div>
     </div>
-  </section>
+    <div class="dlg-f"><button class="btn ghost" value="cancel" formnovalidate>Cancelar</button><button class="btn ghost" value="abrir">Crear y abrir</button><button class="btn" value="ok" id="tOk">Crear tarea</button></div>
+  </form>
+</dialog>
 
-  <!-- Cinta de servicios (en movimiento continuo) -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Revisión de CV</span><i></i><span>Simulación de entrevista</span><i></i><span>Nóminas</span><i></i><span>Contratos y convenios</span><i></i><span>Despidos</span><i></i><span>Excedencias</span><i></i><span>Cambios de IRPF</span><i></i><span>Primera consulta gratis</span><i></i>
-    </div>
+<!-- Buscador -->
+<dialog id="cmdk" aria-label="Buscador">
+  <div class="dlg">
+    <div class="cmd-in"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="cmdIn" placeholder="Busca una herramienta o una acción…" role="combobox" aria-expanded="true" aria-controls="cmdList" autocomplete="off"><kbd>Esc</kbd></div>
+    <ul class="cmd-list" id="cmdList" role="listbox"></ul>
   </div>
+</dialog>
 
-  <!-- Declaración: se lee palabra a palabra al hacer scroll -->
-  <section class="statement" aria-label="Cómo trabajo">
-    <div class="wrap">
-      <p class="statement-text" data-words>Tres frentes, un mismo trato: te explico lo que hay, con sus pegas, y decides tú.</p>
-    </div>
-  </section>
+<div class="toast" id="toast" hidden role="status"><svg class="i" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span id="toastTxt"></span><button id="toastBtn" class="toast-btn" hidden></button></div>
 
-  <!-- Qué hace -->
-  <section class="band" aria-labelledby="h-ayuda">
-    <div class="wrap">
-      <div class="grid">
-        <h2 class="title c-1-5" id="h-ayuda" data-rise>En qué te puedo echar una mano</h2>
-        <p class="c-7-12 body-lg muted u-w42 u-self-end" data-rise style="--rise-delay:70ms">
-          Precio social y precio estándar en cada servicio. Todos los precios son sin IVA.
-        </p>
-      </div>
-
-      <div class="stack u-mt9">
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <span class="branch-num" aria-hidden="true">01</span>
-            <h3>Buscar trabajo sin perder la cabeza</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Revisamos tu CV para el puesto concreto al que vas, ensayamos la entrevista con las preguntas incómodas incluidas, y montamos una estrategia que se parezca a ti y no a una plantilla.</p>
-            <ul class="branch-list">
-              <li><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="cv">12 € / 20 €</span></li>
-              <li><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="entrevista">18 € / 30 €</span></li>
-              <li><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="packCvEntrevista">25 € / 40 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <span class="branch-num" aria-hidden="true">02</span>
-            <h3>Entender lo que firmas</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Tu nómina, tu contrato, tu convenio. Qué dice de verdad, si está bien hecho y qué puedes reclamar si no lo está. Y si hay un despido o un conflicto de por medio, también.</p>
-            <ul class="branch-list">
-              <li><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="documentos">15 € / 25 €</span></li>
-              <li><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="despidos">22 € / 40 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <span class="branch-num" aria-hidden="true">03</span>
-            <h3>Procesos laborales</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Cartas a la empresa, cambios de IRPF, una excedencia, preparar una negociación. Qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
-            <ul class="branch-list">
-              <li><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteSencillo">8 € / 12 €</span></li>
-              <li><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteCarga">15 € / 25 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-      </div>
-      <p class="note u-mt8 u-w46" data-rise><strong>¿Tienes una empresa de menos de 20 personas?</strong> Fichajes, selección, contratos, despidos y gestión del día a día, a medida y con presupuesto cerrado. <a class="link" href="empresas.html">Ver el servicio para empresas</a>.</p>
-    </div>
-  </section>
-
-  <!-- El objeto de este oficio: la nómina -->
-  <section class="band u-bg2" aria-labelledby="h-nomina">
-    <div class="wrap">
-      <div class="grid u-grid-s8-start">
-        <div class="c-1-5">
-          <h2 class="title" id="h-nomina" data-rise>Nadie te enseñó a leer una nómina.</h2>
-          <p class="body-lg muted u-mt5 u-w40" data-rise style="--rise-delay:70ms">
-            Y sin embargo es el documento que más veces vas a firmar en tu vida. Esto es lo que hay detrás de cada línea.
-          </p>
-          <div class="btn-row u-mt7" data-rise style="--rise-delay:140ms">
-            <a href="reservar.html" class="btn">Que te la revise</a>
-          </div>
-        </div>
-
-        <div class="c-7-12" data-rise style="--rise-delay:210ms">
-          <div class="payslip" data-ui data-live>
-            <div class="payslip-head">
-              <strong>Recibo de salarios</strong>
-              <span>Periodo: mensual</span>
-            </div>
-            <table>
-              <caption class="sr-only">Ejemplo de nómina con las líneas que conviene revisar</caption>
-              <thead>
-                <tr><th scope="col">Concepto</th><th scope="col">Importe</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><span class="flag">Salario base</span></td><td>1.323,00 €</td></tr>
-                <tr><td>Plus de convenio</td><td>142,50 €</td></tr>
-                <tr><td>Horas extra</td><td>0,00 €</td></tr>
-                <tr><td><span class="flag">Contingencias comunes</span></td><td>−84,38 €</td></tr>
-                <tr><td>Desempleo y formación</td><td>−25,62 €</td></tr>
-                <tr><td><span class="flag">Retención IRPF</span></td><td>−186,40 €</td></tr>
-                <tr class="row-total"><td>Líquido a percibir</td><td>1.169,10 €</td></tr>
-              </tbody>
-            </table>
-            <div class="payslip-notes">
-              <p class="payslip-note"><b>1</b><span><strong>Salario base.</strong> Tiene que coincidir con tu contrato y no puede bajar del convenio que te aplica. Si no cuadra, hay algo que reclamar.</span></p>
-              <p class="payslip-note"><b>2</b><span><strong>Cotizaciones.</strong> No se las queda la empresa: son tu paro y tu pensión futura. Si cotizas de menos, cobras de menos el día de mañana.</span></p>
-              <p class="payslip-note"><b>3</b><span><strong>IRPF.</strong> Es un anticipo, no un impuesto aparte. Se puede ajustar para que en la declaración no te lleves un susto.</span></p>
-            </div>
-          </div>
-          <p class="note u-mt4">Ejemplo ilustrativo con cifras inventadas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- La calculadora: lo único que puedes hacer tú mismo ahora mismo -->
-  <section class="band field card-over" aria-labelledby="h-calc">
-    <div class="wrap">
-      <div class="grid u-grid-s7-end">
-        <div class="c-1-7">
-          <h2 class="title" id="h-calc" data-rise>¿Cuánto te corresponde si te despiden?</h2>
-          <p class="body-lg u-mt5 u-w46" data-rise style="--rise-delay:70ms">
-            Tres datos y lo sabes. Sin dejar tu correo, sin registrarte y sin que nada salga de tu navegador.
-          </p>
-        </div>
-        <div class="c-8-12" data-rise style="--rise-delay:140ms">
-          <div class="btn-row">
-            <a href="calculadora-despido.html" class="btn">Calcular mi indemnización</a>
-          </div>
-          <p class="note u-mt4">Orientativo. Calcula los tres escenarios de despido según el Estatuto de los Trabajadores.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quién hay detrás -->
-  <section class="band" aria-labelledby="h-yo">
-    <div class="wrap">
-      <div class="grid">
-        <div class="c-2-6 u-col-2-10">
-          <div class="photo-pills" aria-hidden="true">
-            <figure class="pill pill-a" data-pill><img src="assets/fernando-terraza.webp" alt="" width="900" height="759" loading="lazy"></figure>
-            <figure class="pill pill-b" data-pill><img src="assets/fernando-portatil.webp" alt="" width="1000" height="767" loading="lazy"></figure>
-          </div>
-          <div class="letter letter-over" data-rise>
-            <div class="prose">
-              <h2 class="title u-mb7" id="h-yo">Soy Fernando</h2>
-              <p>Llevo más de cinco años trabajando en recursos humanos dentro de empresas, y antes di clase de Formación y Orientación Laboral. Esa mezcla —ver cómo se toman las decisiones desde dentro y haber tenido que explicárselas a gente que empezaba de cero— es lo que pongo de tu lado.</p>
-              <p>Monté esto porque me cansé de ver a gente firmar cosas que no entendía. Conocer tus derechos no debería depender de a quién conoces.</p>
-              <p>Te voy a contar lo que hay, aunque no sea lo que quieres oír. Si tu caso no tiene recorrido, te lo digo en la primera consulta y no te cobro nada.</p>
-            </div>
-            <p class="sign">Fernando de la Sota Escriche
-              <span>Graduado en Relaciones Laborales y RRHH (UCM)</span>
-            </p>
-            <div class="btn-row u-mt7">
-              <a class="btn-text" href="sobre-mi.html">Mi trayectoria completa</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cierre -->
-  <section class="band-tight" aria-labelledby="h-cierre">
-    <div class="wrap">
-      <div class="grid u-grid-s6-end">
-        <div class="c-1-7">
-          <h2 class="title u-w16" id="h-cierre" data-rise>Cuéntame tu caso. La primera es gratis.</h2>
-        </div>
-        <div class="c-8-12" data-rise style="--rise-delay:70ms">
-          <div class="btn-row">
-            <a href="reservar.html" class="btn">Reservar consulta gratis</a>
-            <a href="contacto.html" class="btn btn-ghost">Escribirme</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-foot">
-  <div class="wrap">
-    <p class="foot-word">RRHH Simple</p>
-    <div class="foot-cols">
-      <div class="foot-col">
-        <h2>Hablamos</h2>
-        <ul>
-          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
-          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
-          <li><a href="reservar.html">Reservar consulta gratis</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h2>La web</h2>
-        <ul>
-          <li><a href="servicios.html">Servicios y tarifas</a></li>
-          <li><a href="empresas.html">Para empresas</a></li>
-          <li><a href="herramientas.html">Herramientas laborales</a></li>
-          <li><a href="guias.html">Guías laborales</a></li>
-          <li><a href="sobre-mi.html">Sobre mí</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h2>Por ahí</h2>
-        <ul>
-          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="aviso-legal.html">Aviso legal</a></li>
-          <li><a href="privacidad.html">Política de privacidad</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-base">
-      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye la asistencia de un despacho de graduado/a social o de abogacía laboralista en caso de proceso judicial.</p>
-      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
-    </div>
-  </div>
-</footer>
-
-<script src="precios.js"></script>
-<script src="main.js"></script>
-<script src="vendor/lenis.min.js" defer></script>
-<script src="ui.js" defer></script>
+<script src="js/params.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/datos.js"></script>
+<script src="js/engines/vacaciones.js"></script>
+<script src="js/engines/tareas.js"></script>
+<script src="js/engines/festivos.js"></script>
+<script src="js/engines/altas.js"></script>
+<script src="js/engines/empleados.js"></script>
+<script src="js/engines/documentos.js"></script>
+<script src="js/engines/salarios.js"></script>
+<script src="js/engines/permisos.js"></script>
+<script src="js/engines/nacimiento.js"></script>
+<script src="js/engines/indemnizacion.js"></script>
+<script src="js/engines/finiquito.js"></script>
+<script src="js/engines/ausencias.js"></script>
+<script src="js/engines/informes.js"></script>
+<script src="js/engines/xlsx.js"></script>
+<script src="js/engines/procesos.js"></script>
+<script src="js/engines/nominas.js"></script>
+<script src="js/engines/cae.js"></script>
+<script src="js/core/tareas.js"></script>
+<script src="js/core/empleados.js"></script>
+<script src="js/core/personas.js"></script>
+<script src="js/core/cae.js"></script>
+<script src="js/core/altas.js"></script>
+<script src="js/core/ausencias.js"></script>
+<script src="js/core/procesos.js"></script>
+<script src="js/core/ficus.js"></script>
+<script src="js/core/calc.js"></script>
+<script src="js/modules/inicio.js"></script>
+<script src="js/modules/empleados.js"></script>
+<script src="js/modules/altas.js"></script>
+<script src="js/modules/tareas.js"></script>
+<script src="js/modules/calendario.js"></script>
+<script src="js/modules/vacaciones.js"></script>
+<script src="js/modules/documentos.js"></script>
+<script src="js/modules/ausencias.js"></script>
+<script src="js/modules/informes.js"></script>
+<script src="js/modules/reclutamiento.js"></script>
+<script src="js/modules/pruebas.js"></script>
+<script src="js/modules/promociones.js"></script>
+<script src="js/modules/salidas.js"></script>
+<script src="js/modules/nominas.js"></script>
+<script src="js/modules/herramientas.js"></script>
+<script src="js/modules/cae.js"></script>
+<script src="js/modules/secciones.js"></script>
+<script src="js/modules/salarios.js"></script>
+<script src="js/modules/permisos.js"></script>
+<script src="js/modules/nacimiento.js"></script>
+<script src="js/modules/indemnizacion.js"></script>
+<script src="js/modules/finiquito.js"></script>
+<script src="js/modules/ajustes.js"></script>
+<script src="js/core/shell.js"></script>
 </body>
 </html>
