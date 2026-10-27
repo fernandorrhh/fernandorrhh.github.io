@@ -550,3 +550,15 @@
   .v3 .band-tight{ padding-block: 3.5rem; }
   .v3 .stack-card, .v3 .menu-group, .v3 .guide-step{ padding: var(--s6); }
 }
+
+/* ===========================================================================
+   v3.5 — arreglos (27/10)
+   =========================================================================== */
+/* La cinta de servicios queda libre: la sección siguiente se monta sobre su margen, no sobre el texto */
+.v3 .ticker{ margin-bottom: var(--radius-card); }
+
+/* Lenis gestiona el scroll suave: el del navegador se apaga para que no se pisen
+   (recomendación de Lenis) y cada página nueva arranca desde arriba */
+html.lenis, html.lenis body{ height: auto; }
+html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
+.lenis.lenis-stopped{ overflow: hidden; }

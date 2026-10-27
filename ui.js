@@ -18,11 +18,18 @@
   /* ---------------------------------------------------------------
      Scroll suave con inercia (Lenis, autoalojado)
      --------------------------------------------------------------- */
+  /* Cada página se abre desde arriba (salvo enlaces con #ancla) */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function alInicio() { if (!location.hash) window.scrollTo(0, 0); }
+  alInicio();
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { alInicio(); if (lenis) lenis.scrollTo(0, { immediate: true }); } });
+
   var lenis = null;
   if (!reduce && window.Lenis) {
     lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
     var raf = function (t) { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
+    if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true });
   }
 
   /* ---------------------------------------------------------------
