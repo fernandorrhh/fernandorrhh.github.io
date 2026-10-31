@@ -92,10 +92,16 @@
 
   /* Enlaces internos a la lista (desde el resumen del formulario) */
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href="#tareas"]');
+    var a = e.target.closest && e.target.closest('a[href="#tareas"], a[href="#presupuesto"]');
     if (!a) return;
     e.preventDefault();
-    bajarA(document.getElementById('tareas'), function () { casillas[0].focus({ preventScroll: true }); });
+    var menu = document.getElementById('navLinks');
+    if (menu && menu.classList.contains('is-open')) { var t = document.getElementById('menuToggle'); if (t) t.click(); }
+    if (a.getAttribute('href') === '#tareas') {
+      bajarA(document.getElementById('tareas'), function () { casillas[0].focus({ preventScroll: true }); });
+    } else {
+      bajarA(formSeccion, function () { var c = document.getElementById('e-empresa'); if (c && !c.value) c.focus({ preventScroll: true }); });
+    }
   });
 
   if ('IntersectionObserver' in window && formSeccion) {

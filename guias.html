@@ -20,8 +20,8 @@
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="ui.css?v=13">
+<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="ui.css?v=14">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -38,7 +38,7 @@
   <div class="wrap">
     <nav class="nav" aria-label="Principal">
       <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
-        <img src="assets/logo-oscuro.png" alt="RRHH Simple" width="61" height="40">
+        <img src="assets/logo-nav.png" alt="RRHH Simple" width="61" height="40">
       </a>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
       <div class="nav-links" id="navLinks">
@@ -78,6 +78,19 @@
           <div class="c-1-5"><span class="branch-num" aria-hidden="true">03</span><h2 class="title u-fs-h3">Plazo para reclamar un despido: 20 días hábiles</h2></div>
           <div class="c-7-12"><p>Si te despiden, tienes 20 días hábiles para reclamar. Cómo se cuentan, qué días no cuentan y qué pasos dar para no perder el plazo.</p><a class="btn-text u-mt5" href="guia-plazo-despido.html">Leer la guía</a></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-tight" aria-labelledby="h-cierre">
+    <div class="wrap">
+      <div class="grid u-grid-s6-end">
+        <div class="c-1-7">
+          <h2 class="title u-w16" id="h-cierre" data-rise>¿Tu caso no encaja en una guía? Cuéntamelo gratis.</h2>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:70ms">
+          <div class="btn-row"><a href="reservar.html" class="btn">Reservar consulta gratis</a><a href="contacto.html" class="btn btn-ghost">Escribirme</a></div>
+        </div>
       </div>
     </div>
   </section>
@@ -124,7 +137,7 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=6"></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 </body>

@@ -230,4 +230,37 @@
       }, 450);
     });
   }
+
+  /* ---------------------------------------------------------------
+     Medición de acciones (sin cookies)
+     No hace nada hasta que se añada el script de un proveedor
+     (GoatCounter o Plausible). Solo cuenta clics en acciones clave:
+     reservar, abrir el calendario, WhatsApp, correo y formularios.
+     --------------------------------------------------------------- */
+  function medir(nombre) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: 'accion/' + nombre, title: nombre, event: true });
+      } else if (window.plausible) {
+        window.plausible(nombre);
+      }
+    } catch (e) { /* la medición nunca debe romper la página */ }
+  }
+  window.rrhhMedir = medir;
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('a, button');
+    if (!el) return;
+    var href = el.getAttribute('href') || '';
+    if (el.id === 'loadCal' || /calendar\.(app\.)?google/.test(href)) medir('abrir-calendario');
+    else if (/reservar\.html/.test(href)) medir('ir-a-reservar');
+    else if (/wa\.me\//.test(href)) medir('whatsapp');
+    else if (/^mailto:/.test(href)) medir('correo');
+    else if (el.id === 'quoteGo' || href === '#presupuesto') medir('empresa-ir-a-presupuesto');
+  }, true);
+
+  document.addEventListener('submit', function (e) {
+    if (e.target && e.target.id) medir('formulario-' + e.target.id);
+  }, true);
+
 })();

@@ -184,7 +184,7 @@
 .v3 .payslip tbody tr.is-reading td:first-child{ box-shadow: inset 3px 0 0 var(--ink); padding-left: var(--s3); } /* taste-skill-ignore: barra de lectura */
 .v3 .payslip td:first-child{ transition: padding-left 300ms var(--ease-soft); }
 .v3 .payslip-note{ border-radius: 10px; padding: var(--s2); margin: calc(var(--s2) * -1); transition: background-color 300ms ease, opacity 300ms ease; }
-.ui .v3 [data-live].is-live .payslip-note{ opacity: .55; }
+.ui .v3 [data-live].is-live .payslip-note{ opacity: 1; color: var(--ink-3); }   /* atenúa con color, no con opacidad: contraste 5.4:1 */
 .ui .v3 [data-live].is-live .payslip-note.is-on{ opacity: 1; background: var(--paper-2); }
 .v3 .payslip td span.num{ display: inline-block; min-width: 7ch; }
 
