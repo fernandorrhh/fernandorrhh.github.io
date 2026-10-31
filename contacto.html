@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=14">
+<link rel="stylesheet" href="ui.css?v=15">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -90,7 +90,7 @@
 
             <div class="field-row">
               <label for="nombre">Tu nombre</label>
-              <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required data-error="Escribe tu nombre para saber cómo dirigirme a ti.">
             </div>
 
             <div class="field-row">
@@ -113,7 +113,7 @@
 
             <div class="field-row">
               <label for="mensaje">Cuéntame brevemente tu situación</label>
-              <textarea id="mensaje" name="mensaje" placeholder="Ej.: me han comunicado el despido y no sé si es correcto…" required></textarea>
+              <textarea id="mensaje" name="mensaje" placeholder="Ej.: me han comunicado el despido y no sé si es correcto…" required data-error="Cuéntame en una o dos frases qué te pasa: con eso me basta para empezar."></textarea>
             </div>
 
             <div class="btn-row">
@@ -199,7 +199,7 @@
   </div>
 </footer>
 
-<script src="main.js?v=6"></script>
+<script src="main.js?v=7"></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 </body>

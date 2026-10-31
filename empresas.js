@@ -111,6 +111,41 @@
     }, { threshold: 0.15 }).observe(formSeccion);
   }
 
+  /* En móvil, cada bloque enseña 4 tareas y un botón para ver el resto:
+     las 24 seguidas ocupaban varias pantallas antes de llegar al precio. */
+  var VISIBLES = 4;
+  var estrecho = window.matchMedia('(max-width: 640px)');
+  var listas = Array.prototype.slice.call(document.querySelectorAll('.task-list'));
+  listas.forEach(function (ul, i) {
+    var total = ul.children.length;
+    if (total <= VISIBLES + 1) return;
+    ul.id = ul.id || 'tareas-' + (i + 1);
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'task-more';
+    b.setAttribute('aria-controls', ul.id);
+    b.setAttribute('aria-expanded', 'false');
+    b.textContent = 'Ver las ' + (total - VISIBLES) + ' restantes';
+    b.addEventListener('click', function () {
+      var abrir = ul.classList.contains('is-collapsed');
+      ul.classList.toggle('is-collapsed', !abrir);
+      b.setAttribute('aria-expanded', String(abrir));
+      b.textContent = abrir ? 'Ver menos' : 'Ver las ' + (total - VISIBLES) + ' restantes';
+      if (abrir) { var sig = ul.children[VISIBLES]; var c = sig && sig.querySelector('input'); if (c) c.focus(); }
+    });
+    ul.insertAdjacentElement('afterend', b);
+    ul.__boton = b;
+  });
+  function ajustarListas() {
+    listas.forEach(function (ul) {
+      if (!ul.__boton) return;
+      ul.classList.toggle('is-collapsed', estrecho.matches && ul.__boton.getAttribute('aria-expanded') !== 'true');
+      ul.__boton.hidden = !estrecho.matches;
+    });
+  }
+  if (estrecho.addEventListener) estrecho.addEventListener('change', ajustarListas); else estrecho.addListener(ajustarListas);
+  ajustarListas();
+
   /* Al volver atrás el navegador puede recordar las casillas marcadas */
   window.addEventListener('pageshow', pintar);
   pintar();

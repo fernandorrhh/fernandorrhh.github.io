@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=14">
+<link rel="stylesheet" href="ui.css?v=15">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -29,6 +29,68 @@
   d.classList.add('js');
   setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
 })(document.documentElement);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "RRHH externo para startups y pequeñas empresas",
+  "serviceType": "Recursos humanos externos",
+  "description": "Gestión de personas para empresas de menos de 20 personas sin departamento de RRHH, coordinada con la gestoría, y planes de igualdad para empresas de 50 personas o más. Diagnóstico gratuito.",
+  "url": "https://rrhhsimple.com/empresas.html",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "RRHH Simple",
+    "url": "https://rrhhsimple.com/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "España"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "RRHH externo, hasta 10 personas",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "minPrice": 220,
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": false,
+        "unitText": "MON"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Seguimiento anual del plan de igualdad",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": 400,
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": false
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Auditoría retributiva",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": 600,
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": false
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Renovación del plan de igualdad",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": 1200,
+        "priceCurrency": "EUR",
+        "valueAddedTaxIncluded": false
+      }
+    }
+  ]
+}
 </script>
 </head>
 <body class="v3">
@@ -171,11 +233,11 @@
 
             <div class="field-row">
               <label for="e-empresa">Empresa</label>
-              <input type="text" id="e-empresa" name="empresa" autocomplete="organization" required>
+              <input type="text" id="e-empresa" name="empresa" autocomplete="organization" required data-error="Escribe el nombre de la empresa.">
             </div>
             <div class="field-row">
               <label for="e-nombre">Persona de contacto</label>
-              <input type="text" id="e-nombre" name="nombre" autocomplete="name" required>
+              <input type="text" id="e-nombre" name="nombre" autocomplete="name" required data-error="Escribe el nombre de la persona con la que hablo.">
             </div>
             <div class="field-row">
               <label for="e-plantilla">Tamaño de la plantilla</label>
@@ -204,7 +266,7 @@
             </div>
             <div class="field-row">
               <label for="e-mensaje">Cuéntame brevemente qué necesitáis</label>
-              <textarea id="e-mensaje" name="mensaje" placeholder="Ej.: vamos a contratar a dos personas y no tenemos claro qué contrato hacer…" required></textarea>
+              <textarea id="e-mensaje" name="mensaje" placeholder="Ej.: vamos a contratar a dos personas y no tenemos claro qué contrato hacer…" required data-error="Cuéntame en una o dos frases qué necesitáis."></textarea>
             </div>
             <div class="field-row">
               <label for="e-horario">¿Cuándo te viene bien la videollamada? (opcional)</label>
@@ -283,8 +345,8 @@
   </div>
 </footer>
 
-<script src="main.js?v=6"></script>
-<script src="empresas.js?v=2" defer></script>
+<script src="main.js?v=7"></script>
+<script src="empresas.js?v=3" defer></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 </body>

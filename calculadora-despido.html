@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=14">
+<link rel="stylesheet" href="ui.css?v=15">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -29,6 +29,29 @@
   d.classList.add('js');
   setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
 })(document.documentElement);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora de indemnización por despido",
+  "description": "Calcula la indemnización por despido improcedente, objetivo y disciplinario según el Estatuto de los Trabajadores.",
+  "url": "https://rrhhsimple.com/calculadora-despido.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Cualquiera, en el navegador",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "RRHH Simple",
+    "url": "https://rrhhsimple.com/"
+  }
+}
 </script>
 </head>
 <body class="v3">
@@ -211,7 +234,7 @@
   </div>
 </footer>
 
-<script src="main.js?v=6"></script>
+<script src="main.js?v=7"></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 <script src="motor/parametros.js"></script>

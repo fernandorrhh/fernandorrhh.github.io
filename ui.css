@@ -728,3 +728,73 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
   .ui .v3 .task:has(input:checked) .task-mark, .quote-pop.is-in, .quote-pop.is-bump #quoteCount{ animation: none; }
   .quote-pop:not(.is-in){ transition: none; }
 }
+
+/* ===========================================================================
+   Formularios — errores propios y opciones en pastilla
+   Los colores salen de currentColor para servir igual en secciones claras
+   y oscuras.
+   =========================================================================== */
+.field-error{
+  font-family: var(--sans); font-weight: 600; font-size: 0.875rem; line-height: 1.4;
+  color: var(--warm-ink) !important;   /* 6,4:1 sobre papel */
+}
+.v3 :is(.field, main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field)) .field-error{ color: var(--warm) !important; } /* 7:1 sobre carbón y oliva */
+[aria-invalid="true"]{ border-color: var(--warm-ink) !important; box-shadow: inset 0 0 0 1px var(--warm-ink); }
+.v3 :is(.field, main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field)) [aria-invalid="true"]{ border-color: var(--warm) !important; box-shadow: inset 0 0 0 1px var(--warm); }
+
+.v3 .choice-row{ gap: var(--s2); }
+.v3 .choice{
+  min-height: 44px; padding: 0 var(--s4) 0 var(--s3);
+  border-radius: var(--pill);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, currentColor 32%, transparent); /* taste-skill-ignore: borde sin desplazar la caja */
+  font-family: var(--sans); font-weight: 500; font-size: 0.9375rem;
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.v3 .choice input{ width: 18px; height: 18px; accent-color: var(--brand-olive); flex: none; }
+.v3 :is(.field, main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field)) .choice input{ accent-color: var(--accent); }
+.v3 .choice:has(input:checked){
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  box-shadow: inset 0 0 0 1.5px currentColor; /* taste-skill-ignore: borde */
+}
+.v3 .choice:has(input:focus-visible){ outline: 3px solid currentColor; outline-offset: 2px; }
+.v3 .choice:has(input[type="checkbox"]){ border-radius: var(--radius-soft); padding-block: var(--s2); line-height: 1.35; }
+@media (hover: hover) and (pointer: fine){
+  .v3 .choice:hover{ box-shadow: inset 0 0 0 1.5px currentColor; } /* taste-skill-ignore: borde */
+}
+@media (prefers-reduced-motion: reduce){ .v3 .choice{ transition: none; } }
+
+/* Inicio: en móvil, «Para empresas» pasa a enlace para no competir con la acción principal */
+.solo-movil{ display: none !important; }
+@media (max-width: 640px){
+  .solo-ancho{ display: none !important; }
+  .solo-movil{ display: inline-flex !important; }
+}
+
+/* Empresas: tareas plegadas en móvil (las marcadas nunca se ocultan) */
+.v3 .task-list.is-collapsed > li:nth-child(n+5):not(:has(input:checked)){ display: none; }
+.v3 .task-more{
+  margin-top: var(--s3); min-height: 44px; padding: 0 var(--s4);
+  border: 0; border-radius: var(--pill); background: transparent; cursor: pointer;
+  font-family: var(--sans); font-weight: 600; font-size: 0.9375rem; color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--edge-ink); /* taste-skill-ignore: borde */
+}
+.v3 .task-more[hidden]{ display: none; }
+.v3 .task-more:focus-visible{ outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* Inicio: la palabra clave forma parte del H1, bajo el eslogan y en tamaño de entradilla */
+.v3 .h1-tema{
+  display: block; margin-top: var(--s4);
+  font-family: var(--sans); font-style: normal; font-weight: 600;
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem); line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--ink-2);
+}
+
+/* Guías: lista de puntos con aire */
+.v3 .lista-guia{ list-style: none; padding: 0; display: grid; gap: var(--s4); }
+.v3 .lista-guia li{ padding-left: var(--s5); position: relative; }
+.v3 .lista-guia li::before{ content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: var(--pill); background: var(--brand-olive); }
+.v3 .guide-step p + p{ margin-top: var(--s3); }
+
+/* Cifras de dinero en Poppins: el cero barrado de Atkinson se leía como «Ø» en precios y nóminas */
+.branch-list .amount, .payslip td:last-child, .result-meta b{ font-family: var(--sans); font-variant-numeric: tabular-nums; }

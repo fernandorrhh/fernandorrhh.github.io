@@ -70,6 +70,11 @@
   var holder = document.getElementById('calHolder');
 
   if (loadBtn && holder) {
+    /* Botón de la cabecera: abre el mismo calendario en la página.
+       Sin JavaScript, el enlace abre el calendario en otra pestaña. */
+    document.querySelectorAll('[data-open-cal]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); loadBtn.click(); });
+    });
     loadBtn.addEventListener('click', function () {
       if (holder.querySelector('iframe')) {
         holder.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
@@ -191,9 +196,53 @@
       status.innerHTML = '<span>' + html + '</span>';
     }
 
+    /* Errores propios bajo cada campo, en lugar de la burbuja del navegador.
+       Sin JavaScript, la validación nativa sigue funcionando. */
+    form.noValidate = true;
+    function errorDe(campo) { return document.getElementById('err-' + campo.id); }
+    function limpiar(campo) {
+      var p = errorDe(campo);
+      if (p) p.remove();
+      campo.removeAttribute('aria-invalid');
+      var desc = (campo.getAttribute('aria-describedby') || '').replace('err-' + campo.id, '').trim();
+      if (desc) campo.setAttribute('aria-describedby', desc); else campo.removeAttribute('aria-describedby');
+    }
+    function marcar(campo) {
+      if (errorDe(campo)) return;
+      var p = document.createElement('p');
+      p.className = 'field-error';
+      p.id = 'err-' + campo.id;
+      p.textContent = campo.getAttribute('data-error') || 'Rellena este campo.';
+      campo.insertAdjacentElement('afterend', p);
+      campo.setAttribute('aria-invalid', 'true');
+      var desc = campo.getAttribute('aria-describedby');
+      campo.setAttribute('aria-describedby', (desc ? desc + ' ' : '') + p.id);
+    }
+    function validar() {
+      var primero = null;
+      form.querySelectorAll('[required]').forEach(function (campo) {
+        var vacio = !campo.value || !campo.value.trim();
+        if (vacio) { marcar(campo); if (!primero) primero = campo; } else limpiar(campo);
+      });
+      return primero;
+    }
+    form.querySelectorAll('[required]').forEach(function (campo) {
+      campo.addEventListener('input', function () {
+        if (!campo.value.trim()) return;
+        limpiar(campo);
+        if (status && status.dataset.tone === 'error' && !form.querySelector('[aria-invalid="true"]')) status.hidden = true;
+      });
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var fallo = validar();
+      if (fallo) {
+        mostrarEstado('error', '', '<strong>Falta algún dato.</strong> Revisa los campos marcados.');
+        fallo.focus();
+        return;
+      }
+      window.dispatchEvent(new CustomEvent('rrhh:enviado', { detail: form.id }));
 
       var m = construir(form);
       var canal = canalActual();
@@ -249,6 +298,7 @@
   window.rrhhMedir = medir;
 
   document.addEventListener('click', function (e) {
+    if (!e.isTrusted) return;   /* los clics simulados por el propio código no cuentan dos veces */
     var el = e.target.closest && e.target.closest('a, button');
     if (!el) return;
     var href = el.getAttribute('href') || '';
@@ -259,8 +309,6 @@
     else if (el.id === 'quoteGo' || href === '#presupuesto') medir('empresa-ir-a-presupuesto');
   }, true);
 
-  document.addEventListener('submit', function (e) {
-    if (e.target && e.target.id) medir('formulario-' + e.target.id);
-  }, true);
+  window.addEventListener('rrhh:enviado', function (e) { medir('formulario-' + e.detail); });
 
 })();
