@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu opinión — RRHH Simple</title>
+<meta name="description" content="Cuéntame qué tal ha ido el servicio. Tu opinión se publica en la web con el nombre que elijas.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Tu opinión — RRHH Simple">
+<meta property="og:description" content="Cuéntame qué tal ha ido el servicio.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://rrhhsimple.com/opina.html">
+<meta property="og:url" content="https://rrhhsimple.com/opina.html">
+<meta property="og:site_name" content="RRHH Simple">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rrhhsimple.com/assets/og-rrhhsimple.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="ui.css?v=17">
+<script>
+/* Oculta el contenido solo si el script de animación va a llegar.
+   Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
+(function (d) {
+  d.classList.add('js');
+  setTimeout(function () { if (!window.__riseReady) d.classList.add('rise-all'); }, 2000);
+})(document.documentElement);
+</script>
+</head>
+<body class="v3">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="RRHH Simple — inicio">
+        <img src="assets/logo-nav.png" alt="RRHH Simple" width="61" height="40">
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menú</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="herramientas.html">Herramientas</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="contacto.html">Contacto</a>
+        <a class="btn btn-sm" href="reservar.html">Consulta gratis</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero u-pb-m">
+    <div class="wrap">
+      <h1 class="display hero-title u-w14" data-split>¿Qué tal <em>ha ido?</em></h1>
+      <div class="grid u-mt6">
+        <p class="c-1-6 lead muted u-w36" data-rise style="--rise-delay:70ms">
+          Tu opinión ayuda a otras personas a decidir si pedir ayuda. Te lleva dos minutos.
+        </p>
+        <p class="c-8-12" data-rise style="--rise-delay:140ms">
+          La reviso y la publico en la web con el nombre que elijas. Se publican todas, también las que no son de cinco estrellas, salvo las que incluyan insultos o datos personales de otras personas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-tight" aria-labelledby="h-opina">
+    <div class="wrap">
+      <div class="grid">
+        <div class="c-1-7">
+          <h2 class="title u-w13" id="h-opina" data-rise>Tu opinión</h2>
+
+          <form id="opinaForm" class="form u-mt8" novalidate data-rise>
+            <div class="field-row">
+              <label for="op-nombre">Cómo quieres que aparezca tu nombre</label>
+              <input type="text" id="op-nombre" name="nombre" autocomplete="given-name" maxlength="60" placeholder="Ej.: Laura, o L. M., o el nombre de tu empresa">
+            </div>
+
+            <div class="field-row">
+              <label for="op-servicio">Qué servicio contrataste</label>
+              <select id="op-servicio" name="servicio"></select>
+            </div>
+
+            <fieldset class="rate" id="op-rate">
+              <legend>Puntuación</legend>
+              <div class="rate-row">
+                  <label class="rate-star"><input type="radio" name="puntuacion" value="1"><span class="sr-only">1 estrella</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.03 6.6.79-4.87 4.53 1.27 6.53L12 17.2l-5.85 3.28 1.27-6.53L2.55 9.42l6.6-.79z"/></svg></label>
+                  <label class="rate-star"><input type="radio" name="puntuacion" value="2"><span class="sr-only">2 estrellas</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.03 6.6.79-4.87 4.53 1.27 6.53L12 17.2l-5.85 3.28 1.27-6.53L2.55 9.42l6.6-.79z"/></svg></label>
+                  <label class="rate-star"><input type="radio" name="puntuacion" value="3"><span class="sr-only">3 estrellas</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.03 6.6.79-4.87 4.53 1.27 6.53L12 17.2l-5.85 3.28 1.27-6.53L2.55 9.42l6.6-.79z"/></svg></label>
+                  <label class="rate-star"><input type="radio" name="puntuacion" value="4"><span class="sr-only">4 estrellas</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.03 6.6.79-4.87 4.53 1.27 6.53L12 17.2l-5.85 3.28 1.27-6.53L2.55 9.42l6.6-.79z"/></svg></label>
+                  <label class="rate-star"><input type="radio" name="puntuacion" value="5"><span class="sr-only">5 estrellas</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.6l2.85 6.03 6.6.79-4.87 4.53 1.27 6.53L12 17.2l-5.85 3.28 1.27-6.53L2.55 9.42l6.6-.79z"/></svg></label>
+              </div>
+            </fieldset>
+
+            <div class="field-row">
+              <label for="op-opinion">Tu opinión</label>
+              <textarea id="op-opinion" name="opinion" maxlength="700" placeholder="Qué necesitabas, cómo fue y en qué te ayudó."></textarea>
+              <p class="note op-counter" id="op-contador" aria-live="polite"></p>
+            </div>
+
+            <div class="op-consent" id="op-acepto-fila">
+              <label class="choice choice-block"><input type="checkbox" id="op-acepto" name="acepto"> Acepto que mi opinión se publique en rrhhsimple.com con el nombre que he indicado. Puedo pedir que se retire cuando quiera escribiendo a fernando@rrhhsimple.com.</label>
+            </div>
+
+            <div class="btn-row">
+              <button type="submit" class="btn">Enviar mi opinión</button>
+            </div>
+            <p class="form-status" role="status" hidden></p>
+            <p class="note">No pido tu correo ni ningún otro dato. Más detalle en la <a class="link" href="privacidad.html">política de privacidad</a>.</p>
+          </form>
+
+          <div class="op-ok" id="opinaOk" tabindex="-1" hidden>
+            <h2 class="title u-fs-h3">Gracias por tomarte el tiempo.</h2>
+            <p class="u-mt4">Me ha llegado tu opinión. La publicaré en cuanto la revise, normalmente en uno o dos días.</p>
+            <div class="btn-row u-mt6"><a class="btn-text" href="index.html">Volver al inicio</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="foot-word">RRHH Simple</p>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h2>Hablamos</h2>
+        <ul>
+          <li><a href="mailto:fernando@rrhhsimple.com">fernando@rrhhsimple.com</a></li>
+          <li><a href="https://wa.me/34638292643" target="_blank" rel="noopener">638 292 643 · WhatsApp</a></li>
+          <li><a href="reservar.html">Reservar consulta gratis</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>La web</h2>
+        <ul>
+          <li><a href="servicios.html">Servicios y tarifas</a></li>
+          <li><a href="empresas.html">Para empresas</a></li>
+          <li><a href="herramientas.html">Herramientas laborales</a></li>
+          <li><a href="guias.html">Guías laborales</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h2>Por ahí</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/fernando_rrhh/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/fernando-de-la-sota-escriche-47824a161" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <p>Este es un servicio de asesoramiento orientativo desde experiencia profesional en RRHH. No constituye asesoría jurídica vinculante ni sustituye la asistencia de un despacho de graduado/a social o de abogacía laboralista en caso de proceso judicial.</p>
+      <p>© 2026 RRHH Simple · Fernando de la Sota Escriche · Online desde Valencia, España</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js?v=7"></script>
+<script src="vendor/lenis.min.js" defer></script>
+<script src="ui.js" defer></script>
+<script src="opiniones-config.js?v=1"></script>
+<script src="opiniones.js?v=2" defer></script>
+</body>
+</html>
