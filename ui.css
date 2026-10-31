@@ -612,3 +612,119 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 .v3 .hero-title{ max-width: 18ch; }
 .v3 .c-1-5 > h2.title, .v3 h2.title.c-1-5, .v3 .c-1-7 > h2.title{ max-width: none; }
 .v3 .menu-group.tone-3 .note{ color: #e4e0d3 !important; }
+
+/* ===========================================================================
+   Empresas — tareas seleccionables y aviso de presupuesto
+   Sin marcar: fila clara con un "+". Marcada: fila oliva con el check en
+   amarillo (el amarillo sigue siendo solo acción: aquí señala lo elegido).
+   =========================================================================== */
+.v3 .task-group{ border: 0; margin: 0; min-width: 0; }
+.v3 .task-group > legend{ padding: 0; float: left; width: 100%; }   /* float: que la legend no rompa el padding del bloque */
+.v3 .task-group > legend + *{ clear: both; }
+.v3 .task-group > legend h3{ font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.15; text-wrap: balance; }
+.v3 .task-intro{ font-size: var(--small); color: var(--ink-2); margin-top: var(--s3); max-width: 40ch; }
+.v3 .task-list{ list-style: none; margin: var(--s5) 0 0; padding: 0; display: grid; gap: var(--s2); }
+
+.v3 .task{
+  position: relative;
+  display: flex; align-items: center; gap: var(--s3);
+  min-height: 48px; padding: var(--s3) var(--s4) var(--s3) var(--s3);
+  border-radius: var(--radius-soft);
+  background: var(--paper-2);
+  box-shadow: inset 0 0 0 1px rgba(74, 71, 50, .14); /* taste-skill-ignore: borde sin desplazar la caja */
+  font-family: var(--sans); font-weight: 500; font-size: 0.9375rem; line-height: 1.3;
+  color: var(--ink); cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform var(--t-press) var(--ease-out);
+}
+.v3 .task input{ position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.v3 .task-mark{
+  flex: none; width: 26px; height: 26px; border-radius: var(--pill);
+  display: grid; place-items: center;
+  box-shadow: inset 0 0 0 1.5px var(--edge-ink); /* taste-skill-ignore: borde del control, 3:1 */
+  transition: background-color 200ms ease, box-shadow 200ms ease, transform 320ms var(--ease-soft);
+}
+.v3 .task-mark::before{
+  content: ''; width: 10px; height: 10px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1.75px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1.75px 100% no-repeat;
+  color: var(--ink-2);
+  transition: transform 320ms var(--ease-soft);
+}
+.v3 .task:active{ transform: scale(0.98); }
+
+/* Marcada */
+.v3 .task:has(input:checked){ background: var(--brand-olive); color: var(--brand-light); box-shadow: none; }
+.v3 main > section .task:has(input:checked) .task-name{ color: var(--brand-light); }
+.v3 .task:has(input:checked) .task-mark{ background: var(--accent); box-shadow: none; }
+.v3 .task:has(input:checked) .task-mark::before{
+  width: 11px; height: 6px; background: none; color: var(--ink);
+  border-left: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: translateY(-1px) rotate(-45deg);
+}
+.ui .v3 .task:has(input:checked) .task-mark{ animation: taskPop 360ms var(--ease-soft); }
+@keyframes taskPop{ 0%{ transform: scale(.6); } 60%{ transform: scale(1.12); } 100%{ transform: scale(1); } }
+
+.v3 .task:has(input:focus-visible){ outline: 3px solid var(--ink); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine){
+  .v3 .task:hover{ box-shadow: inset 0 0 0 1.5px var(--ink); } /* taste-skill-ignore: borde */
+  .v3 .task:hover .task-mark{ transform: scale(1.06); }
+  .v3 .task:has(input:checked):hover{ background: var(--brand-olive-deep); box-shadow: none; }
+}
+
+/* Resumen de tareas dentro del formulario */
+.v3 .task-summary{ margin-top: var(--s3); font-size: var(--small); color: var(--ink-2); }
+.v3 .task-summary-list{
+  list-style: none; padding: 0; margin: 0 0 var(--s3);
+  display: flex; flex-wrap: wrap; gap: var(--s2);
+}
+.v3 .task-summary-list li{
+  padding: 6px 12px; border-radius: var(--pill);
+  background: var(--brand-olive); color: var(--brand-light) !important;
+  font-family: var(--sans); font-weight: 500; font-size: 0.8125rem;
+}
+
+/* Aviso flotante: abajo, centrado, no tapa la página entera */
+.quote-pop{
+  position: fixed; z-index: 40;
+  left: 50%; bottom: max(var(--s4), env(safe-area-inset-bottom));
+  width: min(720px, calc(100% - 2 * var(--gutter)));
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
+  padding: var(--s3) var(--s3) var(--s3) var(--s5);
+  border-radius: var(--pill);
+  background: var(--field); color: var(--on-field);
+  box-shadow: 0 18px 48px -16px rgba(26, 26, 26, .55);
+  transform: translate(-50%, 0);
+}
+.quote-pop[hidden]{ display: none; }
+.quote-pop-text{ min-width: 0; }
+.quote-pop-title{ font-family: var(--sans); font-weight: 700; font-size: 1rem; line-height: 1.2; color: var(--on-field); }
+.quote-pop-count{ font-size: var(--small); color: var(--on-field-2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.quote-pop-count #quoteCount{ color: var(--accent); font-weight: 700; }
+.quote-pop-actions{ display: flex; align-items: center; gap: var(--s2); flex: none; }
+.quote-pop .btn-sm{ min-height: 44px; }
+.quote-pop-clear{
+  min-height: 44px; padding: 0 var(--s3);
+  background: none; border: 0; border-radius: var(--pill); cursor: pointer;
+  font-family: var(--sans); font-weight: 600; font-size: 0.875rem; color: var(--on-field-2);
+}
+.quote-pop-clear:hover{ color: var(--on-field); }
+.quote-pop :focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.quote-pop.is-in{ animation: popIn 420ms var(--ease-soft); }
+.quote-pop:not(.is-in){ opacity: 0; transform: translate(-50%, 12px); transition: opacity 200ms ease, transform 200ms ease; }
+.quote-pop.is-bump #quoteCount{ display: inline-block; animation: countBump 300ms var(--ease-soft); }
+@keyframes popIn{ from{ opacity: 0; transform: translate(-50%, 24px) scale(.96); } }
+@keyframes countBump{ 40%{ transform: scale(1.15); } }
+
+@media (max-width: 640px){
+  .quote-pop{ flex-direction: column; align-items: stretch; gap: var(--s3); border-radius: var(--radius-card); padding: var(--s4); }
+  .quote-pop-actions{ justify-content: space-between; }
+  .quote-pop-actions .btn{ width: auto; flex: 1; }
+}
+@media (prefers-reduced-motion: reduce){
+  .v3 .task, .v3 .task-mark, .v3 .task-mark::before{ transition: none; }
+  .ui .v3 .task:has(input:checked) .task-mark, .quote-pop.is-in, .quote-pop.is-bump #quoteCount{ animation: none; }
+  .quote-pop:not(.is-in){ transition: none; }
+}

@@ -20,8 +20,8 @@
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=4">
-<link rel="stylesheet" href="ui.css?v=12">
+<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="ui.css?v=13">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -74,23 +74,50 @@
   <section class="band-tight" aria-labelledby="h-que">
     <div class="wrap">
       <h2 class="title u-w14" id="h-que" data-rise>En qué puedo ayudar a tu empresa</h2>
-      <div class="menu-sheet u-mt8" data-rise>
-        <div class="menu-group">
-          <h3>Gestión del día a día</h3>
-          <div class="menu-item"><p class="menu-line"><span>Registro de jornada y fichajes</span></p><p>Implantar el control horario, revisar que se cumple y resolver incidencias.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Gestión operativa de personal</span></p><p>Vacaciones, permisos, calendario laboral, evaluaciones y comunicaciones a la plantilla, en coordinación con tu gestoría.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Obligaciones de cualquier empresa</span></p><p>Registro retributivo, protocolo frente al acoso sexual y política de desconexión digital, aunque seáis tres personas.</p></div>
-        </div>
-        <div class="menu-group">
-          <h3>Personas que entran</h3>
-          <div class="menu-item"><p class="menu-line"><span>Selección</span></p><p>Definir el puesto, publicar la oferta, filtrar candidaturas y acompañar en las entrevistas.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Contratación e incorporación</span></p><p>Elegir el contrato adecuado, revisar el convenio aplicable, gestionar el periodo de prueba y preparar la acogida.</p></div>
-        </div>
-        <div class="menu-group">
-          <h3>Personas que salen y conflictos</h3>
-          <div class="menu-item"><p class="menu-line"><span>Despidos y finalizaciones</span></p><p>Revisar la causa, calcular la indemnización y el finiquito, y preparar la carta y la documentación.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Amonestaciones y conflictos</span></p><p>Documentar bien cada paso para que la decisión se sostenga.</p></div>
-        </div>
+      <p class="lead u-mt5 u-w42" data-rise style="--rise-delay:70ms">Marca lo que necesitáis y te preparo un presupuesto a medida.</p>
+      <div class="menu-sheet task-sheet u-mt8" id="tareas" data-rise>
+        <fieldset class="menu-group task-group">
+          <legend><h3>Gestión del día a día</h3></legend>
+          <p class="task-intro">Lo que hace falta cada mes para que el equipo funcione y la empresa cumpla, aunque seáis tres personas.</p>
+          <ul class="task-list" role="list">
+            <li><label class="task"><input type="checkbox" name="tarea" value="Implantar el registro de jornada" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Implantar el registro de jornada</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Resolver incidencias de fichajes" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Resolver incidencias de fichajes</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Vacaciones, permisos y calendario laboral" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Vacaciones, permisos y calendario laboral</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Evaluaciones del desempeño" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Evaluaciones del desempeño</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Comunicaciones a la plantilla" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Comunicaciones a la plantilla</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Registro retributivo" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Registro retributivo</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Protocolo frente al acoso sexual" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Protocolo frente al acoso sexual</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Política de desconexión digital" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Política de desconexión digital</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Coordinación con tu gestoría" data-grupo="Gestión del día a día"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Coordinación con tu gestoría</span></label></li>
+          </ul>
+        </fieldset>
+        <fieldset class="menu-group task-group">
+          <legend><h3>Personas que entran</h3></legend>
+          <p class="task-intro">Desde que decides contratar hasta que la persona está integrada en el equipo.</p>
+          <ul class="task-list" role="list">
+            <li><label class="task"><input type="checkbox" name="tarea" value="Definir el puesto" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Definir el puesto</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Redactar y publicar la oferta" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Redactar y publicar la oferta</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Filtrar candidaturas" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Filtrar candidaturas</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Acompañar en las entrevistas" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Acompañar en las entrevistas</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Elegir el contrato adecuado" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Elegir el contrato adecuado</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Revisar el convenio aplicable" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Revisar el convenio aplicable</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Gestionar el periodo de prueba" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Gestionar el periodo de prueba</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Preparar la acogida" data-grupo="Personas que entran"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Preparar la acogida</span></label></li>
+          </ul>
+        </fieldset>
+        <fieldset class="menu-group task-group">
+          <legend><h3>Personas que salen y conflictos</h3></legend>
+          <p class="task-intro">Para que cada decisión esté bien tomada y bien documentada.</p>
+          <ul class="task-list" role="list">
+            <li><label class="task"><input type="checkbox" name="tarea" value="Revisar la causa del despido" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Revisar la causa del despido</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Calcular indemnización y finiquito" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Calcular indemnización y finiquito</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Carta de despido y documentación" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Carta de despido y documentación</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Bajas voluntarias y fin de contrato" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Bajas voluntarias y fin de contrato</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Amonestaciones y sanciones" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Amonestaciones y sanciones</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Mediar en conflictos del equipo" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Mediar en conflictos del equipo</span></label></li>
+            <li><label class="task"><input type="checkbox" name="tarea" value="Salida ordenada de la empresa" data-grupo="Personas que salen y conflictos"><span class="task-mark" aria-hidden="true"></span><span class="task-name">Salida ordenada de la empresa</span></label></li>
+          </ul>
+        </fieldset>
       </div>
       <p class="note u-mt6 u-w46" data-rise>Las nóminas y los seguros sociales siguen en tu gestoría, y la prevención técnica, en tu servicio de prevención. Cuando un asunto necesita ir a juicio, se deriva a un despacho de graduado/a social o de abogacía laboralista.</p>
       <h2 class="title u-w14 u-mt9" id="h-precio" data-rise>Cuánto cuesta</h2>
@@ -122,12 +149,12 @@
     </div>
   </section>
 
-  <section class="band-tight" aria-labelledby="h-form">
+  <section class="band-tight" id="presupuesto" aria-labelledby="h-form">
     <div class="wrap">
       <div class="grid">
         <div class="c-1-7">
-          <h2 class="title u-w13" id="h-form" data-rise>Pide tu diagnóstico gratuito</h2>
-          <p class="u-mt5 u-w42" data-rise style="--rise-delay:70ms">Rellena esto y elige cómo prefieres mandarlo. El mensaje se escribe solo: solo hay que darle a enviar.</p>
+          <h2 class="title u-w13" id="h-form" data-rise>Reserva tu presupuesto</h2>
+          <p class="u-mt5 u-w42" data-rise style="--rise-delay:70ms">Empezamos con un diagnóstico gratuito de 30 minutos y te mando el presupuesto por escrito en 48 horas. Rellena esto y elige cómo prefieres mandarlo: el mensaje se escribe solo.</p>
 
           <form id="empresaForm" class="form u-mt8" data-rise>
             <fieldset>
@@ -157,16 +184,10 @@
               </select>
             </div>
             <fieldset>
-              <legend>¿Qué necesitáis? (puedes marcar varias)</legend>
+              <legend>Tareas que has marcado</legend>
+              <p class="task-summary" id="taskSummary" aria-live="polite">Aún no has marcado ninguna. <a class="link" href="#tareas">Elígelas en la lista</a> o cuéntamelo abajo.</p>
               <div class="choice-row">
-                <label class="choice"><input type="checkbox" name="servicio" value="Registro de jornada y fichajes"> Fichajes</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Gestión operativa de personal"> Gestión operativa</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Selección"> Selección</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Contratación e incorporación"> Contratación</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Despidos y finalizaciones"> Despidos</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Amonestaciones y conflictos"> Conflictos</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Obligaciones legales (registro retributivo, protocolo de acoso, desconexión)"> Obligaciones legales</label>
-                <label class="choice"><input type="checkbox" name="servicio" value="Plan de igualdad"> Plan de igualdad</label>
+                <label class="choice"><input type="checkbox" name="servicio" value="Plan de igualdad"> También nos interesa un plan de igualdad (50 personas o más)</label>
               </div>
             </fieldset>
             <div class="field-row">
@@ -206,6 +227,17 @@
   </section>
 
 </main>
+
+<aside class="quote-pop" id="quotePop" aria-label="Tu presupuesto" hidden>
+  <div class="quote-pop-text">
+    <p class="quote-pop-title">Reserva tu presupuesto</p>
+    <p class="quote-pop-count" aria-live="polite"><span id="quoteCount">0 tareas</span> <span class="quote-pop-list" id="quoteList"></span></p>
+  </div>
+  <div class="quote-pop-actions">
+    <a class="btn btn-sm" href="#presupuesto" id="quoteGo">Reservar mi presupuesto</a>
+    <button type="button" class="quote-pop-clear" id="quoteClear">Vaciar</button>
+  </div>
+</aside>
 
 <footer class="site-foot">
   <div class="wrap">
@@ -247,7 +279,8 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=5"></script>
+<script src="empresas.js?v=1" defer></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 </body>

@@ -139,14 +139,23 @@
   iniciarFormulario(document.getElementById('empresaForm'), function (f) {
     var servicios = [];
     f.querySelectorAll('input[name="servicio"]:checked').forEach(function (c) { servicios.push(c.value); });
+    /* Las tareas se marcan en la lista de arriba, fuera del formulario */
+    var porGrupo = {}, orden = [];
+    document.querySelectorAll('input[name="tarea"]:checked').forEach(function (c) {
+      var g = c.getAttribute('data-grupo') || 'Otras';
+      if (!porGrupo[g]) { porGrupo[g] = []; orden.push(g); }
+      porGrupo[g].push(c.value);
+    });
+    var tareas = orden.map(function (g) { return '- ' + g + ': ' + porGrupo[g].join(', '); }).join('\n');
     var empresa = val(f, 'empresa');
     return {
-      asunto: 'Diagnóstico gratuito — ' + empresa,
+      asunto: 'Presupuesto RRHH — ' + empresa,
       texto:
         'Hola, Fernando. Os escribo desde ' + empresa + '.\n' +
         'Persona de contacto: ' + val(f, 'nombre') + '\n' +
         'Tamaño de la plantilla: ' + val(f, 'plantilla') + '\n' +
-        'Servicios que nos interesan: ' + (servicios.length ? servicios.join(', ') : 'por concretar') + '\n' +
+        'Tareas que nos interesan:\n' + (tareas || '- Por concretar') + '\n' +
+        (servicios.length ? 'Además: ' + servicios.join(', ') + '\n' : '') +
         'Modalidad: ' + val(f, 'duracion') + '\n' +
         'Lo que necesitamos: ' + val(f, 'mensaje') + '\n' +
         'Para la videollamada, mejor: ' + (val(f, 'horario') || 'cualquier momento') + '\n\n' +

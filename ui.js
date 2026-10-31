@@ -27,6 +27,7 @@
   var lenis = null;
   if (!reduce && window.Lenis) {
     lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
+    window.__lenis = lenis;   /* lo usa empresas.js para bajar al formulario */
     var raf = function (t) { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
     if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true });

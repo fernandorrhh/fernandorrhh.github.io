@@ -44,6 +44,10 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Guías: `guias.html` (índice), `guia-nomina.html`, `guia-finiquito.html`, `guia-plazo-despido.html`, con base legal citada (ET, LRJS, Orden ESS/2098/2014), datos estructurados `Article` y enlace a la calculadora correspondiente.
   - Verificación: 0 incidencias WCAG 2 A/AA (axe-core) en las 19 páginas; sin desbordes horizontales a 375 px; sin enlaces internos rotos; sin errores de JavaScript. Portada ≈ 480 KB con fuentes e imágenes.
 
+## Cambios sueltos
+- 31-10-2026 — Incidencia: el commit `6e48113` ("CAE", 27/10) subió la plataforma interna de RRHH a este repositorio y sustituyó la portada. Revertido en `d12055a`. La plataforma debe vivir en su propio repositorio privado.
+- 31-10-2026 — Empresas: "En qué puedo ayudar" pasa a 24 tareas seleccionables en las tres columnas (día a día, entradas, salidas). Al marcar la primera aparece abajo un aviso "Reserva tu presupuesto" que no bloquea; su botón baja al formulario (ahora "Reserva tu presupuesto"), que muestra y envía las tareas agrupadas por columna. Lógica en `empresas.js`. Portada: tercer botón "Para empresas".
+
 ## Decisiones tomadas
 - Modalidad: solo online, en toda España (31-10-2026; antes también presencial).
 - Precio social: personas cuya situación laboral o económica les impide pagar el servicio y que lo necesitan.
