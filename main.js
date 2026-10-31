@@ -141,15 +141,15 @@
     f.querySelectorAll('input[name="servicio"]:checked').forEach(function (c) { servicios.push(c.value); });
     var empresa = val(f, 'empresa');
     return {
-      asunto: 'Solicitud de presupuesto — ' + empresa,
+      asunto: 'Diagnóstico gratuito — ' + empresa,
       texto:
         'Hola, Fernando. Os escribo desde ' + empresa + '.\n' +
         'Persona de contacto: ' + val(f, 'nombre') + '\n' +
         'Tamaño de la plantilla: ' + val(f, 'plantilla') + '\n' +
         'Servicios que nos interesan: ' + (servicios.length ? servicios.join(', ') : 'por concretar') + '\n' +
-        'Duración: ' + val(f, 'duracion') + '\n' +
+        'Modalidad: ' + val(f, 'duracion') + '\n' +
         'Lo que necesitamos: ' + val(f, 'mensaje') + '\n' +
-        'Para la llamada, mejor: ' + (val(f, 'horario') || 'cualquier momento') + '\n\n' +
+        'Para la videollamada, mejor: ' + (val(f, 'horario') || 'cualquier momento') + '\n\n' +
         'Escrito desde la web de RRHH Simple.'
     };
   });

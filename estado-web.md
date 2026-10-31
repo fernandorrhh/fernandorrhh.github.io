@@ -45,9 +45,9 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
   - Verificación: 0 incidencias WCAG 2 A/AA (axe-core) en las 19 páginas; sin desbordes horizontales a 375 px; sin enlaces internos rotos; sin errores de JavaScript. Portada ≈ 480 KB con fuentes e imágenes.
 
 ## Decisiones tomadas
-- Modalidad: online; presencial en Valencia o Madrid según disponibilidad.
+- Modalidad: solo online, en toda España (31-10-2026; antes también presencial).
 - Precio social: personas cuya situación laboral o económica les impide pagar el servicio y que lo necesitan.
-- Empresas: servicio a medida para empresas de menos de 20 personas trabajadoras (gestión operativa, fichajes, reclutamiento y contratación, despidos…), puntual o por periodos. Sin precio publicado: formulario → llamada → presupuesto.
+- Empresas (31-10-2026): RRHH externo con cuota mensual, coordinado con la gestoría del cliente. Hasta 10 personas, desde 220 €/mes; de 11 a 19, a medida. Planes de igualdad (50+): seguimiento desde 400 €, auditoría retributiva desde 600 €, renovación desde 1.200 €. Entrada: diagnóstico gratuito de 30 min → propuesta en 48 h. Lanzamiento: 20 % los 3 primeros meses para las 3 primeras empresas. Precios sin IVA; en la web solo el "desde".
 - Formularios: abren correo o WhatsApp ya rellenado; ningún dato pasa por terceros.
 - Flujo: una rama por fase, pull request y validación antes de fusionar con `main`.
 
