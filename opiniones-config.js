@@ -16,6 +16,9 @@ window.RRHH_OPINIONES = {
     consentimiento: 'entry.1892288707'
   },
 
+  /* Texto exacto de la opción de la casilla «Consentimiento» del formulario */
+  textoConsentimiento: 'Doy mi consentimiento para publicar esta reseña',
+
   /* Enlace CSV de la pestaña «Publicadas» de la hoja (Archivo › Compartir › Publicar en la web) */
   hoja: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5S1VP0r9aVP4B-OBOBlG4nMnWYagh8TkcmjBXhReRopkXiSJ3xewjMqm3Bwh0Yv6GcuG-JtvCSV02/pub?gid=1325156940&single=true&output=csv'
 };

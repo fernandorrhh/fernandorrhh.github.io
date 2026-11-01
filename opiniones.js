@@ -128,7 +128,7 @@
       datos.append(c.servicio, select.value);
       datos.append(c.puntuacion, rate.querySelector('input:checked').value);
       datos.append(c.opinion, texto.value.trim());
-      if (c.consentimiento) datos.append(c.consentimiento, 'Sí');
+      if (c.consentimiento) datos.append(c.consentimiento, CFG.textoConsentimiento || 'Sí');
 
       submit.setAttribute('aria-busy', 'true');
       submit.innerHTML = '<span class="spinner" aria-hidden="true"></span>Enviando…';
