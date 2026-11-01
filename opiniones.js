@@ -222,7 +222,8 @@
     });
     if (!lista.length) return;   // sin opiniones aprobadas, el bloque no aparece
 
-    var max = parseInt(bloque.getAttribute('data-max'), 10) || 6;
+    var carrusel = bloque.hasAttribute('data-carrusel');
+    var max = carrusel ? Infinity : (parseInt(bloque.getAttribute('data-max'), 10) || 6);
     var media = lista.reduce(function (s, o) { return s + o.puntos; }, 0) / lista.length;
 
     var cab = el('div', 'op-head');
@@ -269,6 +270,7 @@
     }
     bloque.appendChild(nota);
     bloque.hidden = false;
+    if (carrusel) iniciarCarrusel(bloque, ul, cab);
 
     // «Leer más» solo en las opiniones que no caben
     requestAnimationFrame(function () {
@@ -285,5 +287,58 @@
         q.insertAdjacentElement('afterend', b);
       });
     });
+  }
+
+  /* -------------------------------------------------------------
+     3. Carrusel: si las opiniones no caben en una fila, la fila se
+        desliza sola una tarjeta cada 10 s. Se para al pasar el ratón,
+        al usar el teclado dentro, con la pestaña oculta y con el botón
+        de pausa (WCAG 2.2.2). Con «reducir movimiento» no avanza solo.
+     ------------------------------------------------------------- */
+  var INTERVALO = 10000;
+  function iniciarCarrusel(bloque, ul, cab) {
+    bloque.classList.add('is-carrusel');
+    ul.removeAttribute('tabindex');
+    ul.setAttribute('aria-roledescription', 'carrusel');
+    var ctr = el('div', 'op-controls');
+    function boton(cls, etiqueta, svg) {
+      var b = el('button', 'op-ctl ' + cls); b.type = 'button';
+      b.setAttribute('aria-label', etiqueta); b.innerHTML = svg; ctr.appendChild(b); return b;
+    }
+    var prev = boton('op-prev', 'Opiniones anteriores', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>');
+    var pausa = boton('op-pause', 'Pausar el avance automático', '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>');
+    var next = boton('op-next', 'Opiniones siguientes', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>');
+    cab.appendChild(ctr);
+
+    var parado = reduce, encima = false, timer = null;
+    function paso() { var c = ul.children[0]; return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(ul).columnGap || 0) : ul.clientWidth; }
+    function desborda() { return ul.scrollWidth > ul.clientWidth + 4; }
+    function ir(dir) {
+      var fin = ul.scrollLeft + ul.clientWidth >= ul.scrollWidth - 4;
+      var ini = ul.scrollLeft <= 4;
+      var x = dir > 0 ? (fin ? 0 : ul.scrollLeft + paso()) : (ini ? ul.scrollWidth : ul.scrollLeft - paso());
+      ul.scrollTo({ left: x, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    function estado() {
+      var hay = desborda();
+      ctr.hidden = !hay;
+      pausa.setAttribute('aria-pressed', String(parado));
+      pausa.setAttribute('aria-label', parado ? 'Reanudar el avance automático' : 'Pausar el avance automático');
+      bloque.classList.toggle('is-paused', parado);
+      clearInterval(timer); timer = null;
+      if (hay && !parado && !encima && !document.hidden) timer = setInterval(function () { ir(1); }, INTERVALO);
+    }
+    prev.addEventListener('click', function () { ir(-1); estado(); });
+    next.addEventListener('click', function () { ir(1); estado(); });
+    pausa.addEventListener('click', function () { parado = !parado; estado(); });
+    bloque.addEventListener('mouseenter', function () { encima = true; estado(); });
+    bloque.addEventListener('mouseleave', function () { encima = false; estado(); });
+    bloque.addEventListener('focusin', function () { encima = true; estado(); });
+    bloque.addEventListener('focusout', function (e) { if (!bloque.contains(e.relatedTarget)) { encima = false; estado(); } });
+    ul.addEventListener('touchstart', function () { encima = true; estado(); }, { passive: true });
+    ul.addEventListener('touchend', function () { encima = false; estado(); }, { passive: true });
+    document.addEventListener('visibilitychange', estado);
+    window.addEventListener('resize', estado);
+    estado();
   }
 })();

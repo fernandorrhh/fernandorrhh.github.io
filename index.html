@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=17">
+<link rel="stylesheet" href="ui.css?v=19">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -76,6 +76,7 @@
 
 <main id="contenido">
 
+
   <!-- Portada -->
   <section class="hero">
     <div class="wrap">
@@ -117,13 +118,6 @@
     </div>
   </section>
 
-  <!-- Cinta de servicios (en movimiento continuo) -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Revisión de CV</span><i></i><span>Simulación de entrevista</span><i></i><span>Nóminas</span><i></i><span>Contratos y convenios</span><i></i><span>Despidos</span><i></i><span>Excedencias</span><i></i><span>Cambios de IRPF</span><i></i><span>Primera consulta gratis</span><i></i>
-    </div>
-  </div>
-
   <!-- Declaración: se lee palabra a palabra al hacer scroll -->
   <section class="statement" aria-label="Cómo trabajo">
     <div class="wrap">
@@ -131,61 +125,55 @@
     </div>
   </section>
 
-  <!-- Qué hace -->
+  <!-- Opiniones -->
+  <section class="band-tight" aria-label="Opiniones">
+    <div class="wrap">
+      <div class="opiniones" role="region" data-opiniones="personas" data-carrusel hidden></div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
   <section class="band" aria-labelledby="h-ayuda">
     <div class="wrap">
-      <div class="grid">
-        <h2 class="title c-1-5" id="h-ayuda" data-rise>En qué te puedo echar una mano</h2>
-        <p class="c-7-12 body-lg muted u-w42 u-self-end" data-rise style="--rise-delay:70ms">
-          Precio social y precio estándar en cada servicio. Todos los precios son sin IVA.
-        </p>
+      <h2 class="title u-w14" id="h-ayuda" data-rise>En qué te puedo echar una mano</h2>
+      <ul class="svc-grid u-mt8" role="list" data-rise>
+        <li class="svc-card">
+          <h3>Buscar trabajo</h3>
+          <p>CV adaptado al puesto, simulación de entrevista y una estrategia que se parezca a ti.</p>
+          <a class="btn-text" href="servicios.html#h-tarifas">Ver precios</a>
+        </li>
+        <li class="svc-card">
+          <h3>Entender lo que firmas</h3>
+          <p>Tu nómina, tu contrato, tu convenio o tu despido: qué dice de verdad y qué puedes reclamar.</p>
+          <a class="btn-text" href="servicios.html#h-tarifas">Ver precios</a>
+        </li>
+        <li class="svc-card">
+          <h3>Procesos laborales</h3>
+          <p>Cartas a la empresa, IRPF, excedencias o una negociación: qué decir y cómo plantearlo.</p>
+          <a class="btn-text" href="servicios.html#h-tarifas">Ver precios</a>
+        </li>
+      </ul>
+      <p class="note u-mt6 u-w46" data-rise>Primera consulta gratis. Precios sin IVA. ¿Tienes una empresa? <a class="link" href="empresas.html">Mira el servicio para empresas</a>.</p>
+    </div>
+  </section>
+
+  <!-- La calculadora: lo único que puedes hacer tú mismo ahora mismo -->
+  <section class="band field card-over" aria-labelledby="h-calc">
+    <div class="wrap">
+      <div class="grid u-grid-s7-end">
+        <div class="c-1-7">
+          <h2 class="title" id="h-calc" data-rise>¿Cuánto te corresponde si te despiden?</h2>
+          <p class="body-lg u-mt5 u-w46" data-rise style="--rise-delay:70ms">
+            Tres datos y lo sabes. Sin dejar tu correo, sin registrarte y sin que nada salga de tu navegador.
+          </p>
+        </div>
+        <div class="c-8-12" data-rise style="--rise-delay:140ms">
+          <div class="btn-row">
+            <a href="calculadora-despido.html" class="btn">Calcular mi indemnización</a>
+          </div>
+          <p class="note u-mt4">Orientativo. Calcula los tres escenarios de despido según el Estatuto de los Trabajadores.</p>
+        </div>
       </div>
-
-      <div class="stack u-mt9">
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <h3>Buscar trabajo sin perder la cabeza</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Revisamos tu CV para el puesto concreto al que vas, ensayamos la entrevista con las preguntas incómodas incluidas, y montamos una estrategia que se parezca a ti y no a una plantilla.</p>
-            <ul class="branch-list">
-              <li><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="cv">12 € / 20 €</span></li>
-              <li><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="entrevista">18 € / 30 €</span></li>
-              <li><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="packCvEntrevista">25 € / 40 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <h3>Entender lo que firmas</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Tu nómina, tu contrato, tu convenio. Qué dice de verdad, si está bien hecho y qué puedes reclamar si no lo está. Y si hay un despido o un conflicto de por medio, también.</p>
-            <ul class="branch-list">
-              <li><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="documentos">15 € / 25 €</span></li>
-              <li><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="despidos">22 € / 40 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-
-        <article class="branch grid stack-card" data-rise>
-          <div class="c-1-5">
-            <h3>Procesos laborales</h3>
-          </div>
-          <div class="c-7-12">
-            <p>Cartas a la empresa, cambios de IRPF, una excedencia, preparar una negociación. Qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
-            <ul class="branch-list">
-              <li><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteSencillo">8 € / 12 €</span></li>
-              <li><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteCarga">15 € / 25 €</span></li>
-            </ul>
-            <a class="btn-text" href="servicios.html">Ver el detalle</a>
-          </div>
-        </article>
-      </div>
-      <p class="note u-mt8 u-w46" data-rise><strong>¿Tienes una empresa de menos de 20 personas?</strong> Fichajes, selección, contratos, despidos y gestión del día a día, a medida y con presupuesto cerrado. <a class="link" href="empresas.html">Ver el servicio para empresas</a>.</p>
     </div>
   </section>
 
@@ -233,55 +221,6 @@
           <p class="note u-mt4">Ejemplo ilustrativo con cifras inventadas.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- La calculadora: lo único que puedes hacer tú mismo ahora mismo -->
-  <section class="band field card-over" aria-labelledby="h-calc">
-    <div class="wrap">
-      <div class="grid u-grid-s7-end">
-        <div class="c-1-7">
-          <h2 class="title" id="h-calc" data-rise>¿Cuánto te corresponde si te despiden?</h2>
-          <p class="body-lg u-mt5 u-w46" data-rise style="--rise-delay:70ms">
-            Tres datos y lo sabes. Sin dejar tu correo, sin registrarte y sin que nada salga de tu navegador.
-          </p>
-        </div>
-        <div class="c-8-12" data-rise style="--rise-delay:140ms">
-          <div class="btn-row">
-            <a href="calculadora-despido.html" class="btn">Calcular mi indemnización</a>
-          </div>
-          <p class="note u-mt4">Orientativo. Calcula los tres escenarios de despido según el Estatuto de los Trabajadores.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quién hay detrás -->
-  <section class="band" aria-labelledby="h-yo">
-    <div class="wrap">
-      <div class="grid">
-        <div class="c-2-6 u-col-2-10">
-          <div class="photo-pills" aria-hidden="true">
-            <figure class="pill pill-a" data-pill><img src="assets/fernando-terraza.webp" alt="" width="900" height="759" loading="lazy"></figure>
-            <figure class="pill pill-b" data-pill><img src="assets/fernando-portatil.webp" alt="" width="1000" height="767" loading="lazy"></figure>
-          </div>
-          <div class="letter letter-over" data-rise>
-            <div class="prose">
-              <h2 class="title u-mb7" id="h-yo">Soy Fernando</h2>
-              <p>Llevo más de cinco años trabajando en recursos humanos dentro de empresas, y antes di clase de Formación y Orientación Laboral. Esa mezcla —ver cómo se toman las decisiones desde dentro y haber tenido que explicárselas a gente que empezaba de cero— es lo que pongo de tu lado.</p>
-              <p>Monté esto porque me cansé de ver a gente firmar cosas que no entendía. Conocer tus derechos no debería depender de a quién conoces.</p>
-              <p>Te voy a contar lo que hay, aunque no sea lo que quieres oír. Si tu caso no tiene recorrido, te lo digo en la primera consulta y no te cobro nada.</p>
-            </div>
-            <p class="sign">Fernando de la Sota Escriche
-              <span>Graduado en Relaciones Laborales y RRHH (UCM)</span>
-            </p>
-            <div class="btn-row u-mt7">
-              <a class="btn-text" href="sobre-mi.html">Mi trayectoria completa</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="opiniones u-mt9" role="region" data-opiniones="personas" data-max="3" hidden></div>
     </div>
   </section>
 
@@ -349,6 +288,6 @@
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
 <script src="opiniones-config.js?v=3"></script>
-<script src="opiniones.js?v=3" defer></script>
+<script src="opiniones.js?v=4" defer></script>
 </body>
 </html>

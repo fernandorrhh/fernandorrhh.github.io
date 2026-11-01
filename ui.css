@@ -882,3 +882,52 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 @media (prefers-reduced-motion: reduce){ .v3 .rate-star svg{ transition: none; } }
 .v3 .op-list:focus-visible{ outline: 3px solid var(--ink); outline-offset: 4px; border-radius: var(--radius-soft); }
 .form[hidden]{ display: none !important; }   /* .form usa display:grid, que anulaba el atributo hidden */
+
+/* ===========================================================================
+   Portada simplificada: servicios en tres tarjetas y opiniones en carrusel
+   =========================================================================== */
+.v3 .svc-grid{ list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.v3 .svc-card{
+  display: flex; flex-direction: column; gap: var(--s3);
+  padding: clamp(1.5rem, 2.6vw, 2.25rem); border-radius: var(--radius-card);
+  background: var(--brand-paper); color: var(--ink);
+}
+.v3 .svc-card h3{ font-size: clamp(1.25rem, 1.9vw, 1.5rem); line-height: 1.15; color: var(--ink) !important; }
+.v3 .svc-card p{ color: var(--ink-2) !important; flex: 1; }
+.v3 .svc-card .btn-text{ align-self: flex-start; color: var(--ink) !important; }
+@media (max-width: 980px){ .v3 .svc-grid{ grid-template-columns: 1fr; } }
+
+/* Carrusel: una fila; si no caben, se desliza (scroll nativo con encaje) */
+.v3 .is-carrusel .op-list{
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: var(--s4);
+  scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.v3 .is-carrusel .op-list::-webkit-scrollbar{ display: none; }
+.v3 .is-carrusel .op-card{ flex: 0 0 calc((100% - 2 * var(--s4)) / 3); scroll-snap-align: start; }
+@media (max-width: 980px){ .v3 .is-carrusel .op-card{ flex-basis: calc((100% - var(--s4)) / 2); } }
+@media (max-width: 640px){
+  .v3 .is-carrusel .op-list{ margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) var(--s3); scroll-padding-inline: var(--gutter); gap: var(--s3); }
+  .v3 .is-carrusel .op-card{ flex-basis: 86%; }
+}
+.v3 .op-controls{ display: flex; gap: var(--s2); }
+.v3 .op-controls[hidden]{ display: none; }
+.v3 .op-ctl{
+  width: 44px; height: 44px; border-radius: var(--pill); border: 0; cursor: pointer;
+  display: grid; place-items: center; background: var(--brand-paper); color: var(--ink);
+  transition: transform 160ms var(--ease-out), background-color 180ms ease;
+}
+.v3 .op-ctl svg{ width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.v3 .op-pause .i-play{ display: none; fill: currentColor; stroke: none; }
+.v3 .is-paused .op-pause .i-play{ display: block; }
+.v3 .is-paused .op-pause .i-pause{ display: none; }
+.v3 .op-ctl:active{ transform: scale(0.95); }
+.v3 .op-ctl:focus-visible{ outline: 3px solid var(--ink); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine){ .v3 .op-ctl:hover{ background: var(--accent); } }
+@media (prefers-reduced-motion: reduce){ .v3 .op-ctl{ transition: none; } }
+/* Media de opiniones sobre secciones oscuras */
+.v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary,
+.v3 main > section.field .op-summary{ color: var(--brand-light) !important; }
+.v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary .op-count,
+.v3 main > section.field .op-summary .op-count{ color: #e4e0d3 !important; }
+.v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary .op-star svg{ stroke: #e4e0d3; }
+.v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary .op-star.is-on svg{ fill: var(--accent); stroke: var(--accent); }
