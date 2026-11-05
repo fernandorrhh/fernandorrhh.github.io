@@ -1075,3 +1075,47 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
   .srv *, .srv *::before, .srv *::after{ transition-duration: 0ms !important; transition-delay: 0ms !important; }
   .srv .srv-desc{ transition: opacity 150ms linear !important; }
 }
+
+/* ===========================================================================
+   v3.8 — Páginas que se solapan al bajar (apilado)
+   Cada sección se queda fija arriba y la siguiente se desliza por encima.
+   Mejora progresiva: ui.js añade .is-stacked y mide cada sección. Sin
+   JavaScript, o con "reducir movimiento", las secciones quedan seguidas.
+   =========================================================================== */
+
+/* overflow-x: hidden convierte al body en contenedor de scroll y rompe
+   position: sticky. clip recorta igual sin crear contenedor de scroll. */
+@supports (overflow: clip){
+  body{ overflow-x: clip; }
+}
+
+.v3 .stack.is-stacked > section{
+  position: sticky;
+  /* Una sección más alta que la pantalla se desplaza entera y se fija
+     cuando llega su final; una más corta se fija nada más llegar arriba.
+     --ph es su altura, que mide ui.js. */
+  top: min(0px, calc(100svh - var(--ph, 100svh)));
+  z-index: var(--pz, 1);
+  margin-top: 0;
+  /* Cada sección ocupa al menos una pantalla: así nunca se ve un hueco
+     entre dos y el contenido queda centrado. */
+  min-height: 100svh;
+  display: grid; align-content: center;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+/* Si las opiniones no llegan a cargarse, su sección no se queda ocupando
+   una pantalla en blanco: vuelve al flujo normal. En cuanto el carrusel
+   aparece (se le quita hidden), la regla deja de aplicarse sola. */
+.v3 .stack.is-stacked > section:has([data-opiniones][hidden]){
+  position: static; min-height: 0; display: block;
+}
+
+/* La portada abre la pila: sin esquinas redondas y con fondo propio,
+   porque hasta ahora heredaba el del body. */
+.v3 .stack.is-stacked > section:first-of-type{ border-radius: 0; }
+.v3 .stack.is-stacked > .hero{ background-color: var(--paper); }
+
+@media (prefers-reduced-motion: reduce){
+  .v3 .stack.is-stacked > section{ position: static; }
+}

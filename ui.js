@@ -213,5 +213,29 @@
     }
   }
 
+  /* ---------------------------------------------------------------
+     Secciones que se solapan al bajar.
+     El CSS hace el apilado; aquí sólo se mide cada sección para saber
+     dónde tiene que quedarse fija. Si esto no se ejecuta, la página se
+     ve como siempre: las secciones una tras otra.
+     --------------------------------------------------------------- */
+  var stack = document.querySelector('main.stack');
+  if (stack && !reduce && 'ResizeObserver' in window) {
+    var panels = Array.prototype.filter.call(stack.children, function (el) {
+      return el.tagName === 'SECTION';
+    });
+    if (panels.length > 1) {
+      panels.forEach(function (s, i) { s.style.setProperty('--pz', i + 1); });
+      var medir = function () {
+        panels.forEach(function (s) { s.style.setProperty('--ph', s.offsetHeight + 'px'); });
+      };
+      medir();
+      /* Sólo cambia el desplazamiento de fijado, nunca la altura:
+         no puede entrar en bucle con el observador. */
+      new ResizeObserver(medir).observe(stack);
+      stack.classList.add('is-stacked');
+    }
+  }
+
   // (la red de seguridad se deja correr: no hace daño si todo ya está visible)
 })();
