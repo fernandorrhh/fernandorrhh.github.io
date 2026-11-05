@@ -8,6 +8,7 @@ window.PRECIOS = {
   cv:               30,  // Revisión de CV
   entrevista:       40,  // Simulación de entrevista
   packCvEntrevista: 60,  // Pack CV + entrevista
+  guias:            45,  // Pack de guías personalizadas (CV incluido)
   documentos:       35,  // Nómina, contrato o convenio
   despidos:         60,  // Despidos y conflictos
   tramiteSencillo:  20,  // Trámites sencillos
