@@ -53,6 +53,7 @@ Rediseño de rrhhsimple.com por fases. `main` publica la web (GitHub Pages + CNA
 - 01-11-2026 — Portada simplificada: orden portada › declaración › opiniones (carrusel) › servicios en 3 tarjetas sin precios › calculadora › nómina › cierre. Quitada la sección «Soy Fernando» (está en Sobre mí). Carrusel de opiniones: una fila; si no caben, avanza una tarjeta cada 10 s, con anterior/siguiente y pausa, se detiene con ratón, teclado, toque o pestaña oculta, y no avanza solo con «reducir movimiento».
 
 ## Decisiones tomadas
+- Precios particulares (05-11-2026): se elimina el precio social/estándar; un precio final con IVA incluido por servicio: CV 30 €, entrevista 40 €, pack CV+entrevista 60 €, nómina/contrato/convenio 35 €, despidos y conflictos 60 €, trámites sencillos 20 €, trámites con más carga 40 €. Empresas siguen en «desde … + IVA». Pendiente: confirmar con la gestoría que aplica el 21 % general.
 - Modalidad: solo online, en toda España (31-10-2026; antes también presencial).
 - Precio social: personas cuya situación laboral o económica les impide pagar el servicio y que lo necesitan.
 - Empresas (31-10-2026): RRHH externo con cuota mensual, coordinado con la gestoría del cliente. Hasta 10 personas, desde 220 €/mes; de 11 a 19, a medida. Planes de igualdad (50+): seguimiento desde 400 €, auditoría retributiva desde 600 €, renovación desde 1.200 €. Entrada: diagnóstico gratuito de 30 min → propuesta en 48 h. Lanzamiento: 20 % los 3 primeros meses para las 3 primeras empresas. Precios sin IVA; en la web solo el "desde".
