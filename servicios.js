@@ -67,6 +67,7 @@
   function openSheet(t) {
     if (busy) return;
     last = t; fill(t);
+    panel.getAnimations().forEach(function (a) { a.cancel(); });
     sheet.showModal(); lockScroll(true); panel.scrollTop = 0;
     requestAnimationFrame(function () { sheet.classList.add('is-open'); });
     if (reduce) { panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'linear' }); return; }
@@ -82,7 +83,7 @@
   function closeSheet() {
     if (busy || !sheet.open) return;
     busy = true; sheet.classList.remove('is-open');
-    var done = function () { sheet.close(); lockScroll(false); busy = false; if (last) last.focus({ preventScroll: true }); };
+    var done = function () { panel.getAnimations().forEach(function (a) { a.cancel(); }); sheet.close(); lockScroll(false); busy = false; if (last) last.focus({ preventScroll: true }); };
     if (reduce) { panel.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }).finished.then(done, done); return; }
     var to = inset(last.getBoundingClientRect(), panel.getBoundingClientRect());
     panel.animate([{ clipPath: 'inset(0px 0px 0px 0px round ' + RADIUS + 'px)' }, { clipPath: to }],
