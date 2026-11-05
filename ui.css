@@ -931,3 +931,147 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 .v3 main > section.field .op-summary .op-count{ color: #e4e0d3 !important; }
 .v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary .op-star svg{ stroke: #e4e0d3; }
 .v3 main > section:is(:nth-of-type(4n+3),:nth-of-type(4n+5)):not(.field) .op-summary .op-star.is-on svg{ fill: var(--accent); stroke: var(--accent); }
+
+/* ===========================================================================
+   v3.7 — Servicios: cuadros que se abren (05-11-2026)
+   Cada servicio es un cuadro con solo el título. Con puntero fino, al pasar
+   el cursor aparece la descripción; al abrirlo, la ficha con el precio.
+   Sin JS, o con puntero táctil, la descripción se ve siempre (y sin JS, el
+   precio al pie). Colores y formas: solo tokens de marca.
+   =========================================================================== */
+.srv{
+  --srv-tile: clamp(1.5rem, 1.1rem + 1.1vw, 2rem);   /* título del cuadro */
+  --srv-ring: var(--ink);
+}
+.srv [data-tone="paper"]{ --tone-bg: var(--brand-paper); --tone-fg: var(--ink); --tone-ring: var(--ink); }
+.srv [data-tone="olive-light"]{ --tone-bg: var(--brand-olive-mid); --tone-fg: var(--ink); --tone-ring: var(--ink); }
+.srv [data-tone="olive"]{ --tone-bg: var(--brand-olive); --tone-fg: var(--brand-light); --tone-ring: var(--accent); }
+.srv [data-tone="ink"]{ --tone-bg: var(--brand-charcoal); --tone-fg: var(--brand-light); --tone-ring: var(--accent); }
+
+/* Filtros */
+.srv-bar{ display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s4) var(--s6); margin-bottom: var(--s5); }
+.srv-filters{ display: flex; flex-wrap: wrap; gap: var(--s2); }
+.srv-chip{
+  display: inline-flex; align-items: center; gap: var(--s3); min-height: 44px; padding: 0 var(--s5);
+  border: 0; border-radius: var(--pill); background: color-mix(in srgb, var(--brand-paper) 60%, transparent); color: var(--ink);
+  font: 600 0.9375rem/1 var(--sans); cursor: pointer;
+  transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out), transform var(--t-press) var(--ease-out);
+}
+.srv-chip i{ width: 12px; height: 12px; border-radius: 50%; background: var(--dot, transparent); flex: none; }
+.srv-chip[data-filter="buscar"]{ --dot: var(--brand-paper); }
+.srv-chip[data-filter="entender"]{ --dot: var(--brand-olive-mid); }
+.srv-chip[data-filter="procesos"]{ --dot: var(--brand-olive); }
+.srv-chip:active{ transform: scale(.97); }
+.srv-chip[aria-pressed="true"]{ background: var(--brand-charcoal); color: var(--brand-light); }
+.srv-chip[aria-pressed="true"] i{ background: var(--accent); }
+.srv-chip:focus-visible, .srv-tile:focus-visible{ outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine){ .srv-chip[aria-pressed="false"]:hover{ background: var(--brand-paper); } }
+.srv-hint{ margin: 0; max-width: 44ch; color: var(--ink-2); }
+.srv-hint-touch{ display: none; }
+@media (hover: none), (pointer: coarse), (max-width: 640px){
+  .srv-hint-hover{ display: none; } .srv-hint-touch{ display: inline; }
+}
+
+/* Rejilla 3 × 3 */
+.srv-grid{ list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); }
+.srv-cell{ display: flex; min-width: 0; }
+@media (max-width: 1080px){ .srv-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px){ .srv-grid{ grid-template-columns: 1fr; gap: var(--s3); } }
+
+/* Cuadro */
+.srv-tile{
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; width: 100%;
+  min-height: max(var(--base, 232px), var(--need, 0px)); padding: var(--s5) var(--s5) var(--s5) var(--s5);
+  border: 0; border-radius: var(--radius-card); background: var(--tone-bg); color: var(--tone-fg);
+  font: inherit; text-align: left; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent;
+  transition: transform var(--t-press) var(--ease-out), opacity 320ms var(--ease-out);
+}
+.srv-tile:active{ transform: scale(.985); }
+.srv-tile.is-dim{ opacity: .34; }
+.srv-plus{
+  align-self: flex-end; position: relative; flex: none; width: 44px; height: 44px; border-radius: 50%;
+  background: color-mix(in srgb, var(--tone-fg) 12%, transparent);
+  transition: background-color 240ms var(--ease-out), transform 420ms var(--ease-soft);
+}
+.srv-plus::before, .srv-plus::after{
+  content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 2px; margin: -1px 0 0 -8px; border-radius: 2px;
+  background: var(--tone-fg); transition: background-color 240ms var(--ease-out);
+}
+.srv-plus::after{ transform: rotate(90deg); }
+.srv-body{ position: relative; display: block; margin-top: auto; padding-top: var(--s5); }
+.srv-title{
+  display: block; font: 600 var(--srv-tile)/1.08 var(--sans); letter-spacing: -.025em; text-wrap: balance;
+}
+.srv-desc{ display: block; margin-top: var(--s3); max-width: 36ch; font-size: var(--body); line-height: 1.5; text-wrap: pretty; }
+
+/* Sin script: todo visible, con el precio al pie */
+.srv:not(.is-ready) .srv-tile::after{ content: attr(data-price) " · IVA incluido"; margin-top: var(--s3); font: 600 0.9375rem var(--sans); }
+
+/* Puntero fino y pantalla ancha: la descripción aparece al pasar el cursor */
+@media (hover: hover) and (pointer: fine) and (min-width: 641px){
+  .srv.is-ready .srv-title{ transition: transform 420ms var(--ease-soft); }
+  .srv.is-ready .srv-desc{
+    position: absolute; left: 0; right: 0; bottom: 0; margin: 0; opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 220ms var(--ease-out), transform 420ms var(--ease-soft);
+  }
+  .srv.is-ready .srv-tile:is(:hover, :focus-visible) .srv-title{ transform: translateY(calc(var(--lift, 96px) * -1)); }
+  .srv.is-ready .srv-tile:is(:hover, :focus-visible) .srv-desc{ opacity: 1; transform: none; transition-delay: 60ms, 60ms; }
+  .srv-tile:is(:hover, :focus-visible) .srv-plus{ background: var(--accent); transform: rotate(90deg) scale(1.08); }
+  .srv-tile:is(:hover, :focus-visible) .srv-plus::before,
+  .srv-tile:is(:hover, :focus-visible) .srv-plus::after{ background: var(--accent-ink); }
+}
+@media (hover: none), (pointer: coarse), (max-width: 640px){
+  .srv-tile{ --base: 0px; min-height: 0; padding: var(--s5) var(--s4) var(--s5) var(--s5); }
+  .srv-tile .srv-body{ padding-top: var(--s4); }
+}
+
+/* Ficha de detalle: crece desde el cuadro */
+.srv-sheet{
+  width: min(980px, calc(100% - 32px)); max-width: none; max-height: none; margin: auto; padding: 0; border: 0;
+  background: transparent; color: inherit; overflow: visible;
+}
+.srv-sheet::backdrop{ background: rgba(26, 26, 26, .58); opacity: 0; transition: opacity 320ms var(--ease-out); }
+.srv-sheet.is-open::backdrop{ opacity: 1; }
+.srv-panel{
+  position: relative; max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain;
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px);
+  padding: clamp(28px, 4.5vw, 64px); border-radius: var(--radius-card); background: var(--tone-bg); color: var(--tone-fg);
+}
+.srv-panel :focus-visible{ outline: 3px solid var(--tone-ring); outline-offset: 3px; border-radius: 6px; }
+.srv-close{
+  position: absolute; top: clamp(16px, 2vw, 24px); right: clamp(16px, 2vw, 24px); width: 48px; height: 48px; border: 0;
+  border-radius: 50%; background: color-mix(in srgb, var(--tone-fg) 12%, transparent); cursor: pointer;
+  transition: background-color 220ms var(--ease-out), transform 300ms var(--ease-soft);
+}
+.srv-close::before, .srv-close::after{
+  content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 2px; margin: -1px 0 0 -9px; border-radius: 2px; background: var(--tone-fg);
+}
+.srv-close::before{ transform: rotate(45deg); } .srv-close::after{ transform: rotate(-45deg); }
+.srv-close:active{ transform: scale(.94); }
+@media (hover: hover) and (pointer: fine){
+  .srv-close:hover{ background: var(--accent); transform: rotate(90deg); }
+  .srv-close:hover::before, .srv-close:hover::after{ background: var(--accent-ink); }
+}
+.srv-sheet-main{ display: flex; flex-direction: column; gap: var(--s4); padding-right: clamp(0px, 3vw, 40px); }
+.srv-sheet-group{ margin: 0; padding-right: 56px; font: 600 1rem/1.2 var(--sans); color: inherit; }
+.srv-sheet-title{ margin: 0; font: 600 var(--title)/1.04 var(--sans); letter-spacing: -.03em; text-wrap: balance; color: inherit; }
+.srv-sheet-desc{ margin: 0; max-width: 42ch; font-size: var(--lead); line-height: 1.5; text-wrap: pretty; color: inherit; }
+.srv-facts{ list-style: none; margin: var(--s2) 0 0; padding: 0; display: grid; gap: var(--s3); }
+.srv-facts li{ display: flex; gap: var(--s3); align-items: baseline; color: inherit; }
+.srv-facts li::before{ content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); translate: 0 -1px; }
+.srv-sheet-side{ display: flex; flex-direction: column; justify-content: flex-end; gap: var(--s6); }
+.srv-price{ margin: 0; display: flex; flex-direction: column; gap: var(--s1); color: inherit; }
+.srv-amount{ font: 600 var(--display)/.95 var(--sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.srv-amount.is-text{ font-size: var(--title); letter-spacing: -.03em; }
+.srv-vat{ font-size: var(--body); }
+.srv-actions{ display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); }
+.srv-alt{ color: inherit; font-weight: 700; text-underline-offset: .2em; text-decoration-thickness: 2px; }
+@media (max-width: 760px){
+  .srv-panel{ grid-template-columns: 1fr; gap: var(--s6); }
+  .srv-sheet-main{ padding-right: 0; }
+  .srv-sheet{ width: calc(100% - 24px); }
+}
+@media (prefers-reduced-motion: reduce){
+  .srv *, .srv *::before, .srv *::after{ transition-duration: 0ms !important; transition-delay: 0ms !important; }
+  .srv .srv-desc{ transition: opacity 150ms linear !important; }
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Servicios y tarifas — RRHH Simple</title>
-<meta name="description" content="Revisión de CV, simulación de entrevistas, asesoramiento sobre nómina, contrato, despidos y trámites laborales. Un precio claro por servicio, IVA incluido.">
+<meta name="description" content="Revisión de CV, simulación de entrevistas, guías personalizadas, asesoramiento sobre nómina, contrato, despidos y trámites laborales. Un precio claro por servicio, IVA incluido.">
 <meta property="og:title" content="Servicios y tarifas — RRHH Simple">
 <meta property="og:description" content="Revisión de CV, entrevistas, nómina, contrato, despidos y trámites. Un precio claro por servicio, IVA incluido.">
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=19">
+<link rel="stylesheet" href="ui.css?v=20">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -141,57 +141,89 @@
     <div class="wrap">
       <h2 class="sr-only" id="h-tarifas">Servicios y precios</h2>
 
-      <div class="menu-sheet" data-rise>
-
-        <div class="menu-group tone-1">
-          <h3>Buscar trabajo</h3>
-          <div class="menu-item">
-            <p class="menu-line"><span>Revisión de CV</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="cv">30 €</span></p>
-            <p>Estudiamos y adaptamos tu CV a tu perfil concreto y al puesto al que quieres postular.</p>
+      <div class="srv" id="servicios-grid">
+        <div class="srv-bar">
+          <div class="srv-filters" role="group" aria-label="Filtrar por tipo de servicio">
+            <button type="button" class="srv-chip" data-filter="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="srv-chip" data-filter="buscar" aria-pressed="false"><i></i>Buscar trabajo</button>
+            <button type="button" class="srv-chip" data-filter="entender" aria-pressed="false"><i></i>Entender lo que firmas</button>
+            <button type="button" class="srv-chip" data-filter="procesos" aria-pressed="false"><i></i>Procesos laborales</button>
           </div>
-
-          <div class="menu-item">
-            <p class="menu-line"><span>Simulación de entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="entrevista">40 €</span></p>
-            <p>Simulacro de 45 a 50 minutos, por videollamada, con las preguntas incómodas incluidas y la devolución de qué ha funcionado y qué no.</p>
-          </div>
-
-          <div class="menu-item">
-            <p class="menu-line"><span>Pack CV + entrevista</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="packCvEntrevista">60 €</span></p>
-            <p>Las dos cosas, trabajadas juntas como una sola estrategia hacia el puesto que buscas.</p>
-          </div>
-
-          <div class="menu-item">
-            <p class="menu-line"><span>Servicio a medida</span><span class="leader" aria-hidden="true"></span><span class="amount">A convenir</span></p>
-            <p>Análisis completo de tu situación laboral y una estrategia de búsqueda hecha para lo que necesitas.</p>
-          </div>
+          <p class="srv-hint">
+            <span class="srv-hint-hover">Pasa el cursor por un servicio para ver de qué va. Ábrelo para ver el precio.</span>
+            <span class="srv-hint-touch">Toca un servicio para ver de qué va y cuánto cuesta.</span>
+          </p>
         </div>
 
-        <div class="menu-group tone-2">
-          <h3>Entender lo que firmas</h3>
-          <div class="menu-item">
-            <p class="menu-line"><span>Nómina, contrato o convenio</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="documentos">35 €</span></p>
-            <p>Repasamos juntos qué dice, si está bien hecho y qué puedes reclamar si no lo está. También permisos, jornada y vacaciones.</p>
-          </div>
+        <ul class="srv-grid">
+        <li class="srv-cell" data-rise style="--rise-delay:0ms"><button type="button" class="srv-tile" data-tone="paper" data-group="buscar" data-key="cv" data-price="30 €" aria-haspopup="dialog" aria-labelledby="t1" aria-describedby="d1">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t1">Revisión de CV</span><span class="srv-desc" id="d1">Estudiamos y adaptamos tu CV a tu perfil concreto y al puesto al que quieres postular.</span></span>
+        </button></li>
 
-          <div class="menu-item">
-            <p class="menu-line"><span>Despidos y conflictos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="despidos">60 €</span></p>
-            <p>Analizamos tu caso en detalle y te cuento qué opciones tienes y cómo defenderte, paso a paso. Recuerda que hay 20 días hábiles de plazo.</p>
-          </div>
-        </div>
+        <li class="srv-cell" data-rise style="--rise-delay:70ms"><button type="button" class="srv-tile" data-tone="paper" data-group="buscar" data-key="entrevista" data-price="40 €" aria-haspopup="dialog" aria-labelledby="t2" aria-describedby="d2">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t2">Simulación de entrevista</span><span class="srv-desc" id="d2">Simulacro de 45 a 50 minutos, por videollamada, con las preguntas incómodas incluidas y la devolución de qué ha funcionado y qué no.</span></span>
+        </button></li>
 
-        <div class="menu-group tone-3">
-          <h3>Procesos laborales</h3>
-          <div class="menu-item">
-            <p class="menu-line"><span>Trámites sencillos</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteSencillo">20 €</span></p>
-            <p>Cartas y comunicaciones a la empresa, cambios de IRPF, solicitud de expedientes, acuerdos.</p>
-          </div>
+        <li class="srv-cell" data-rise style="--rise-delay:140ms"><button type="button" class="srv-tile" data-tone="paper" data-group="buscar" data-key="packCvEntrevista" data-price="60 €" aria-haspopup="dialog" aria-labelledby="t3" aria-describedby="d3">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t3">Pack CV + entrevista</span><span class="srv-desc" id="d3">Las dos cosas, trabajadas juntas como una sola estrategia hacia el puesto que buscas.</span></span>
+        </button></li>
 
-          <div class="menu-item">
-            <p class="menu-line"><span>Trámites con más carga</span><span class="leader" aria-hidden="true"></span><span class="amount" data-precio="tramiteCarga">40 €</span></p>
-            <p>Excedencias o negociar algo con la empresa: qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</p>
-          </div>
-        </div>
+        <li class="srv-cell" data-rise style="--rise-delay:0ms"><button type="button" class="srv-tile" data-tone="paper" data-group="buscar" data-key="guias" data-price="45 €" aria-haspopup="dialog" aria-labelledby="t4" aria-describedby="d4">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t4">Pack de guías personalizadas</span><span class="srv-desc" id="d4">Guías de búsqueda de empleo preparadas para tu perfil y el puesto que buscas, con la revisión de tu CV incluida.</span></span>
+        </button></li>
 
+        <li class="srv-cell" data-rise style="--rise-delay:70ms"><button type="button" class="srv-tile" data-tone="olive-light" data-group="entender" data-key="documentos" data-price="35 €" aria-haspopup="dialog" aria-labelledby="t5" aria-describedby="d5">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t5">Nómina, contrato o convenio</span><span class="srv-desc" id="d5">Repasamos juntos qué dice, si está bien hecho y qué puedes reclamar si no lo está. También permisos, jornada y vacaciones.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:140ms"><button type="button" class="srv-tile" data-tone="olive-light" data-group="entender" data-key="despidos" data-price="60 €" aria-haspopup="dialog" aria-labelledby="t6" aria-describedby="d6">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t6">Despidos y conflictos</span><span class="srv-desc" id="d6">Analizamos tu caso en detalle y te cuento qué opciones tienes y cómo defenderte, paso a paso. Recuerda que hay 20 días hábiles de plazo.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:0ms"><button type="button" class="srv-tile" data-tone="olive" data-group="procesos" data-key="tramiteSencillo" data-price="20 €" aria-haspopup="dialog" aria-labelledby="t7" aria-describedby="d7">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t7">Trámites sencillos</span><span class="srv-desc" id="d7">Cartas y comunicaciones a la empresa, cambios de IRPF, solicitud de expedientes, acuerdos.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:70ms"><button type="button" class="srv-tile" data-tone="olive" data-group="procesos" data-key="tramiteCarga" data-price="40 €" aria-haspopup="dialog" aria-labelledby="t8" aria-describedby="d8">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t8">Trámites con más carga</span><span class="srv-desc" id="d8">Excedencias o negociar algo con la empresa: qué decir, cómo plantearlo y qué tener en cuenta antes de dar el paso.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:140ms"><button type="button" class="srv-tile" data-tone="ink" data-group="buscar" data-price="A convenir" aria-haspopup="dialog" aria-labelledby="t9" aria-describedby="d9">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t9">Servicio a medida</span><span class="srv-desc" id="d9">Análisis completo de tu situación laboral y una estrategia de búsqueda hecha para lo que necesitas.</span></span>
+        </button></li>
+        </ul>
+
+        <dialog class="srv-sheet" id="srvSheet" aria-labelledby="srvSheetTitle">
+          <div class="srv-panel" data-tone="paper">
+            <button type="button" class="srv-close" aria-label="Cerrar"></button>
+            <div class="srv-sheet-main">
+              <p class="srv-sheet-group" data-r></p>
+              <h3 class="srv-sheet-title" id="srvSheetTitle" data-r></h3>
+              <p class="srv-sheet-desc" data-r></p>
+              <ul class="srv-facts" data-r>
+                <li>Online, desde cualquier punto de España</li>
+                <li>Empiezas con la primera consulta, gratuita y sin compromiso</li>
+                <li>Después te paso el enlace de pago</li>
+              </ul>
+            </div>
+            <div class="srv-sheet-side">
+              <p class="srv-price" data-r><span class="srv-amount"></span><span class="srv-vat">IVA incluido</span></p>
+              <div class="srv-actions" data-r>
+                <a class="btn" href="reservar.html">Reservar consulta gratis</a>
+                <a class="srv-alt" href="contacto.html">Prefiero contarte mi caso por escrito</a>
+              </div>
+            </div>
+          </div>
+        </dialog>
       </div>
 
       <div class="grid u-mt7">
@@ -326,6 +358,7 @@
 <script src="main.js?v=7"></script>
 <script src="vendor/lenis.min.js" defer></script>
 <script src="ui.js" defer></script>
+<script src="servicios.js?v=1" defer></script>
 <script src="opiniones-config.js?v=3"></script>
 <script src="opiniones.js?v=4" defer></script>
 </body>
