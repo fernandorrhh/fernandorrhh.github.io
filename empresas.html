@@ -21,7 +21,7 @@
 <link rel="preload" href="assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=6">
-<link rel="stylesheet" href="ui.css?v=19">
+<link rel="stylesheet" href="ui.css?v=21">
 <script>
 /* Oculta el contenido solo si el script de animación va a llegar.
    Si main.js falla o tarda, a los 2 s se muestra todo igualmente. */
@@ -187,18 +187,68 @@
       </div>
       <p class="note u-mt6 u-w46" data-rise>Las nóminas y los seguros sociales siguen en tu gestoría, y la prevención técnica, en tu servicio de prevención. Cuando un asunto necesita ir a juicio, se deriva a un despacho de graduado/a social o de abogacía laboralista.</p>
       <h2 class="title u-w14 u-mt9" id="h-precio" data-rise>Cuánto cuesta</h2>
-      <div class="menu-sheet u-mt8" data-rise>
-        <div class="menu-group">
-          <h3>RRHH externo</h3>
-          <div class="menu-item"><p class="menu-line"><span>Hasta 10 personas</span><span class="leader" aria-hidden="true"></span><span class="amount">desde 220&nbsp;€/mes</span></p><p>Cuota mensual según plantilla y tiempo de respuesta. Sin permanencia: se deja con un mes de preaviso.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>De 11 a 19 personas</span><span class="leader" aria-hidden="true"></span><span class="amount">a medida</span></p><p>Presupuesto cerrado tras el diagnóstico.</p></div>
+      <div class="srv u-mt8" id="empresas-grid">
+        <div class="srv-bar">
+          <div class="srv-filters" role="group" aria-label="Filtrar por tipo de servicio">
+            <button type="button" class="srv-chip" data-filter="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="srv-chip" data-filter="externo" aria-pressed="false"><i></i>RRHH externo</button>
+            <button type="button" class="srv-chip" data-filter="igualdad" aria-pressed="false"><i></i>Planes de igualdad (50 personas o más)</button>
+          </div>
+          <p class="srv-hint">
+            <span class="srv-hint-hover">Pasa el cursor por un servicio para ver de qué va. Ábrelo para ver el precio.</span>
+            <span class="srv-hint-touch">Toca un servicio para ver de qué va y cuánto cuesta.</span>
+          </p>
         </div>
-        <div class="menu-group">
-          <h3>Planes de igualdad (50 personas o más)</h3>
-          <div class="menu-item"><p class="menu-line"><span>Seguimiento anual del plan</span><span class="leader" aria-hidden="true"></span><span class="amount">desde 400&nbsp;€</span></p><p>Revisión de medidas e indicadores con la comisión de seguimiento.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Auditoría retributiva</span><span class="leader" aria-hidden="true"></span><span class="amount">desde 600&nbsp;€</span></p><p>Valoración de puestos y análisis de la brecha salarial.</p></div>
-          <div class="menu-item"><p class="menu-line"><span>Renovación del plan</span><span class="leader" aria-hidden="true"></span><span class="amount">desde 1.200&nbsp;€</span></p><p>Para planes que vencen o que no están actualizados.</p></div>
-        </div>
+
+        <ul class="srv-grid">
+        <li class="srv-cell" data-rise style="--rise-delay:0ms"><button type="button" class="srv-tile" data-tone="paper" data-group="externo" data-price="desde 220 €/mes" aria-haspopup="dialog" aria-labelledby="t1" aria-describedby="d1">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t1">Hasta 10 personas</span><span class="srv-desc" id="d1">Cuota mensual según plantilla y tiempo de respuesta. Sin permanencia: se deja con un mes de preaviso.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:70ms"><button type="button" class="srv-tile" data-tone="paper" data-group="externo" data-price="a medida" aria-haspopup="dialog" aria-labelledby="t2" aria-describedby="d2">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t2">De 11 a 19 personas</span><span class="srv-desc" id="d2">Presupuesto cerrado tras el diagnóstico, según plantilla y carga de trabajo.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:140ms"><button type="button" class="srv-tile" data-tone="olive" data-group="igualdad" data-price="desde 400 €" aria-haspopup="dialog" aria-labelledby="t3" aria-describedby="d3">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t3">Seguimiento anual del plan</span><span class="srv-desc" id="d3">Revisión de medidas e indicadores con la comisión de seguimiento.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:0ms"><button type="button" class="srv-tile" data-tone="olive" data-group="igualdad" data-price="desde 600 €" aria-haspopup="dialog" aria-labelledby="t4" aria-describedby="d4">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t4">Auditoría retributiva</span><span class="srv-desc" id="d4">Valoración de puestos y análisis de la brecha salarial.</span></span>
+        </button></li>
+
+        <li class="srv-cell" data-rise style="--rise-delay:70ms"><button type="button" class="srv-tile" data-tone="olive" data-group="igualdad" data-price="desde 1.200 €" aria-haspopup="dialog" aria-labelledby="t5" aria-describedby="d5">
+          <span class="srv-plus" aria-hidden="true"></span>
+          <span class="srv-body"><span class="srv-title" id="t5">Renovación del plan</span><span class="srv-desc" id="d5">Para planes que vencen o que no están actualizados.</span></span>
+        </button></li>
+        </ul>
+
+        <dialog class="srv-sheet" id="srvSheet" aria-labelledby="srvSheetTitle">
+          <div class="srv-panel" data-tone="paper">
+            <button type="button" class="srv-close" aria-label="Cerrar"></button>
+            <div class="srv-sheet-main">
+              <p class="srv-sheet-group" data-r></p>
+              <h3 class="srv-sheet-title" id="srvSheetTitle" data-r></h3>
+              <p class="srv-sheet-desc" data-r></p>
+              <ul class="srv-facts" data-r>
+                <li>Empieza con un diagnóstico gratuito y sin compromiso</li>
+                <li>Presupuesto cerrado por escrito antes de empezar</li>
+                <li>Las nóminas y los seguros sociales siguen en tu gestoría</li>
+              </ul>
+            </div>
+            <div class="srv-sheet-side">
+              <p class="srv-price" data-r><span class="srv-amount"></span><span class="srv-vat">Precios sin IVA</span></p>
+              <div class="srv-actions" data-r>
+                <a class="btn" href="#presupuesto">Pedir diagnóstico gratuito</a>
+                <a class="srv-alt" href="contacto.html">Prefiero contarte el caso por escrito</a>
+              </div>
+            </div>
+          </div>
+        </dialog>
       </div>
       <p class="note u-mt6 u-w46" data-rise>Precios sin IVA. Las tres primeras empresas que contraten el servicio mensual tienen un 20&nbsp;% de descuento durante sus tres primeros meses. Es el mismo modelo con el que ya llevo los RRHH de un estudio de videojuegos de 8 personas.</p>
       <div class="opiniones u-mt9" role="region" data-opiniones="empresas" data-titulo="Lo que dicen las empresas" data-max="3" hidden></div>
@@ -348,8 +398,9 @@
 
 <script src="main.js?v=7"></script>
 <script src="empresas.js?v=3" defer></script>
+<script src="servicios.js?v=3" defer></script>
 <script src="vendor/lenis.min.js" defer></script>
-<script src="ui.js" defer></script>
+<script src="ui.js?v=2" defer></script>
 <script src="opiniones-config.js?v=3"></script>
 <script src="opiniones.js?v=4" defer></script>
 </body>

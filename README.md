@@ -17,7 +17,7 @@ HTML, CSS y JavaScript sin frameworks, publicada con GitHub Pages.
 | `styles.css` | Todo el diseño: tokens, rejilla, componentes, movimiento |
 | `main.js` | Menú, entradas por scroll, calendario y formulario |
 | `precios.js` | Tarifas: única fuente de precios |
-| `servicios.js` | Cuadros de servicios: descripción al pasar el cursor y ficha con el precio |
+| `servicios.js` | Cuadros de servicio (servicios.html y empresas.html): descripción al pasar el cursor y ficha con el precio |
 | `404.html`, `robots.txt`, `sitemap.xml` | Página de error y archivos para buscadores |
 | `calculadora.js` | Motor de cálculo + interfaz de la calculadora |
 | `assets/` | Logos, favicon, foto y tipografías |

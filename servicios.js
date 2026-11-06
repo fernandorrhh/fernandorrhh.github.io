@@ -1,11 +1,12 @@
 /* ---------------------------------------------------------------
-   Servicios — cuadros que se abren.
+   Cuadros de servicio que se abren (servicios.html y empresas.html).
    Los precios salen de precios.js (window.PRECIOS) por data-key; el
-   data-price del HTML es solo respaldo. Sin este script todo se ve:
-   descripciones visibles y precio al pie de cada cuadro.
+   data-price del HTML es solo respaldo, y es lo que usan las tarifas
+   de empresas, que no son un número cerrado. Sin este script todo se
+   ve: descripciones visibles y precio al pie de cada cuadro.
    --------------------------------------------------------------- */
 (function () {
-  var root = document.getElementById('servicios-grid');
+  var root = document.querySelector('.srv');
   if (!root) return;
   var grid = root.querySelector('.srv-grid');
   var tiles = [].slice.call(root.querySelectorAll('.srv-tile'));
@@ -14,8 +15,15 @@
   var panel = sheet.querySelector('.srv-panel');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var EASE = 'cubic-bezier(0.23, 1, 0.32, 1)', RADIUS = 28, last = null, busy = false;
-  var groupName = { buscar: 'Buscar trabajo', entender: 'Entender lo que firmas', procesos: 'Procesos laborales' };
   var P = window.PRECIOS || {};
+
+  /* El nombre de cada grupo se toma del filtro, así cada página define
+     los suyos en el HTML y este script sirve para las dos. */
+  var groupName = {};
+  chips.forEach(function (c) {
+    var f = c.getAttribute('data-filter');
+    if (f && f !== 'todos') groupName[f] = c.textContent.trim();
+  });
 
   function priceOf(t) {
     var k = t.getAttribute('data-key');
@@ -61,7 +69,8 @@
     panel.querySelector('.srv-sheet-title').textContent = t.querySelector('.srv-title').textContent;
     panel.querySelector('.srv-sheet-desc').textContent = t.querySelector('.srv-desc').textContent;
     amt.textContent = price;
-    amt.classList.toggle('is-text', !numeric);
+    /* "30 €" se escribe en grande; "desde 1.200 €" o "a medida", no. */
+    amt.classList.toggle('is-text', !numeric || price.length > 9);
     panel.querySelector('.srv-vat').style.display = numeric ? '' : 'none';
   }
   function openSheet(t) {
@@ -93,4 +102,17 @@
   sheet.querySelector('.srv-close').addEventListener('click', closeSheet);
   sheet.addEventListener('cancel', function (e) { e.preventDefault(); closeSheet(); });
   sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
+
+  /* Un enlace a un punto de la misma página (el formulario de empresas)
+     no se vería con la ficha abierta: se cierra antes de saltar. */
+  panel.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault();
+    var destino = document.querySelector(a.getAttribute('href'));
+    closeSheet();
+    if (destino) setTimeout(function () {
+      destino.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    }, 340);
+  });
 })();
