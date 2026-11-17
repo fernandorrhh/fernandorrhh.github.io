@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Diagnóstico de pantalla — RRHH Simple</title>
+<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="ui.css?v=24">
+<style>
+  body{ font-family: system-ui, sans-serif; margin: 0; padding: 16px; background: #faf8f3; color: #1a1a1a; }
+  h1{ font: 700 20px/1.3 system-ui; margin: 0 0 12px; }
+  table{ width: 100%; border-collapse: collapse; font: 15px/1.4 ui-monospace, monospace; }
+  td{ padding: 7px 4px; border-bottom: 1px solid #d4cfc0; vertical-align: top; }
+  td:first-child{ color: #4a4732; padding-right: 10px; }
+  td:last-child{ text-align: right; font-weight: 700; white-space: nowrap; }
+  .mal{ color: #b3261e; }
+  .regla{ height: 10px; background: #ffde59; margin: 14px 0 4px; }
+  p.nota{ font: 13px/1.5 system-ui; color: #4a4732; margin: 14px 0 0; }
+  #muestra{ position: absolute; left: -9999px; width: 100%; }
+</style>
+</head>
+<body>
+<h1>Diagnóstico de pantalla</h1>
+<p class="nota">Haz una captura de esta pantalla entera y envíamela.</p>
+
+<div class="regla" id="regla"></div>
+<p class="nota">La barra amarilla tiene que llegar justo de borde a borde.</p>
+
+<table id="t"></table>
+
+<div id="muestra"></div>
+
+<script>
+(function () {
+  var m = document.getElementById('muestra');
+  m.innerHTML = '<div class="wrap"><a class="btn" href="#">Reservar consulta gratis</a></div>';
+  var wrap = m.querySelector('.wrap'), btn = m.querySelector('.btn');
+  var vv = window.visualViewport || {};
+  var sonda = document.createElement('div');
+  sonda.style.cssText = 'width:100%;height:1px;position:absolute;left:0';
+  document.body.appendChild(sonda);
+  var r16 = document.createElement('div');
+  r16.style.cssText = 'position:absolute;left:-9999px;font-size:1rem';
+  r16.textContent = 'x';
+  document.body.appendChild(r16);
+
+  var filas = [
+    ['innerWidth', window.innerWidth + ' px'],
+    ['screen.width', screen.width + ' px'],
+    ['documentElement.clientWidth', document.documentElement.clientWidth + ' px'],
+    ['scrollWidth (documento)', document.documentElement.scrollWidth + ' px'],
+    ['div al 100 %', Math.round(sonda.getBoundingClientRect().width) + ' px'],
+    ['.wrap', Math.round(wrap.getBoundingClientRect().width) + ' px'],
+    ['.btn', Math.round(btn.getBoundingClientRect().width) + ' px'],
+    ['visualViewport.width', vv.width ? Math.round(vv.width) + ' px' : 'no disponible'],
+    ['visualViewport.scale (zoom)', vv.scale != null ? vv.scale : 'no disponible'],
+    ['devicePixelRatio', window.devicePixelRatio],
+    ['1rem mide', getComputedStyle(r16).fontSize],
+    ['orientación', screen.orientation ? screen.orientation.type : '—'],
+    ['navegador', navigator.userAgent.slice(0, 90)]
+  ];
+
+  var t = document.getElementById('t');
+  filas.forEach(function (f) {
+    var tr = t.insertRow();
+    tr.insertCell().textContent = f[0];
+    var c = tr.insertCell();
+    c.textContent = f[1];
+    if (f[0] === 'visualViewport.scale (zoom)' && f[1] !== 1 && f[1] !== 'no disponible') c.className = 'mal';
+    if (f[0] === '1rem mide' && f[1] !== '16px') c.className = 'mal';
+    if (f[0] === 'scrollWidth (documento)' && document.documentElement.scrollWidth > document.documentElement.clientWidth) c.className = 'mal';
+  });
+  sonda.remove(); r16.remove();
+})();
+</script>
+</body>
+</html>
