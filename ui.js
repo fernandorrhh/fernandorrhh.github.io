@@ -219,23 +219,33 @@
      dónde tiene que quedarse fija. Si esto no se ejecuta, la página se
      ve como siempre: las secciones una tras otra.
      --------------------------------------------------------------- */
+  /* El apilado es sólo de pantalla ancha: en el móvil no se monta nada,
+     ni medidas ni observador, para no cargar la página de trabajo inútil. */
+  var anchaMQ = window.matchMedia('(min-width: 1000px) and (min-height: 600px)');
   var stack = document.querySelector('main.stack');
-  if (stack && !reduce && 'ResizeObserver' in window) {
+
+  function montarApilado() {
+    if (!stack || reduce || !anchaMQ.matches || stack.dataset.apilado) return;
+    if (!('ResizeObserver' in window)) return;
     var panels = Array.prototype.filter.call(stack.children, function (el) {
       return el.tagName === 'SECTION';
     });
-    if (panels.length > 1) {
-      panels.forEach(function (s, i) { s.style.setProperty('--pz', i + 1); });
-      var medir = function () {
-        panels.forEach(function (s) { s.style.setProperty('--ph', s.offsetHeight + 'px'); });
-      };
-      medir();
-      /* Sólo cambia el desplazamiento de fijado, nunca la altura:
-         no puede entrar en bucle con el observador. */
-      new ResizeObserver(medir).observe(stack);
-      stack.classList.add('is-stacked');
-    }
+    if (panels.length < 2) return;
+    stack.dataset.apilado = '1';
+    panels.forEach(function (s, i) { s.style.setProperty('--pz', i + 1); });
+    var medir = function () {
+      panels.forEach(function (s) { s.style.setProperty('--ph', s.offsetHeight + 'px'); });
+    };
+    medir();
+    /* Sólo cambia el desplazamiento de fijado, nunca la altura:
+       no puede entrar en bucle con el observador. */
+    new ResizeObserver(medir).observe(stack);
+    stack.classList.add('is-stacked');
   }
+
+  montarApilado();
+  /* Si se agranda la ventana en el ordenador, se monta entonces. */
+  if (anchaMQ.addEventListener) anchaMQ.addEventListener('change', montarApilado);
 
   // (la red de seguridad se deja correr: no hace daño si todo ya está visible)
 })();

@@ -1088,9 +1088,15 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
    =========================================================================== */
 
 /* overflow-x: hidden convierte al body en contenedor de scroll y rompe
-   position: sticky. clip recorta igual sin crear contenedor de scroll. */
-@supports (overflow: clip){
-  body{ overflow-x: clip; }
+   position: sticky. clip recorta igual sin crear contenedor de scroll.
+   Sólo donde hace falta: el apilado es de pantalla ancha, y en el móvil
+   clip daba problemas de pintado (el pie y la píldora del menú salían a
+   media anchura en el navegador de Instagram). Ahí sigue hidden, que es
+   lo que la web llevaba usando desde siempre. */
+@media (min-width: 1000px){
+  @supports (overflow: clip){
+    body{ overflow-x: clip; }
+  }
 }
 
 @media (min-width: 1000px) and (min-height: 600px){
