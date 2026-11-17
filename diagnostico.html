@@ -48,6 +48,19 @@
   var anchoSonda = Math.round(sonda.getBoundingClientRect().width);
   sonda.remove();
 
+  /* Chrome tiene un ajuste de accesibilidad, "Escala de texto", que
+     agranda TODO el texto sin avisar a la página. No se ve en
+     getComputedStyle: hay que medir una caja de texto de verdad. */
+  function medirTexto() {
+    var d = document.createElement('div');
+    d.style.cssText = 'position:absolute;left:-9999px;top:0;font-size:16px;line-height:1;margin:0;padding:0';
+    d.textContent = 'Hxy';
+    document.body.appendChild(d);
+    var alto = d.getBoundingClientRect().height;
+    d.remove();
+    return Math.round(alto / 16 * 100);
+  }
+
   var filas = [
     ['innerWidth', window.innerWidth + ' px'],
     ['screen.width', screen.width + ' px'],
@@ -57,7 +70,8 @@
     ['zoom (scale)', vv.scale != null ? Math.round(vv.scale * 1000) / 1000 : '—'],
     ['devicePixelRatio', window.devicePixelRatio],
     ['1rem mide', getComputedStyle(document.documentElement).fontSize],
-    ['vista de ordenador', window.innerWidth > screen.width + 40 ? 'SÍ (desactívala)' : 'no']
+    ['vista de ordenador', window.innerWidth > screen.width + 40 ? 'SÍ (desactívala)' : 'no'],
+    ['texto dibujado al', medirTexto() + ' %']
   ];
   var t = document.getElementById('t');
   filas.forEach(function (f) {
@@ -68,6 +82,7 @@
     if (f[0] === 'zoom (scale)' && f[1] !== 1 && f[1] !== '—') c.className = 'mal';
     if (f[0] === '1rem mide' && f[1] !== '16px') c.className = 'mal';
     if (f[0] === 'vista de ordenador' && f[1] !== 'no') c.className = 'mal';
+    if (f[0] === 'texto dibujado al' && f[1] !== '100 %') c.className = 'mal';
   });
 
   /* La portada se carga en un marco del ancho real del móvil y se buscan
@@ -91,7 +106,8 @@
                        ' — ancho ' + Math.round(r.width) + ', se sale ' + Math.round(r.right - ancho) + ' px');
           }
         });
-        estado.textContent = 'Portada medida a ' + ancho + ' px de ancho.';
+        estado.textContent = 'Portada medida a ' + ancho + ' px de ancho (ventana del marco: ' +
+          marco.contentWindow.innerWidth + ' px).';
         veredicto.hidden = false;
         if (malos.length === 0) {
           veredicto.textContent = '✓ Nada se sale. La portada encaja en tu pantalla.';
