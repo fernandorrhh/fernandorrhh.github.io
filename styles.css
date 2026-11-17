@@ -50,7 +50,7 @@
   --warm-ink:   #8d4a16;   /* terracota legible, para texto sobre papel */
 
   /* --- Tipografía: cinco pasos, ni uno más ----------------------------- */
-  --display: clamp(2.25rem, 7.4vw, 5.75rem);  /* 44 → 92 */
+  --display: clamp(2rem, 7.4vw, 5.75rem);  /* 32 → 92 — el suelo bajó de 44 a 32: en un móvil de 360-390 px el titular más largo de Inicio no cabía y se salía por la derecha */
   --title:   clamp(1.875rem, 3.9vw, 3.25rem); /* 30 → 52 */
   --lead:    clamp(1.25rem, 1.9vw, 1.625rem); /* 20 → 26 */
   --body:    1.0625rem;                       /* 17 */

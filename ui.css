@@ -1143,3 +1143,19 @@ html{
   touch-action: manipulation;
   user-select: none; -webkit-user-select: none;
 }
+
+/* ---------------------------------------------------------------
+   Titular de portada en el móvil.
+   El titular más largo ("Nadie debería firmar algo que no entiende")
+   se salía por la derecha: el tamaño mínimo era demasiado grande para
+   360-390 px y text-wrap: balance puede dejar una línea sin partir.
+   Aquí se fuerza el corte y se pone una última defensa por si el
+   navegador calcula un ancho mayor del real.
+   --------------------------------------------------------------- */
+@media (max-width: 700px){
+  .v3 .hero-title{
+    max-width: 15ch;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+  }
+}
