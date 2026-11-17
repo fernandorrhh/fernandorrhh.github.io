@@ -41,7 +41,7 @@
   padding: 0.55rem 0.9rem; border-radius: var(--pill);
   transition: background-color var(--t-hover) ease, color var(--t-hover) ease;
 }
-.v3 .nav-links a:not(.btn):hover{ background: var(--paper-2); }
+@media (hover: hover) and (pointer: fine){ .v3 .nav-links a:not(.btn):hover{ background: var(--paper-2); } }
 .v3 .nav-links a[aria-current="page"]{ box-shadow: none; background: var(--paper-2); color: var(--ink); }
 /* Al bajar, la píldora se recoge un poco */
 .v3.is-scrolled .nav{ max-width: 980px; }
@@ -88,7 +88,7 @@
 
 /* Enlace terciario con flecha que avanza */
 .v3 .btn-text::before{ content: '→'; order: 2; transition: transform 300ms var(--ease-soft); }
-.v3 .btn-text:hover::before{ transform: translateX(4px); }
+@media (hover: hover) and (pointer: fine){ .v3 .btn-text:hover::before{ transform: translateX(4px); } }
 
 /* ---------------------------------------------------------------
    Portada: título que entra palabra a palabra con desenfoque (Halyard)
@@ -121,7 +121,7 @@
 .ticker-track span{ white-space: nowrap; }
 .ticker-track i{ width: 8px; height: 8px; background: var(--accent); border-radius: 2px; transform: rotate(45deg); flex-shrink: 0; }
 .ui .ticker-track{ animation: ticker 38s linear infinite; }
-.ticker:hover .ticker-track{ animation-play-state: paused; }
+@media (hover: hover) and (pointer: fine){ .ticker:hover .ticker-track{ animation-play-state: paused; } }
 @keyframes ticker{ to{ transform: translateX(-50%); } }
 
 /* ---------------------------------------------------------------
@@ -277,7 +277,7 @@
   transition: transform 420ms var(--ease-soft), width 420ms var(--ease-soft), opacity 200ms ease;
 }
 .v3 .nav-links a{ position: relative; z-index: 1; }
-.ui .v3 .nav-links a:not(.btn):hover{ background: transparent; }
+@media (hover: hover) and (pointer: fine){ .ui .v3 .nav-links a:not(.btn):hover{ background: transparent; } }
 .ui .v3 .nav-links a[aria-current="page"]{ background: transparent; }
 .v3 .nav-links a:not(.btn) .roll{
   display: inline-block; overflow: hidden; vertical-align: middle;
@@ -1079,6 +1079,10 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 /* ===========================================================================
    v3.8 — Páginas que se solapan al bajar (apilado)
    Cada sección se queda fija arriba y la siguiente se desliza por encima.
+   Sólo en pantallas anchas: en el móvil casi toda sección es más alta que
+   la pantalla, así que se quedaba fija por su parte de abajo y la siguiente
+   le cortaba el titular; las cortas se veían como tiras sueltas. Ahí vale
+   más la página normal, que además es tres pantallas más corta.
    Mejora progresiva: ui.js añade .is-stacked y mide cada sección. Sin
    JavaScript, o con "reducir movimiento", las secciones quedan seguidas.
    =========================================================================== */
@@ -1089,33 +1093,53 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
   body{ overflow-x: clip; }
 }
 
-.v3 .stack.is-stacked > section{
-  position: sticky;
-  /* Una sección más alta que la pantalla se desplaza entera y se fija
-     cuando llega su final; una más corta se fija nada más llegar arriba.
-     --ph es su altura, que mide ui.js. */
-  top: min(0px, calc(100svh - var(--ph, 100svh)));
-  z-index: var(--pz, 1);
-  margin-top: 0;
-  /* Cada sección ocupa al menos una pantalla: así nunca se ve un hueco
-     entre dos y el contenido queda centrado. */
-  min-height: 100svh;
-  display: grid; align-content: center;
-  border-radius: var(--radius-card) var(--radius-card) 0 0;
+@media (min-width: 1000px) and (min-height: 600px){
+  .v3 .stack.is-stacked > section{
+    position: sticky;
+    /* Una sección más alta que la pantalla se desplaza entera y se fija
+       cuando llega su final; una más corta se fija nada más llegar arriba.
+       --ph es su altura, que mide ui.js. */
+    top: min(0px, calc(100svh - var(--ph, 100svh)));
+    z-index: var(--pz, 1);
+    margin-top: 0;
+    /* Cada sección ocupa al menos una pantalla: así nunca se ve un hueco
+       entre dos y el contenido queda centrado. */
+    min-height: 100svh;
+    display: grid; align-content: center;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  /* Si las opiniones no llegan a cargarse, su sección no se queda ocupando
+     una pantalla en blanco: vuelve al flujo normal. En cuanto el carrusel
+     aparece (se le quita hidden), la regla deja de aplicarse sola. */
+  .v3 .stack.is-stacked > section:has([data-opiniones][hidden]){
+    position: static; min-height: 0; display: block;
+  }
+
+  /* La portada abre la pila: sin esquinas redondas y con fondo propio,
+     porque hasta ahora heredaba el del body. */
+  .v3 .stack.is-stacked > section:first-of-type{ border-radius: 0; }
+  .v3 .stack.is-stacked > .hero{ background-color: var(--paper); }
+
+  @media (prefers-reduced-motion: reduce){
+    .v3 .stack.is-stacked > section{ position: static; }
+  }
 }
 
-/* Si las opiniones no llegan a cargarse, su sección no se queda ocupando
-   una pantalla en blanco: vuelve al flujo normal. En cuanto el carrusel
-   aparece (se le quita hidden), la regla deja de aplicarse sola. */
-.v3 .stack.is-stacked > section:has([data-opiniones][hidden]){
-  position: static; min-height: 0; display: block;
+/* ===========================================================================
+   v3.9 — Base para el móvil
+   =========================================================================== */
+
+html{
+  /* Sin el destello gris del navegador al tocar: cada control ya tiene
+     su propia respuesta al pulsar. */
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* La portada abre la pila: sin esquinas redondas y con fondo propio,
-   porque hasta ahora heredaba el del body. */
-.v3 .stack.is-stacked > section:first-of-type{ border-radius: 0; }
-.v3 .stack.is-stacked > .hero{ background-color: var(--paper); }
-
-@media (prefers-reduced-motion: reduce){
-  .v3 .stack.is-stacked > section{ position: static; }
+/* manipulation evita la espera de 300 ms por si viene un segundo toque;
+   user-select evita que una pulsación larga seleccione el texto del botón. */
+.v3 .btn, .v3 .btn-sm, .v3 .btn-text, .v3 .nav-links a, .v3 .menu-toggle,
+.v3 .srv-tile, .v3 .srv-chip, .v3 .srv-close, button, [role="button"]{
+  touch-action: manipulation;
+  user-select: none; -webkit-user-select: none;
 }
