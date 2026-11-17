@@ -290,36 +290,5 @@
 <script src="opiniones-config.js?v=3"></script>
 <script src="opiniones.js?v=5" defer></script>
 
-<!-- Diagnóstico temporal: sólo se activa con ?diag=1 en la dirección -->
-<script>
-(function () {
-  if (location.search.indexOf('diag=1') === -1) return;
-  window.addEventListener('load', function () { setTimeout(function () {
-    var vp = document.documentElement.clientWidth, L = [];
-    function med(el){ return el ? Math.round(el.getBoundingClientRect().width) : '—'; }
-    L.push('viewport ' + vp + ' · innerWidth ' + window.innerWidth + ' · zoom ' +
-           (window.visualViewport ? Math.round(window.visualViewport.scale*100)/100 : '—'));
-    L.push('html ' + med(document.documentElement) + ' · body ' + med(document.body) +
-           ' · main ' + med(document.querySelector('main')) + ' · hero ' + med(document.querySelector('.hero')) +
-           ' · wrap ' + med(document.querySelector('.hero .wrap')));
-    var malos = [];
-    document.querySelectorAll('body *').forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.width > 0 && r.right > vp + 1 && (el.className||'').toString().indexOf('skip') === -1) malos.push(el);
-    });
-    L.push(malos.length + ' se salen');
-    malos.slice(0, 6).forEach(function (el) {
-      var r = el.getBoundingClientRect(), c = getComputedStyle(el);
-      L.push('· ' + el.tagName.toLowerCase() + (el.className ? '.' + el.className.toString().trim().split(/\s+/)[0] : '') +
-             ' w=' + Math.round(r.width) + ' disp=' + c.display + ' mw=' + c.maxWidth + ' cols=' + (c.gridTemplateColumns||'').slice(0,24));
-    });
-    var caja = document.createElement('div');
-    caja.setAttribute('style', 'position:fixed;inset:0 0 auto 0;z-index:99999;background:#fff;color:#000;' +
-      'font:11px/1.4 ui-monospace,monospace;padding:8px;max-height:70vh;overflow:auto;white-space:pre-wrap;word-break:break-all;border-bottom:2px solid red');
-    caja.textContent = L.join('\n');
-    document.body.appendChild(caja);
-  }, 2200); });
-})();
-</script>
 </body>
 </html>
