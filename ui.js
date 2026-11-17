@@ -222,7 +222,7 @@
   /* El apilado es sólo de pantalla ancha: en el móvil no se monta nada,
      ni medidas ni observador, para no cargar la página de trabajo inútil. */
   var anchaMQ = window.matchMedia('(min-width: 1000px) and (min-height: 600px)');
-  var stack = document.querySelector('main.stack');
+  var stack = document.querySelector('main.paginas');
 
   function montarApilado() {
     if (!stack || reduce || !anchaMQ.matches || stack.dataset.apilado) return;

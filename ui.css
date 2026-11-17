@@ -1085,6 +1085,11 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
    más la página normal, que además es tres pantallas más corta.
    Mejora progresiva: ui.js añade .is-stacked y mide cada sección. Sin
    JavaScript, o con "reducir movimiento", las secciones quedan seguidas.
+   OJO: la clase se llama .paginas, no .stack. Ya existe un .v3 .stack
+   (display: grid) para las tarjetas apiladas, y ponérsela al <main>
+   convertía toda la página en una rejilla: bastaba con que un elemento
+   tuviera un min-content mayor que la pantalla para que la columna
+   creciera y la página entera se saliera por la derecha.
    =========================================================================== */
 
 /* overflow-x: hidden convierte al body en contenedor de scroll y rompe
@@ -1100,7 +1105,7 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
 }
 
 @media (min-width: 1000px) and (min-height: 600px){
-  .v3 .stack.is-stacked > section{
+  .v3 .paginas.is-stacked > section{
     position: sticky;
     /* Una sección más alta que la pantalla se desplaza entera y se fija
        cuando llega su final; una más corta se fija nada más llegar arriba.
@@ -1118,17 +1123,17 @@ html.lenis, .lenis.lenis-smooth{ scroll-behavior: auto !important; }
   /* Si las opiniones no llegan a cargarse, su sección no se queda ocupando
      una pantalla en blanco: vuelve al flujo normal. En cuanto el carrusel
      aparece (se le quita hidden), la regla deja de aplicarse sola. */
-  .v3 .stack.is-stacked > section:has([data-opiniones][hidden]){
+  .v3 .paginas.is-stacked > section:has([data-opiniones][hidden]){
     position: static; min-height: 0; display: block;
   }
 
   /* La portada abre la pila: sin esquinas redondas y con fondo propio,
      porque hasta ahora heredaba el del body. */
-  .v3 .stack.is-stacked > section:first-of-type{ border-radius: 0; }
-  .v3 .stack.is-stacked > .hero{ background-color: var(--paper); }
+  .v3 .paginas.is-stacked > section:first-of-type{ border-radius: 0; }
+  .v3 .paginas.is-stacked > .hero{ background-color: var(--paper); }
 
   @media (prefers-reduced-motion: reduce){
-    .v3 .stack.is-stacked > section{ position: static; }
+    .v3 .paginas.is-stacked > section{ position: static; }
   }
 }
 
